@@ -10,6 +10,7 @@ import PopupRegistPage from '../pages/PopupRegistPage/PopupRegistPage';
 import PopupTicketPage from '../pages/PopupTicketPage/PopupTicketPage';
 import NoticePage from '../pages/NoticePage/NoticePage';
 import InquiryPage from '../pages/InquiryPage/InquiryPage';
+import HomePage from '../pages/HomePage/HomePage';
 
 // import LandingPage from '../pages/LandingPage/LandingPage';
 // import MainPage from '../pages/MainPage/MainPage';
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
     path: PATH.ROOT,
     element: <App />, // 여기엔 이미 Home or Landing 둘중하나
     children: [
+      { index: true, element: <HomePage /> }, // outlet에 기본값으로 넣어줌
       //user
       { path: PATH.USERPROFILE, element: <UserProfilePage /> },
       { path: PATH.USERPAYMENT, element: <UserPaymentPage /> },
