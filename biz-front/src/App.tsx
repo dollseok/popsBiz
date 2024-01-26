@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import './App.css';
+import LandingPage from './pages/LandingPage/LandingPage';
+import MainPage from './pages/MainPage/MainPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header"></header>
-    </div>
+    <Suspense fallback={<>로딩중</>}>
+      {/* 유저 상태에따라 true false */}
+      {false ? <LandingPage /> : <MainPage />}
+    </Suspense>
   );
 }
 
