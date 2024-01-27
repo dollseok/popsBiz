@@ -5,6 +5,9 @@ import reportWebVitals from './reportWebVitals';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RecoilRoot } from 'recoil';
 import AppRouter from './router/routes';
+import { ThemeProvider } from 'styled-components';
+import theme from './styles/theme';
+import GlobalStyle from './styles/GlobalStyle';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -24,11 +27,14 @@ const queryClient = new QueryClient({
 root.render(
   <Suspense fallback={<>로딩중</>}>
     <React.StrictMode>
-      <QueryClientProvider client={queryClient}>
-        <RecoilRoot>
-          <AppRouter />
-        </RecoilRoot>
-      </QueryClientProvider>
+      <ThemeProvider theme={theme}>
+        <QueryClientProvider client={queryClient}>
+          <RecoilRoot>
+            <GlobalStyle />
+            <AppRouter />
+          </RecoilRoot>
+        </QueryClientProvider>
+      </ThemeProvider>
     </React.StrictMode>
   </Suspense>
 );
