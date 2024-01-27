@@ -20,6 +20,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src"],
+  "include": ["src", "src/**/*", "craco.config.js"],
   "extensions": [".js", ".jsx", ".ts", ".tsx"]
 }

@@ -1,16 +1,16 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import App from '../App';
-import SignupPage from '../pages/SignupPage/SignupPage';
-import { PATH } from '../constants/path';
-import UserProfilePage from '../pages/UserProfliePage/UserProfilePage';
-import UserPaymentPage from '../pages/UserPaymentPage/UserPaymentPage';
-import PopupListPage from '../pages/PopupListPage/PopupListPage';
-import PopupRegistPage from '../pages/PopupRegistPage/PopupRegistPage';
-import PopupTicketPage from '../pages/PopupTicketPage/PopupTicketPage';
-import NoticePage from '../pages/NoticePage/NoticePage';
-import InquiryPage from '../pages/InquiryPage/InquiryPage';
-import HomePage from '../pages/HomePage/HomePage';
+import SignupPage from '@/pages/SignupPage/SignupPage';
+import { PATH } from '@/constants/path';
+import UserProfilePage from '@/pages/UserProfliePage/UserProfilePage';
+import UserPaymentPage from '@/pages/UserPaymentPage/UserPaymentPage';
+import PopupListPage from '@/pages/PopupListPage/PopupListPage';
+import PopupRegistPage from '@/pages/PopupRegistPage/PopupRegistPage';
+import PopupTicketPage from '@/pages/PopupTicketPage/PopupTicketPage';
+import NoticePage from '@/pages/NoticePage/NoticePage';
+import InquiryPage from '@/pages/InquiryPage/InquiryPage';
+import HomePage from '@/pages/HomePage/HomePage';
 
 // import LandingPage from '../pages/LandingPage/LandingPage';
 // import MainPage from '../pages/MainPage/MainPage';
