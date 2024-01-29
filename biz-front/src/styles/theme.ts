@@ -21,6 +21,7 @@ const fontsize = {
   body4: '14px',
   small: '12px',
 } as const;
+
 const shadow = {
   shadow: '0px 10px 25px rgba(190, 190, 190, 0.35)',
   shadowBtn: '1px 1px 10px rgba(0, 0, 0, 0.10)',
