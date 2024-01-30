@@ -48,6 +48,8 @@ const getSizeStyling = (size: Required<ButtonProps>['size']) => {
 
 const Button = styled.button<ButtonProps>`
   cursor: pointer;
+  font-family: 'Pretendard';
+  font-weight: 400;
   height: 50px;
   width: 100%;
   padding: 0px;

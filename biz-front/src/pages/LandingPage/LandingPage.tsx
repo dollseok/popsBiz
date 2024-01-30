@@ -12,7 +12,7 @@ const LandingPage = () => {
       <div>우측 관리자 페이지 로그인</div> */}
       <LoginWrapper>
         <ColumnWrapper>
-          <Text size="heading" $marginBottom="57px">
+          <Text size="heading" $marginBottom="57px" $fontWeight="bold">
             관리자 페이지 <br /> 로그인
           </Text>
           <Text $marginBottom="40px">
