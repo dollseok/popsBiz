@@ -4,17 +4,22 @@ import { ButtonProps } from './Button';
 const getOptionStyling = (option: Required<ButtonProps>['option']) => {
   const styles = {
     activated: css`
-      background: ${({ theme }) => theme.color.blue};
+      background-color: ${({ theme }) => theme.color.blue};
     `,
     deactivated: css`
-      background: ${({ theme }) => theme.color.grey1};
+      background-color: ${({ theme }) => theme.color.grey1};
     `,
     danger: css`
       color: ${({ theme }) => theme.color.danger};
     `,
     border: css`
-      background: ${({ theme }) => theme.color.white};
+      background-color: ${({ theme }) => theme.color.white};
       border: 1px solid black;
+      color: black;
+    `,
+    textButton: css`
+      background-color: ${({ theme }) => theme.color.transparent};
+      color: ${({ theme }) => theme.color.grey1};
     `,
   };
 
@@ -33,8 +38,8 @@ const getSizeStyling = (size: Required<ButtonProps>['size']) => {
       width: 147px;
     `,
     extraSmall: css`
-      width: 100px;
-      height: 45px;
+      width: 102px;
+      height: 20px;
     `,
   };
 
@@ -42,14 +47,19 @@ const getSizeStyling = (size: Required<ButtonProps>['size']) => {
 };
 
 const Button = styled.button<ButtonProps>`
+  cursor: pointer;
   height: 50px;
   width: 100%;
+  padding: 0px;
   font-size: 16px;
   text-align: center;
   color: ${props => props.$color || 'white'};
+  background-color: ${props =>
+    props.$backgroundColor
+      ? props.theme.color[props.$backgroundColor]
+      : props.theme.color.white};
   ${({ size = 'large' }) => getSizeStyling(size)};
   ${({ option = 'activated' }) => getOptionStyling(option)};
-  background-color: ${props => props.$backgroundColor};
   margin: ${props => props.$margin || '0'};
 `;
 

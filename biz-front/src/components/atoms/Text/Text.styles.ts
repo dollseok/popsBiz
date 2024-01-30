@@ -46,11 +46,12 @@ const TextContainer = styled.p<TextProps>`
   margin-right: ${props => props.$marginRight};
   margin-bottom: ${props => props.$marginBottom};
   margin-bottom: ${props => props.$marginTop};
-  color: ${props => props.$color || 'black1'};
+  color: ${props =>
+    props.$color ? props.theme.color[props.$color] : props.theme.color.black1};
   line-height: ${props => props.$lineHeight};
   font-weight: ${({ $fontWeight = 'regular' }) =>
     getFontWeightStyling($fontWeight)};
-  ${({ size = 'heading' }) => getSizeStyling(size)};
+  ${({ size = 'body1' }) => getSizeStyling(size)};
 `;
 
 export { TextContainer };

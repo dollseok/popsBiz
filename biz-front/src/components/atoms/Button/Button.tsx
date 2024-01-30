@@ -4,7 +4,7 @@ import * as S from './Button.styles';
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  option?: 'activated' | 'deactivated' | 'danger' | 'border';
+  option?: 'activated' | 'deactivated' | 'danger' | 'border' | 'textButton';
   size?: 'small' | 'medium' | 'large' | 'extraSmall';
   $fontSize?: string;
   $backgroundColor?: string;

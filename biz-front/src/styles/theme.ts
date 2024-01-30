@@ -1,5 +1,3 @@
-import { DefaultTheme } from 'styled-components';
-
 const color = {
   // text color
   white: '#FFFFFF',
@@ -7,6 +5,7 @@ const color = {
   grey1: '#7E7E7E',
   grey2: '#D9D9D9',
   danger: '#FA6B3C',
+  transparent: 'transparent',
 
   //main color
   blue: '#00CDCE',
