@@ -1,10 +1,35 @@
 import Button from '@/components/atoms/Button/Button';
 import Input from '@/components/atoms/Input/Input';
 import { Text } from '@/components/atoms/Text/Text';
-import React from 'react';
+import React, { useState } from 'react';
 import { ColumnWrapper, LoginWrapper, RowWrapper } from './LandingPage.styled';
+import { useAddLogin } from '@/apis/User/Mutations/useAddLogin';
 
 const LandingPage = () => {
+  const [userId, setUserId] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  // const allFieldsFilled =
+
+  const addLoginMutation = useAddLogin();
+
+  const handleUserIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newUserId = e.target.value;
+    console.log(newUserId);
+    setUserId(newUserId);
+  };
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newPassword = e.target.value;
+    console.log(newPassword);
+    setPassword(newPassword);
+  };
+
+  const handleLoginClick = () => {
+    console.log(userId);
+    console.log(password);
+    console.log(process.env.REACT_APP_SERVER_URL);
+    addLoginMutation.mutate({ userId, password });
+  };
+
   return (
     <>
       {/* <h1>여기는 최초 로그인 페이지</h1>
@@ -21,15 +46,31 @@ const LandingPage = () => {
             팝업 행사를 쉽게 등록하고 관리해보세요.
           </Text>
         </ColumnWrapper>
-        <Input type="text" placeholder="이메일" />
-        <Input type="password" placeholder="비밀번호" />
+        <Input
+          type="text"
+          placeholder="이메일"
+          onChange={e => {
+            handleUserIdChange(e);
+          }}
+        />
+        <Input
+          type="password"
+          placeholder="비밀번호"
+          onChange={e => {
+            handlePasswordChange(e);
+          }}
+        />
 
         <ColumnWrapper>
           <Text size="small" $color="danger" $marginLeft="10px">
             에러 메세지이
           </Text>
         </ColumnWrapper>
-        <Button $backgroundColor="blue" $margin="10px">
+        <Button
+          $backgroundColor="blue"
+          $margin="10px"
+          onClick={handleLoginClick}
+        >
           로그인
         </Button>
 
