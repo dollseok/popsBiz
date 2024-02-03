@@ -47,14 +47,15 @@ const getSizeStyling = (size: Required<ButtonProps>['size']) => {
 };
 
 const Button = styled.button<ButtonProps>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   font-family: 'Pretendard';
   font-weight: 400;
   height: 50px;
   width: 100%;
   padding: 0px;
-  font-size: 16px;
-  text-align: center;
   color: ${props => props.$color || 'white'};
   background-color: ${props =>
     props.$backgroundColor
@@ -62,7 +63,11 @@ const Button = styled.button<ButtonProps>`
       : props.theme.color.white};
   ${({ size = 'large' }) => getSizeStyling(size)};
   ${({ option = 'activated' }) => getOptionStyling(option)};
-  margin: ${props => props.$margin || '0'};
+  font-size: ${props => props.$fontSize || '16px'};
+  margin-left: ${props => props.$marginLeft};
+  margin-right: ${props => props.$marginRight};
+  margin-bottom: ${props => props.$marginBottom};
+  margin-top: ${props => props.$marginTop};
 `;
 
 export { Button };

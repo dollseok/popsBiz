@@ -45,7 +45,7 @@ const TextContainer = styled.p<TextProps>`
   margin-left: ${props => props.$marginLeft};
   margin-right: ${props => props.$marginRight};
   margin-bottom: ${props => props.$marginBottom};
-  margin-bottom: ${props => props.$marginTop};
+  margin-top: ${props => props.$marginTop};
   font-family: 'Pretendard';
   color: ${props =>
     props.$color ? props.theme.color[props.$color] : props.theme.color.black1};

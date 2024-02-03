@@ -14,19 +14,21 @@ const getOptionStyling = (option: Required<InputProps>['option']) => {
   return styles[option];
 };
 
-const getInputSizeStyling = (inputSize: Required<InputProps>['inputSize']) => {
+const getInputSizeStyling = (
+  $inputsize: Required<InputProps>['$inputsize']
+) => {
   const styles = {
     large: css`
-      width: 363px;
+      width: 424px;
     `,
     medium: css`
-      width: 235px;
+      width: 363px;
     `,
     small: css`
-      width: 147px;
+      width: 218px;
     `,
   };
-  return styles[inputSize];
+  return styles[$inputsize];
 };
 
 const Input = styled.input<InputProps>`
@@ -35,14 +37,18 @@ const Input = styled.input<InputProps>`
   font-weight: 400;
   padding-left: 13px;
   padding-right: 13px;
-  margin: 10px;
   height: 50px;
   font-size: 16px;
   display: flex;
   flex-direction: row;
   justify-content: center;
+
+  margin-left: ${props => props.$marginLeft};
+  margin-right: ${props => props.$marginRight};
+  margin-bottom: ${props => props.$marginBottom};
+  margin-bottom: ${props => props.$marginTop};
   ${({ option = 'default' }) => getOptionStyling(option)};
-  ${({ inputSize = 'large' }) => getInputSizeStyling(inputSize)};
+  ${({ $inputsize = 'large' }) => getInputSizeStyling($inputsize)};
   font-size: ${({ theme }) => theme.fontsize.body2};
 
   $::placeholder {

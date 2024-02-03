@@ -11,7 +11,10 @@ export interface ButtonProps
   $border?: string;
   $color?: string;
   $width?: string;
-  $margin?: string;
+  $marginLeft?: string;
+  $marginRight?: string;
+  $marginTop?: string;
+  $marginBottom?: string;
   onClick?: () => void;
 }
 
@@ -23,7 +26,11 @@ const Button = (
     $border,
     $color,
     $width,
-    $margin,
+    $marginLeft,
+    $marginRight,
+    $marginBottom,
+    $marginTop,
+    $fontSize,
     children,
     onClick,
   }: ButtonProps,
@@ -35,9 +42,13 @@ const Button = (
       option={option}
       size={size}
       $backgroundColor={$backgroundColor}
-      $margin={$margin}
       $color={$color}
+      $fontSize={$fontSize}
       $border={$border}
+      $marginLeft={$marginLeft}
+      $marginRight={$marginRight}
+      $marginTop={$marginTop}
+      $marginBottom={$marginBottom}
       onClick={onClick}
     >
       {children}

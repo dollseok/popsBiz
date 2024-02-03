@@ -4,21 +4,39 @@ import * as S from './Input.styles';
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   option?: 'default' | 'grey';
-  inputSize?: 'medium' | 'large';
+  $inputsize?: 'small' | 'medium' | 'large';
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   type: string;
+  $marginLeft?: string;
+  $marginRight?: string;
+  $marginBottom?: string;
+  $marginTop?: string;
 }
 
 const Input = (
-  { option, inputSize, onChange, placeholder, type }: InputProps,
+  {
+    option,
+    $inputsize,
+    $marginLeft,
+    $marginRight,
+    $marginBottom,
+    $marginTop,
+    onChange,
+    placeholder,
+    type,
+  }: InputProps,
   ref?: React.LegacyRef<HTMLInputElement>
 ) => {
   return (
     <S.Input
       ref={ref}
       option={option}
-      inputSize={inputSize}
+      $inputsize={$inputsize}
+      $marginLeft={$marginLeft}
+      $marginRight={$marginRight}
+      $marginBottom={$marginBottom}
+      $marginTop={$marginTop}
       onChange={onChange}
       placeholder={placeholder}
       type={type}
