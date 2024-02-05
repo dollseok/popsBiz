@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './Wrapper.styles';
 
 export interface WrapperProps {
-  option?: 'Column' | 'Row' | 'Center' | 'Default';
+  option?: 'Column' | 'Row' | 'Center' | 'RowSideEnd' | 'Default';
   $size?: 'SideNav' | 'Nav' | 'Login' | 'Signup' | 'Default';
   $backgroundColor?: string;
   $marginLeft?: string;

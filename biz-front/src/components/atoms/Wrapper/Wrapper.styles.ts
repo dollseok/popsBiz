@@ -11,6 +11,11 @@ const getOptionStyling = (option: Required<WrapperProps>['option']) => {
       display: flex;
       align-items: center;
     `,
+    RowSideEnd: css`
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    `,
     Center: css`
       display: flex;
       flex-direction: column;
@@ -37,6 +42,7 @@ const getSizeStyling = ($size: Required<WrapperProps>['$size']) => {
       height: 100vh;
     `,
     Signup: css`
+      width: 100%;
       height: 100%;
     `,
   };
@@ -45,8 +51,7 @@ const getSizeStyling = ($size: Required<WrapperProps>['$size']) => {
 
 const Wrapper = styled.div<WrapperProps>`
   display: flex;
-  
-  $backgroundColor=
+  background-color=
     ${props =>
       props.$backgroundColor
         ? props.theme.color[props.$backgroundColor]

@@ -39,7 +39,7 @@ const getSizeStyling = (size: Required<ButtonProps>['size']) => {
     `,
     extraSmall: css`
       width: 102px;
-      height: 20px;
+      height: 45px;
     `,
   };
 
@@ -47,6 +47,7 @@ const getSizeStyling = (size: Required<ButtonProps>['size']) => {
 };
 
 const Button = styled.button<ButtonProps>`
+  white-space: pre;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,13 +58,11 @@ const Button = styled.button<ButtonProps>`
   width: 100%;
   padding: 0px;
   color: ${props => props.$color || 'white'};
-  background-color: ${props =>
-    props.$backgroundColor
-      ? props.theme.color[props.$backgroundColor]
-      : props.theme.color.white};
   ${({ size = 'large' }) => getSizeStyling(size)};
   ${({ option = 'activated' }) => getOptionStyling(option)};
   font-size: ${props => props.$fontSize || '16px'};
+  background-color: ${props =>
+    props.$backgroundColor ? props.theme.color[props.$backgroundColor] : ''};
   margin-left: ${props => props.$marginLeft};
   margin-right: ${props => props.$marginRight};
   margin-bottom: ${props => props.$marginBottom};

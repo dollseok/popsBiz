@@ -5,6 +5,7 @@ const ImageContainer = styled.img<ImageProps>`
   width: ${props => `${props.width}${props.$unit}`};
   height: ${props => `${props.height}${props.$unit}`};
   margin: ${props => props.$margin || '0px'};
+  border-radius: ${props => `${props.$borderRadius}${props.$unit}`};
 
   &.invert {
     filter: invert(1);

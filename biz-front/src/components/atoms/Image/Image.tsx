@@ -5,6 +5,7 @@ export interface ImageProps extends ComponentPropsWithRef<'img'> {
   width?: number;
   height?: number;
   $margin?: string;
+  $borderRadius?: number;
   $unit?: 'rem' | 'px' | 'em' | '%';
 }
 
@@ -12,7 +13,8 @@ const Image = ({
   width,
   height,
   $margin,
-  $unit = 'rem',
+  $borderRadius,
+  $unit = 'px',
   ...attributes
 }: ImageProps) => {
   return (
@@ -20,6 +22,7 @@ const Image = ({
       width={width}
       height={height}
       $margin={$margin}
+      $borderRadius={$borderRadius}
       $unit={$unit}
       {...attributes}
     />
