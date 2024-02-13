@@ -1,8 +1,8 @@
 import { ImageInput } from '@/components/molecules/SignupPage/ImageInput';
 import { Text } from '@/components/atoms/Text/Text';
 import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
-import { NicknameInput } from './NicknameInput';
-import { SignupAgreement } from './SignupAgreement';
+import { NicknameInput } from '../../molecules/SignupPage/NicknameInput';
+import { SignupAgreement } from '../../molecules/SignupPage/SignupAgreement';
 
 const UserdataComp = () => {
   return (
