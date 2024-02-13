@@ -42,6 +42,7 @@ const Input = styled.input<InputProps>`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  border: 0.1rem solid ${({ theme }) => theme.color.black}
 
   margin-left: ${props => props.$marginLeft};
   margin-right: ${props => props.$marginRight};
@@ -51,13 +52,18 @@ const Input = styled.input<InputProps>`
   ${({ $inputsize = 'large' }) => getInputSizeStyling($inputsize)};
   font-size: ${({ theme }) => theme.fontsize.body2};
 
-  $::placeholder {
-    color: ${({ theme }) => theme.color.grey2};
+  &::placeholder {
+    color: ${({ theme }) => theme.color.grey1};
   }
 
-  $:focus {
-    border: 0.2rem solid ${({ theme }) => theme.color.blue};
-    padding-left: 25px;
+  &:disabled {
+    background-color: ${({ theme }) => theme.color.grey2};
+  }
+
+  &:focus {
+    border: 0.1rem solid ${({ theme }) => theme.color.grey2};
+    outline: 0.2rem solid ${({ theme }) => theme.color.blue};
+    padding-left: 13px;
   }
 
   &:focus::placeholder {

@@ -7,6 +7,7 @@ export interface InputProps
   $inputsize?: 'small' | 'medium' | 'large';
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
+  disabled?: boolean;
   placeholder?: string;
   type: string;
   $marginLeft?: string;
@@ -25,6 +26,7 @@ const Input = (
     $marginTop,
     onChange,
     onBlur,
+    disabled,
     placeholder,
     type,
   }: InputProps,
@@ -41,6 +43,7 @@ const Input = (
       $marginTop={$marginTop}
       onChange={onChange}
       onBlur={onBlur}
+      disabled={disabled}
       placeholder={placeholder}
       type={type}
     />
