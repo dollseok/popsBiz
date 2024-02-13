@@ -39,9 +39,7 @@ const ImageInput = () => {
       <Wrapper option="RowSideEnd">
         <Wrapper option="Column">
           <Box $option="InputBox">
-            {profileImage
-              ? profileImage.name
-              : '이 곳에 이미지를 드래그하여 파일을 선택할 수 있습니다 '}
+            {profileImage ? profileImage.name : '파일 없음'}
           </Box>
           <Wrapper option="RowSideEnd" $width="423.99px">
             <Wrapper option="Column">
