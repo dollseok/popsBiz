@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, FocusEvent } from 'react';
 import * as S from './Input.styles';
 
 export interface InputProps
@@ -6,6 +6,7 @@ export interface InputProps
   option?: 'default' | 'grey';
   $inputsize?: 'small' | 'medium' | 'large';
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
   placeholder?: string;
   type: string;
   $marginLeft?: string;
@@ -23,6 +24,7 @@ const Input = (
     $marginBottom,
     $marginTop,
     onChange,
+    onBlur,
     placeholder,
     type,
   }: InputProps,
@@ -38,6 +40,7 @@ const Input = (
       $marginBottom={$marginBottom}
       $marginTop={$marginTop}
       onChange={onChange}
+      onBlur={onBlur}
       placeholder={placeholder}
       type={type}
     />
