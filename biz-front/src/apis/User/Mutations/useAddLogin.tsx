@@ -1,20 +1,18 @@
-import { PATH } from '@/constants/path';
-import {
-  CurrentUserType,
-  UserLoginInfoType,
-  userState,
-} from '@/states/UserInfoAtoms';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 import { useRecoilState } from 'recoil';
 import { addLogin } from '../userAPI';
+import { CurrentUserType, UserLoginInfoType } from '@/types/user';
+import { currentUserState } from '@/states/User';
 
-const useAddLogin = (redirectPath = PATH.ROOT) => {
-  const [user, setUser] = useRecoilState(userState);
+const useAddLogin = (redirectPath: string) => {
+  const [user, setUser] = useRecoilState(currentUserState);
   const navigate = useNavigate();
 
   return useMutation<CurrentUserType, unknown, UserLoginInfoType>({
-    mutationFn: (user: UserLoginInfoType) => addLogin(user),
+    mutationFn: (user: UserLoginInfoType) => {
+      return addLogin(user);
+    },
     onSuccess: data => {
       localStorage.setItem('accessToken', data.accessToken);
       localStorage.setItem('nickname', data.nickname);
