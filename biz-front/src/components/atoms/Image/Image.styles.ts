@@ -6,6 +6,7 @@ const ImageContainer = styled.img<ImageProps>`
   height: ${props => `${props.height}${props.$unit}`};
   margin: ${props => props.$margin || '0px'};
   border-radius: ${props => `${props.$borderRadius}${props.$unit}`};
+  object-fit: cover;
 
   &.invert {
     filter: invert(1);
