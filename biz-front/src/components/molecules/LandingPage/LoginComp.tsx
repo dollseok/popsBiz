@@ -5,30 +5,26 @@ import { useAddLogin } from '@/apis/User/Mutations/useAddLogin';
 import { Text } from '@/components/atoms/Text/Text';
 import Input from '@/components/atoms/Input/Input';
 import Button from '@/components/atoms/Button/Button';
+import { PATH } from '@/constants/path';
 
 const LoginComp = () => {
-  const [userId, setUserId] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   // const allFieldsFilled =
 
-  const addLoginMutation = useAddLogin();
+  const addLoginMutation = useAddLogin(PATH.ROOT);
 
-  const handleUserIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newUserId = e.target.value;
-    console.log(newUserId);
-    setUserId(newUserId);
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newEmail = e.target.value;
+    setEmail(newEmail);
   };
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newPassword = e.target.value;
-    console.log(newPassword);
     setPassword(newPassword);
   };
 
   const handleLoginClick = () => {
-    console.log(userId);
-    console.log(password);
-    console.log(process.env.REACT_APP_SERVER_URL);
-    addLoginMutation.mutate({ userId, password });
+    addLoginMutation.mutate({ email, password });
   };
 
   return (
@@ -50,7 +46,7 @@ const LoginComp = () => {
         $marginBottom="20px"
         placeholder="이메일"
         onChange={e => {
-          handleUserIdChange(e);
+          handleEmailChange(e);
         }}
       />
       <Input
