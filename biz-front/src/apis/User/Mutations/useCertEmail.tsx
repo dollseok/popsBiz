@@ -1,16 +1,38 @@
-import { apiErrorType } from '@/types/apiResponse';
+import { apiErrorType, apiSuccessType } from '@/types/apiResponse';
 import { CertEmailInfo } from '@/types/user';
 import { useMutation } from '@tanstack/react-query';
 import { CertEmail } from '../userAPI';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import {
+  emailCertFailState,
+  emailCertState,
+  signupInfoState,
+  timerStartState,
+} from '@/states/User';
+import { useState } from 'react';
 
 const useCertEmail = () => {
-  return useMutation<string, apiErrorType, CertEmailInfo>({
-    mutationFn: (data: CertEmailInfo) => CertEmail(data),
+  const [targetEmail, setTargetEmail] = useState<string>('');
+  const setCertEmail = useSetRecoilState(emailCertState);
+  const setSignupInfo = useSetRecoilState(signupInfoState);
+  const [timerStart, setTimerStart] = useRecoilState(timerStartState);
+  const [emailCertFail, setEmailCertFail] = useRecoilState(emailCertFailState);
+
+  return useMutation<apiSuccessType, apiErrorType, CertEmailInfo>({
+    mutationFn: (data: CertEmailInfo) => {
+      setTargetEmail(data.targetEmail);
+      return CertEmail(data);
+    },
     onSuccess: data => {
       console.log(data);
-      // TODO:
-      // 1. 인증이 완료되었으니, 인풋과 이메일 관련 버튼 deactivate
-      // 2. 회원 가입 데이터 리코일에 이메일 저장
+      if (data.result === 'success') {
+        setCertEmail(true);
+        setTimerStart(!timerStart);
+        setEmailCertFail(false);
+        setSignupInfo(prev => ({ ...prev, email: targetEmail }));
+      } else if (data.result === 'error') {
+        setEmailCertFail(true);
+      }
     },
     onError: () => {},
   });
