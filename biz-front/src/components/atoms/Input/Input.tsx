@@ -46,6 +46,7 @@ const Input = (
       disabled={disabled}
       placeholder={placeholder}
       type={type}
+      autoComplete="off"
     />
   );
 };
