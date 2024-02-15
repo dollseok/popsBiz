@@ -37,3 +37,8 @@ export const timerStartState = atom<boolean>({
   key: 'timerStartState',
   default: false,
 });
+
+export const agreementState = atom<boolean>({
+  key: 'agreementState',
+  default: false,
+});

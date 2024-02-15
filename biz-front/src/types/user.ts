@@ -22,6 +22,13 @@ export type SignupEmailInfo = {
   allowEmailMarketing: boolean;
 };
 
+export interface AgreeDataType {
+  checkBoxId: string;
+  mention: string;
+  detailContent: string;
+  checked: boolean;
+}
+
 // recoil type
 
 export interface SignupUserType {
