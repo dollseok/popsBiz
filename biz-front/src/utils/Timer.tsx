@@ -1,4 +1,5 @@
 import { Text } from '@/components/atoms/Text/Text';
+import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
 import { useEffect, useState } from 'react';
 
 interface TimerProps {
@@ -43,7 +44,9 @@ const Timer = ({ resetTimer }: TimerProps) => {
 
   return (
     <>
-      <Text>{formatTime()}</Text>
+      <Wrapper option="Center" $width="206px">
+        <Text size="body4">{formatTime()}</Text>
+      </Wrapper>
     </>
   );
 };

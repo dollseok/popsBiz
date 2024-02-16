@@ -56,7 +56,7 @@ const EmailInput = () => {
         <Text size="body2" $marginBottom="15px">
           아이디(이메일)
         </Text>
-        <Wrapper option="Row">
+        <Wrapper option="Row" $marginBottom="20px">
           <Input
             type="text"
             placeholder={targetEmail}
@@ -65,14 +65,18 @@ const EmailInput = () => {
             }}
             disabled={emailCert}
           />
-          <Button size="small" onClick={handleSendEmailClick}>
+          <Button
+            $marginLeft="20px"
+            size="small"
+            onClick={handleSendEmailClick}
+          >
             인증 메일 보내기
           </Button>
         </Wrapper>
 
-        <Wrapper option="Row">
-          {timerStart ? (
-            <>
+        {timerStart ? (
+          <>
+            <Wrapper option="Row" $marginBottom="20px">
               <Input
                 type="text"
                 $inputsize="small"
@@ -80,20 +84,29 @@ const EmailInput = () => {
                 onChange={handleCertCodeChange}
               />
               <Timer resetTimer={timerStart} />
-              <Button size="small" onClick={handleCertEmailClick}>
+              <Button
+                $marginLeft="20px"
+                size="small"
+                onClick={handleCertEmailClick}
+              >
                 이메일 인증
               </Button>
-            </>
-          ) : (
-            <></>
-          )}
-        </Wrapper>
-        <Text size="body4" $color="grey1">
+            </Wrapper>
+          </>
+        ) : (
+          <></>
+        )}
+        <Text size="body4" $color="grey1" $marginBottom="10px">
           * 실제로 사용하시는 이메일로 기입해주시기 바랍니다.
           <br />* 중요한 공지사항 및 알림 등을 보내드립니다.
         </Text>
         {emailCertFail ? (
-          <Text $color="danger" size="body4">
+          <Text
+            $color="danger"
+            size="body4"
+            $marginLeft="10px"
+            $marginBottom="20px"
+          >
             여기에다 에러메시지
           </Text>
         ) : (
