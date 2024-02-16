@@ -9,7 +9,7 @@ import {
 const addLogin = async (data: UserLoginInfoType) => {
   try {
     const response = await instance.post('/biz-web/v1/auth/login/email', data);
-    return response.data.payload;
+    return response.data;
   } catch {
     new Error('login error');
   }

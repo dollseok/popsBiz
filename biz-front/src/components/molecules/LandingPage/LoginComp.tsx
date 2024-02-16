@@ -6,11 +6,13 @@ import { Text } from '@/components/atoms/Text/Text';
 import Input from '@/components/atoms/Input/Input';
 import Button from '@/components/atoms/Button/Button';
 import { PATH } from '@/constants/path';
+import { useRecoilValue } from 'recoil';
+import { loginErrorState } from '@/states/User';
 
 const LoginComp = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  // const allFieldsFilled =
+  const loginError = useRecoilValue(loginErrorState);
 
   const addLoginMutation = useAddLogin(PATH.ROOT);
 
@@ -59,11 +61,16 @@ const LoginComp = () => {
         }}
       />
 
-      <Wrapper option="Column" $width="363px">
-        <Text size="small" $color="danger">
-          에러 메세지이
-        </Text>
-      </Wrapper>
+      {loginError ? (
+        <Wrapper option="Column" $width="363px">
+          <Text size="small" $color="danger">
+            {loginError}
+          </Text>
+        </Wrapper>
+      ) : (
+        <></>
+      )}
+
       <Button
         $backgroundColor="blue"
         $marginTop="20px"

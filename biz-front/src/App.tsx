@@ -1,13 +1,24 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import './App.css';
 import LandingPage from '@/pages/LandingPage/LandingPage';
 import MainPage from '@/pages/MainPage/MainPage';
+import { useRecoilState } from 'recoil';
+import { loginState } from './states/User';
 
 function App() {
+  const [login, setLogin] = useRecoilState(loginState);
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken) {
+      setLogin(true);
+    }
+  }, []);
+
   return (
     <Suspense fallback={<>로딩중</>}>
       {/* 유저 상태에따라 true false */}
-      {true ? <LandingPage /> : <MainPage />}
+      {login ? <MainPage /> : <LandingPage />}
     </Suspense>
   );
 }

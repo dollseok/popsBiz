@@ -48,9 +48,19 @@ export const nicknamePassState = atom<boolean>({
   default: false,
 });
 
+export const loginState = atom<boolean>({
+  key: 'loginState',
+  default: false,
+});
+
 // 에러 상태
 
 export const nicknameErrorState = atom<string>({
   key: 'nicknameErrorState',
+  default: '',
+});
+
+export const loginErrorState = atom<string>({
+  key: 'loginErrorState',
   default: '',
 });

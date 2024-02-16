@@ -7,4 +7,6 @@ export type apiErrorType = {
 export type apiSuccessType = {
   result: string;
   payload: any;
+  errorMsg: string;
+  errorCode: string;
 };
