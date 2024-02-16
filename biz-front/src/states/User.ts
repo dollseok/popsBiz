@@ -28,13 +28,8 @@ export const emailCertState = atom<boolean>({
   default: false,
 });
 
-export const emailCertFailState = atom<boolean>({
-  key: 'emailCertFailState',
-  default: false,
-});
-
-export const timerStartState = atom<boolean>({
-  key: 'timerStartState',
+export const timerState = atom<boolean>({
+  key: 'timerState',
   default: false,
 });
 
@@ -62,5 +57,10 @@ export const nicknameErrorState = atom<string>({
 
 export const loginErrorState = atom<string>({
   key: 'loginErrorState',
+  default: '',
+});
+
+export const emailErrorMentionState = atom<string>({
+  key: 'emailErrorMentionState',
   default: '',
 });

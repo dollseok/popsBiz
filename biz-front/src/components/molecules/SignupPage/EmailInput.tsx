@@ -5,9 +5,9 @@ import Input from '@/components/atoms/Input/Input';
 import { Text } from '@/components/atoms/Text/Text';
 import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
 import {
-  emailCertFailState,
   emailCertState,
-  timerStartState,
+  emailErrorMentionState,
+  timerState,
 } from '@/states/User';
 import { Timer } from '@/utils/Timer';
 import { useState } from 'react';
@@ -16,9 +16,11 @@ import { useRecoilValue } from 'recoil';
 const EmailInput = () => {
   const [targetEmail, setTargetEmail] = useState<string>('ex)pops@example.com');
   const [authCode, setAuthCode] = useState<string>('');
-  const timerStart = useRecoilValue(timerStartState);
+  const [resetTimer, setResetTimer] = useState<boolean>(false); // 타이머 리셋 신호
+
+  const timer = useRecoilValue(timerState);
   const emailCert = useRecoilValue(emailCertState);
-  const emailCertFail = useRecoilValue(emailCertFailState);
+  const emailErrorMention = useRecoilValue(emailErrorMentionState);
 
   const sendEmailMutation = useSendEmail();
   const certEmailMutation = useCertEmail();
@@ -34,6 +36,7 @@ const EmailInput = () => {
   };
 
   const handleSendEmailClick = () => {
+    setResetTimer(!resetTimer);
     sendEmailMutation.mutate({ targetEmail });
   };
 
@@ -69,12 +72,13 @@ const EmailInput = () => {
             $marginLeft="20px"
             size="small"
             onClick={handleSendEmailClick}
+            option={emailCert ? 'deactivated' : 'activated'}
           >
             인증 메일 보내기
           </Button>
         </Wrapper>
 
-        {timerStart ? (
+        {timer ? (
           <>
             <Wrapper option="Row" $marginBottom="20px">
               <Input
@@ -83,7 +87,7 @@ const EmailInput = () => {
                 placeholder="인증코드 입력"
                 onChange={handleCertCodeChange}
               />
-              <Timer resetTimer={timerStart} />
+              <Timer resetTimer={resetTimer} />
               <Button
                 $marginLeft="20px"
                 size="small"
@@ -100,20 +104,25 @@ const EmailInput = () => {
           * 실제로 사용하시는 이메일로 기입해주시기 바랍니다.
           <br />* 중요한 공지사항 및 알림 등을 보내드립니다.
         </Text>
-        {emailCertFail ? (
+        {emailErrorMention === '' ? (
+          <></>
+        ) : (
           <Text
             $color="danger"
             size="body4"
             $marginLeft="10px"
             $marginBottom="20px"
           >
-            여기에다 에러메시지
+            {emailErrorMention}
           </Text>
-        ) : (
-          <></>
         )}
         {emailCert ? (
-          <Text $color="blue" size="body4">
+          <Text
+            $color="blue"
+            size="body4"
+            $marginLeft="10px"
+            $marginBottom="20px"
+          >
             인증 완료
           </Text>
         ) : (
