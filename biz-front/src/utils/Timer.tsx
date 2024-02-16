@@ -11,10 +11,8 @@ const Timer = ({ resetTimer }: TimerProps) => {
   const [isActive, setIsActive] = useState<boolean>(true);
 
   useEffect(() => {
-    if (resetTimer) {
-      setSeconds(1800);
-      setIsActive(true);
-    }
+    setSeconds(1800);
+    setIsActive(true);
   }, [resetTimer]);
 
   useEffect(() => {
