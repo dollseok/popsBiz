@@ -8,6 +8,8 @@ const getOptionStyling = (option: Required<ButtonProps>['option']) => {
     `,
     deactivated: css`
       background-color: ${({ theme }) => theme.color.grey1};
+      pointer-events: none;
+      opacity: 0.5;
     `,
     danger: css`
       color: ${({ theme }) => theme.color.danger};
