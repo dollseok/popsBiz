@@ -3,7 +3,7 @@ import { Text } from '@/components/atoms/Text/Text';
 import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
 import { signupInfoState } from '@/states/User';
 import { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 
 const PasswordInput = () => {
   const [firstPassword, setFirstPassword] = useState<string>('');
@@ -13,7 +13,7 @@ const PasswordInput = () => {
   const [validateSecondPassword, setValidateSecondPassword] =
     useState<boolean>(true);
 
-  const [signupInfo, setSignupInfo] = useRecoilState(signupInfoState);
+  const setSignupInfo = useSetRecoilState(signupInfoState);
 
   const handleCheckPassword = (p1: string, p2: string) => {
     console.log('p1', p1);

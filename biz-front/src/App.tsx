@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import './App.css';
 import LandingPage from '@/pages/LandingPage/LandingPage';
 import MainPage from '@/pages/MainPage/MainPage';
