@@ -42,3 +42,15 @@ export const agreementState = atom<boolean>({
   key: 'agreementState',
   default: false,
 });
+
+export const nicknamePassState = atom<boolean>({
+  key: 'nicknamePassState',
+  default: false,
+});
+
+// 에러 상태
+
+export const nicknameErrorState = atom<string>({
+  key: 'nicknameErrorState',
+  default: '',
+});

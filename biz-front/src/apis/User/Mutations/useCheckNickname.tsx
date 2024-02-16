@@ -1,18 +1,33 @@
-import { apiErrorType } from '@/types/apiResponse';
+import { apiErrorType, apiSuccessType } from '@/types/apiResponse';
 import { useMutation } from '@tanstack/react-query';
 import { CheckNickname } from '../userAPI';
+import { useSetRecoilState } from 'recoil';
+import {
+  nicknameErrorState,
+  nicknamePassState,
+  signupInfoState,
+} from '@/states/User';
+import { useState } from 'react';
 
 const useCheckNickname = () => {
-  return useMutation<null, apiErrorType, string>({
+  const setNicknameError = useSetRecoilState(nicknameErrorState);
+  const setSignupInfo = useSetRecoilState(signupInfoState);
+  const setNicknamePass = useSetRecoilState(nicknamePassState);
+  const [tmpNickname, setTmpNickname] = useState<string>('');
+
+  return useMutation<apiSuccessType, apiErrorType, string>({
     mutationFn: (nickname: string) => {
-      console.log(nickname);
+      setTmpNickname(nickname);
       return CheckNickname(nickname);
     },
     onSuccess: data => {
       console.log(data);
-      // TODO:
-      // 1. 이 함수를 호출하기 전에 닉네임 형태 확인해서 들어와야함
-      // 2. 닉네임 관련 버튼, deactivate 하거나 onchange 할 때 리코일에서 바뀌었다고 상태확인
+      if (data.result === 'error') {
+        setNicknameError('중복된 닉네임입니다. 다른 닉네임을 입력해주세요.');
+      } else {
+        setNicknamePass(true);
+        setSignupInfo(prev => ({ ...prev, nickname: tmpNickname }));
+      }
     },
     onError: () => {},
   });
