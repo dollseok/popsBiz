@@ -1,3 +1,4 @@
+import { Box } from '@/components/atoms/Box/Box.styles';
 import Button from '@/components/atoms/Button/Button';
 import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
 import { GoBackNavComp } from '@/components/molecules/SignupPage/GoBackNavComp';
@@ -18,6 +19,7 @@ const SignupPage = () => {
       <Wrapper $size="Signup" option="Center">
         <GoBackNavComp />
         <SignupComp />
+        <Box $option="greyLine"></Box>
         <UserdataComp />
         <Button onClick={handleSignupClick}>회원 가입</Button>
       </Wrapper>

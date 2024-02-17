@@ -20,6 +20,12 @@ const getOptionStyling = ($option: Required<BoxProps>['$option']) => {
       font-size: ${({ theme }) => theme.fontsize.body2};
       color: ${({ theme }) => theme.color.grey1};
     `,
+    greyLine: css`
+      background-color: ${({ theme }) => theme.color.grey1};
+      height: 1px;
+      width: 700px;
+      margin-bottom: 30px;
+    `,
   };
   return styles[$option];
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './Box.styles';
 
 export interface BoxProps {
-  $option?: 'InputBox' | 'none';
+  $option?: 'InputBox' | 'greyLine' | 'none';
   $width?: string;
   $height?: string;
   $backgroundColor?: string;
