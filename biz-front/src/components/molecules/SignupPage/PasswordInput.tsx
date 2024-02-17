@@ -62,7 +62,7 @@ const PasswordInput = () => {
 
   return (
     <>
-      <Wrapper option="Column" $width="40rem">
+      <Wrapper option="Column" $width="40rem" $marginBottom="20px">
         <Text size="body2" $marginBottom="15px">
           비밀번호
         </Text>
@@ -70,19 +70,21 @@ const PasswordInput = () => {
           type="password"
           placeholder="비밀번호를 입력해주세요"
           onBlur={onBlurFirstPassword}
+          $marginBottom="10px"
         />
-        <Text size="body4" $color="grey1">
+        <Text size="body4" $color="grey1" $marginBottom="10px">
           * 총 8 ~ 20자리의 영문/숫자/특수문자 중 2가지 이상을 포함하여
           입력하세요.
         </Text>
         {validateFirstPassword ? (
           <></>
         ) : (
-          <Text $color="danger" size="body4">
+          <Text $color="danger" size="body4" $marginLeft="10px">
             {passwordErrorMention}
           </Text>
         )}
-
+      </Wrapper>
+      <Wrapper option="Column" $width="40rem" $marginBottom="40px">
         <Text size="body2" $marginBottom="15px">
           비밀번호 확인
         </Text>
@@ -90,12 +92,13 @@ const PasswordInput = () => {
           type="password"
           placeholder="비밀번호를 다시 입력해주세요"
           onBlur={onBlurSecondPassword}
+          $marginBottom="10px"
         />
 
         {validateSecondPassword ? (
           <></>
         ) : (
-          <Text $color="danger" size="body4">
+          <Text $color="danger" size="body4" $marginLeft="10px">
             비밀번호 확인란이 올바르지 않습니다.
           </Text>
         )}

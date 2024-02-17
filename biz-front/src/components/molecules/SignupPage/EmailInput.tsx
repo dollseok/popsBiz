@@ -47,7 +47,7 @@ const EmailInput = () => {
 
   return (
     <>
-      <Wrapper option="Column" $width="40rem">
+      <Wrapper option="Column" $width="40rem" $marginBottom="20px">
         <Text
           size="heading"
           $marginBottom="57px"
@@ -107,22 +107,12 @@ const EmailInput = () => {
         {emailErrorMention === '' ? (
           <></>
         ) : (
-          <Text
-            $color="danger"
-            size="body4"
-            $marginLeft="10px"
-            $marginBottom="20px"
-          >
+          <Text $color="danger" size="body4" $marginLeft="10px">
             {emailErrorMention}
           </Text>
         )}
         {emailCert ? (
-          <Text
-            $color="blue"
-            size="body4"
-            $marginLeft="10px"
-            $marginBottom="20px"
-          >
+          <Text $color="blue" size="body4" $marginLeft="10px">
             인증 완료
           </Text>
         ) : (
