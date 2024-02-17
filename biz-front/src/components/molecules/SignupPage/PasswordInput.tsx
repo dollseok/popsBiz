@@ -12,6 +12,7 @@ const PasswordInput = () => {
     useState<boolean>(true);
   const [validateSecondPassword, setValidateSecondPassword] =
     useState<boolean>(true);
+  const [passwordErrorMention, setPasswordErrorMention] = useState<string>('');
 
   const setSignupInfo = useSetRecoilState(signupInfoState);
 
@@ -21,6 +22,7 @@ const PasswordInput = () => {
     if (p1 !== p2) {
       console.log('비번 틀림');
       setValidateSecondPassword(false);
+      setSignupInfo(prev => ({ ...prev, password: '' }));
     } else {
       console.log('비번 통과');
       setValidateSecondPassword(true);
@@ -30,6 +32,10 @@ const PasswordInput = () => {
 
   const onBlurFirstPassword = async (e: React.FocusEvent<HTMLInputElement>) => {
     const newPassword = e.target.value;
+    if (newPassword === '') {
+      setPasswordErrorMention('비밀번호를 입력해주세요');
+      setValidateFirstPassword(false);
+    }
     setFirstPassword(newPassword);
   };
 
@@ -46,6 +52,9 @@ const PasswordInput = () => {
         console.log('첫번째 비번 좋아');
         setValidateFirstPassword(true);
       } else {
+        setPasswordErrorMention(
+          '비밀번호 형식에 맞지 않습니다. 형식을 다시 확인해주세요.'
+        );
         console.log('첫번째 비번 노우');
         setValidateFirstPassword(false);
       }
@@ -76,7 +85,7 @@ const PasswordInput = () => {
           <></>
         ) : (
           <Text $color="danger" size="body4">
-            비밀번호를 조건에 맞추어 입력해주세요.
+            {passwordErrorMention}
           </Text>
         )}
 
@@ -93,7 +102,7 @@ const PasswordInput = () => {
           <></>
         ) : (
           <Text $color="danger" size="body4">
-            먼저 입력하신 비밀번호와 일치하지 않습니다.
+            비밀번호 확인란이 올바르지 않습니다.
           </Text>
         )}
       </Wrapper>
