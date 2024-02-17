@@ -17,14 +17,10 @@ const PasswordInput = () => {
   const setSignupInfo = useSetRecoilState(signupInfoState);
 
   const handleCheckPassword = (p1: string, p2: string) => {
-    console.log('p1', p1);
-    console.log('p2', p2);
     if (p1 !== p2) {
-      console.log('비번 틀림');
       setValidateSecondPassword(false);
       setSignupInfo(prev => ({ ...prev, password: '' }));
     } else {
-      console.log('비번 통과');
       setValidateSecondPassword(true);
       setSignupInfo(prev => ({ ...prev, password: p1 }));
     }
@@ -49,13 +45,11 @@ const PasswordInput = () => {
     if (firstPassword !== '') {
       const reg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
       if (reg.test(firstPassword)) {
-        console.log('첫번째 비번 좋아');
         setValidateFirstPassword(true);
       } else {
         setPasswordErrorMention(
           '비밀번호 형식에 맞지 않습니다. 형식을 다시 확인해주세요.'
         );
-        console.log('첫번째 비번 노우');
         setValidateFirstPassword(false);
       }
     }
