@@ -1,4 +1,5 @@
 import Button from '@/components/atoms/Button/Button';
+import { Text } from '@/components/atoms/Text/Text';
 import { CheckBox } from '@/components/molecules/SignupPage/CheckBox';
 import { AGREEDATA } from '@/constants/agreeData';
 import { agreementState, signupInfoState } from '@/states/User';
@@ -83,16 +84,22 @@ const SignupAgreement = () => {
 
   return (
     <>
+      <Text size="body2" $marginBottom="15px">
+        약관 동의
+      </Text>
       <CheckBox
+        $marginBottom="15px"
         checked={allCheck}
         checkBoxId={'0'}
-        mention={'전체 동의합니다'}
+        mention={'전체 동의'}
         detailContent={''}
         handleCheck={handleAllCheck}
       />
 
       {AgreeData.map((data, idx) => (
         <CheckBox
+          $marginBottom="7px"
+          $marginLeft="15px"
           key={idx}
           checked={data.checked}
           checkBoxId={data.checkBoxId}

@@ -43,7 +43,7 @@ const NicknameInput = () => {
 
   return (
     <>
-      <Wrapper option="Column">
+      <Wrapper option="Column" $marginBottom="20px">
         <Text size="body2" $marginBottom="15px">
           닉네임
         </Text>

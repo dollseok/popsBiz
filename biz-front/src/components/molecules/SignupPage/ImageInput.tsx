@@ -36,7 +36,7 @@ const ImageInput = () => {
 
   return (
     <>
-      <Wrapper option="RowSideEnd">
+      <Wrapper option="RowSideEnd" $marginBottom="10px">
         <Wrapper option="Column">
           <Box $option="InputBox">
             {profileImage ? profileImage.name : '파일 없음'}

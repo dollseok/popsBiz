@@ -41,7 +41,7 @@ const getSizeStyling = (size: Required<ButtonProps>['size']) => {
     `,
     extraSmall: css`
       width: 102px;
-      height: 45px;
+      height: 20px;
     `,
   };
 
