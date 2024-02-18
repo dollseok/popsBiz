@@ -32,10 +32,20 @@ const getSizeStyling = ($size: Required<WrapperProps>['$size']) => {
     Default: css``,
     SideNav: css`
       width: 220px;
-      height: 100%;
+      height: 100vh;
+      border-right: 1px solid rgba(0, 0, 0, 0.2);
     `,
     Nav: css`
       width: 100%;
+      height: 80px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    `,
+    Footer: css`
+      width: 100%;
+      height: 200px;
+      position: absolute;
+      bottom: 0px;
+      border-top: 1px solid rgba(0, 0, 0, 0.2);
     `,
     Login: css`
       width: 50%;
@@ -51,14 +61,13 @@ const getSizeStyling = ($size: Required<WrapperProps>['$size']) => {
 
 const Wrapper = styled.div<WrapperProps>`
   display: flex;
-  background-color=
-    ${props =>
-      props.$backgroundColor
-        ? props.theme.color[props.$backgroundColor]
-        : props.theme.color.white}
-    ${({ option = 'Default' }) => getOptionStyling(option)};
+  background-color: ${props =>
+    props.$backgroundColor
+      ? props.theme.color[props.$backgroundColor]
+      : props.theme.color.white};
+  ${({ option = 'Default' }) => getOptionStyling(option)};
   ${({ $size = 'Default' }) => getSizeStyling($size)};
-  width: ${props => props.$width}; 
+  width: ${props => props.$width};
   margin-left: ${props => props.$marginLeft};
   margin-right: ${props => props.$marginRight};
   margin-bottom: ${props => props.$marginBottom};

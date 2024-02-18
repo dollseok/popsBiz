@@ -1,14 +1,19 @@
+import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
+import { Footer } from '@/components/molecules/MainPage/Common/Footer';
+import { Navbar } from '@/components/molecules/MainPage/Common/Navbar';
+import { SideNavBar } from '@/components/molecules/MainPage/Common/SideNavbar';
 import React from 'react';
 import { Outlet } from 'react-router';
 
 const MainPage = () => {
   return (
     <>
-      <h1>여기는 메인 페이지</h1>
-      <div>좌측 navbar</div>
-      <div>상단 bar</div>
-      <div>Outlet으로 중심페이지 관리</div>
-      <Outlet></Outlet>
+      <Navbar></Navbar>
+      <Wrapper option="Row">
+        <SideNavBar></SideNavBar>
+        <Outlet></Outlet>
+      </Wrapper>
+      <Footer></Footer>
     </>
   );
 };

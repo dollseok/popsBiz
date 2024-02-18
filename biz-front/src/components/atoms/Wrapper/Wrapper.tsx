@@ -3,7 +3,7 @@ import * as S from './Wrapper.styles';
 
 export interface WrapperProps {
   option?: 'Column' | 'Row' | 'Center' | 'RowSideEnd' | 'Default';
-  $size?: 'SideNav' | 'Nav' | 'Login' | 'Signup' | 'Default';
+  $size?: 'SideNav' | 'Nav' | 'Login' | 'Signup' | 'Footer' | 'Default';
   $backgroundColor?: string;
   $marginLeft?: string;
   $marginRight?: string;
