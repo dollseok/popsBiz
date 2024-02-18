@@ -1,12 +1,26 @@
 import Button from '@/components/atoms/Button/Button';
 import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
+import { PATH } from '@/constants/path';
+import { useNavigate } from 'react-router';
 
 const SignupButtonsComp = () => {
+  const navigate = useNavigate();
+
+  const handleRouter = (url: string): void => {
+    navigate(url);
+  };
+
   return (
     <>
       <Wrapper option="Row" $width="363px">
         <Wrapper $marginLeft="auto">
-          <Button size="extraSmall" option="textButton">
+          <Button
+            size="extraSmall"
+            option="textButton"
+            onClick={() => {
+              handleRouter(PATH.SIGNUP);
+            }}
+          >
             회원가입
           </Button>
           <Button size="extraSmall" option="textButton">
