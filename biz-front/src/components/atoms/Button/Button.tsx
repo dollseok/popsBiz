@@ -15,7 +15,6 @@ export interface ButtonProps
   $marginRight?: string;
   $marginTop?: string;
   $marginBottom?: string;
-  onClick?: () => void;
 }
 
 const Button = (
@@ -32,7 +31,7 @@ const Button = (
     $marginTop,
     $fontSize,
     children,
-    onClick,
+    ...attributes
   }: ButtonProps,
   ref: ForwardedRef<HTMLButtonElement>
 ) => {
@@ -49,7 +48,7 @@ const Button = (
       $marginRight={$marginRight}
       $marginTop={$marginTop}
       $marginBottom={$marginBottom}
-      onClick={onClick}
+      {...attributes}
     >
       {children}
     </S.Button>
