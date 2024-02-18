@@ -64,3 +64,8 @@ export const emailErrorMentionState = atom<string>({
   key: 'emailErrorMentionState',
   default: '',
 });
+
+export const agreeErrorMentionState = atom<string>({
+  key: 'agreeErrorMentionState',
+  default: '',
+});

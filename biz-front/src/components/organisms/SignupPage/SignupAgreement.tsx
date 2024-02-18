@@ -2,10 +2,14 @@ import Button from '@/components/atoms/Button/Button';
 import { Text } from '@/components/atoms/Text/Text';
 import { CheckBox } from '@/components/molecules/SignupPage/CheckBox';
 import { AGREEDATA } from '@/constants/agreeData';
-import { agreementState, signupInfoState } from '@/states/User';
+import {
+  agreeErrorMentionState,
+  agreementState,
+  signupInfoState,
+} from '@/states/User';
 import { AgreeDataType } from '@/types/user';
 import { useEffect, useState } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 
 const SignupAgreement = () => {
   const [AgreeData, setAgreeData] = useState<AgreeDataType[]>(AGREEDATA);
@@ -14,26 +18,44 @@ const SignupAgreement = () => {
   const setSignupInfoState = useSetRecoilState(signupInfoState);
   const signupInfoStatedata = useRecoilValue(signupInfoState);
   const agreementStatedata = useRecoilValue(agreementState);
+  const [agreeErrorMention, setAgreeErrorMention] = useRecoilState(
+    agreeErrorMentionState
+  );
 
   // 각자 체크
   const handleCheck = (idx: string) => {
-    const numberIdx = parseInt(idx);
+    const numberIdx = parseInt(idx); // item이 자체적으로 가지고 있는 idx
 
     const updateData = AgreeData.map((item, idx) => {
       if (idx === numberIdx - 1) {
+        // 필수 취소 에러
+        if (idx !== 2 && item.checked) {
+          // 선택사항이 아니고 체크되었던게 true 였다면
+          setAgreeErrorMention(
+            '필수 약관에 동의하셔야 회원으로 가입할 수 있습니다.'
+          );
+        }
+
         return { ...item, checked: !item.checked };
       } else {
         return item;
       }
     });
 
-    setAgreeData(updateData);
+    setAgreeData(updateData); // 이후 useEffect로 필수 확인
   };
 
   // 전체 체크
   const handleAllCheck = () => {
     setAllCheck(!allCheck);
     const updateData = AgreeData.map((item, idx) => {
+      // 필수 취소 에러
+      if (item.checked) {
+        // 선택사항이 아니고 체크되었던게 true 였다면
+        setAgreeErrorMention(
+          '필수 약관에 동의하셔야 회원으로 가입할 수 있습니다.'
+        );
+      }
       return { ...item, checked: !allCheck };
     });
 
@@ -45,6 +67,7 @@ const SignupAgreement = () => {
     // 필수 동의 확인
     if (AgreeData[0].checked && AgreeData[1].checked) {
       setAgreementState(true);
+      setAgreeErrorMention('');
     } else {
       setAgreementState(false);
     }
@@ -99,7 +122,7 @@ const SignupAgreement = () => {
       {AgreeData.map((data, idx) => (
         <CheckBox
           $marginBottom="7px"
-          $marginLeft="15px"
+          $marginLeft="10px"
           key={idx}
           checked={data.checked}
           checkBoxId={data.checkBoxId}
@@ -108,6 +131,10 @@ const SignupAgreement = () => {
           handleCheck={handleCheck}
         ></CheckBox>
       ))}
+
+      <Text $color="danger" size="body4" $marginLeft="10px">
+        {agreeErrorMention}
+      </Text>
 
       <Button onClick={test}>테스트</Button>
     </>
