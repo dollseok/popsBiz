@@ -47,7 +47,7 @@ const NicknameInput = () => {
         <Text size="body2" $marginBottom="15px">
           닉네임
         </Text>
-        <Wrapper option="Row">
+        <Wrapper option="RowSideEnd" $marginBottom="10px">
           <Input
             type="text"
             placeholder="기업 또는 브랜드명"
@@ -60,19 +60,19 @@ const NicknameInput = () => {
           </Button>
         </Wrapper>
 
-        <Text size="body4" $color="grey1">
+        <Text size="body4" $color="grey1" $marginBottom="10px">
           * 소비자에게 노출되는 내용으로 신중하게 작성해주시기 바랍니다.
         </Text>
 
         {nicknamePass ? (
-          <Text $color="blue" size="body4">
+          <Text $color="blue" size="body4" $marginLeft="10px">
             중복 확인 완료
           </Text>
         ) : (
           <></>
         )}
 
-        <Text $color="danger" size="body4">
+        <Text $color="danger" size="body4" $marginLeft="10px">
           {nicknameError}
         </Text>
       </Wrapper>

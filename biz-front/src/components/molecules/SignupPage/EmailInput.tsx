@@ -59,7 +59,7 @@ const EmailInput = () => {
         <Text size="body2" $marginBottom="15px">
           아이디(이메일)
         </Text>
-        <Wrapper option="Row" $marginBottom="20px">
+        <Wrapper option="RowSideEnd" $marginBottom="20px">
           <Input
             type="text"
             placeholder={targetEmail}

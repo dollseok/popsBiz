@@ -43,7 +43,7 @@ const CheckBox = ({
         </Wrapper>
         {/* TODO: 아래 텍스트 대신에 링크를 넣어야할듯 */}
         {detailContent ? (
-          <Button option="textButton" size="extraSmall">
+          <Button option="textButton" size="textSize">
             {detailContent}
           </Button>
         ) : (
