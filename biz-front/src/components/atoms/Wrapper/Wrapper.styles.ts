@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { WrapperProps } from './Wrapper';
+import theme from '@/styles/theme';
 
 const getOptionStyling = (option: Required<WrapperProps>['option']) => {
   const styles = {
@@ -34,6 +35,8 @@ const getSizeStyling = ($size: Required<WrapperProps>['$size']) => {
       width: 220px;
       height: 100vh;
       border-right: 1px solid rgba(0, 0, 0, 0.2);
+      padding-left: 20px;
+      padding-top: 20px;
     `,
     Nav: css`
       width: 100%;
@@ -43,9 +46,22 @@ const getSizeStyling = ($size: Required<WrapperProps>['$size']) => {
     Footer: css`
       width: 100%;
       height: 200px;
-      position: absolute;
+      position: relative;
       bottom: 0px;
       border-top: 1px solid rgba(0, 0, 0, 0.2);
+    `,
+    MainContent: css`
+      height: 100vh;
+      width: 100%;
+      padding: 33px;
+    `,
+    InnerMainContent: css`
+      height: 100vh;
+      width: 100%;
+      padding-top: 33px;
+      padding-left: 130px;
+      padding-right: 130px;
+      background-color: ${theme.color.grey2};
     `,
     Login: css`
       width: 50%;

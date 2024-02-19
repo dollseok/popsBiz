@@ -4,7 +4,14 @@ import * as S from './Button.styles';
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  option?: 'activated' | 'deactivated' | 'danger' | 'border' | 'textButton';
+  option?:
+    | 'activated'
+    | 'deactivated'
+    | 'danger'
+    | 'border'
+    | 'textButton'
+    | 'SideNavButton'
+    | 'SideNavMainButton';
   size?: 'small' | 'medium' | 'large' | 'extraSmall' | 'textSize';
   $fontSize?: string;
   $backgroundColor?: string;
@@ -15,6 +22,7 @@ export interface ButtonProps
   $marginRight?: string;
   $marginTop?: string;
   $marginBottom?: string;
+  $fontWeight?: string;
 }
 
 const Button = (
@@ -30,6 +38,7 @@ const Button = (
     $marginBottom,
     $marginTop,
     $fontSize,
+    $fontWeight,
     children,
     ...attributes
   }: ButtonProps,
@@ -48,6 +57,7 @@ const Button = (
       $marginRight={$marginRight}
       $marginTop={$marginTop}
       $marginBottom={$marginBottom}
+      $fontWeight={$fontWeight}
       {...attributes}
     >
       {children}

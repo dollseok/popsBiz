@@ -23,6 +23,24 @@ const getOptionStyling = (option: Required<ButtonProps>['option']) => {
       background-color: ${({ theme }) => theme.color.transparent};
       color: ${({ theme }) => theme.color.grey1};
     `,
+    SideNavMainButton: css`
+      background-color: ${({ theme }) => theme.color.transparent};
+      color: ${({ theme }) => theme.color.black1};
+      display: flex;
+      justify-content: flex-start;
+      align-items: none;
+      width: 220px;
+    `,
+    SideNavButton: css`
+      background-color: ${({ theme }) => theme.color.transparent};
+      color: ${({ theme }) => theme.color.black1};
+      display: flex;
+      justify-content: flex-start;
+      align-items: none;
+      width: 220px;
+      height: 40px;
+      padding-left: 21px;
+    `,
   };
 
   return styles[option] || styles.activated;
@@ -59,7 +77,7 @@ const Button = styled.button<ButtonProps>`
   align-items: center;
   cursor: pointer;
   font-family: 'Pretendard';
-  font-weight: 400;
+  font-weight: ${props => props.$fontWeight || '400'};
   height: 50px;
   width: 100%;
   padding: 0px;

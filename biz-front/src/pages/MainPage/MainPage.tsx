@@ -11,7 +11,11 @@ const MainPage = () => {
       <Navbar></Navbar>
       <Wrapper option="Row">
         <SideNavBar></SideNavBar>
-        <Outlet></Outlet>
+        <Wrapper $size="MainContent">
+          <Wrapper $size="InnerMainContent">
+            <Outlet></Outlet>
+          </Wrapper>
+        </Wrapper>
       </Wrapper>
       <Footer></Footer>
     </>

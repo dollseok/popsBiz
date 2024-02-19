@@ -4,7 +4,7 @@ import React from 'react';
 const HomePage = () => {
   return (
     <>
-      <Wrapper option="Column">
+      <Wrapper option="Column" $width="100%">
         <h1>기본 홈페이지</h1>
         <div>배너</div>
         <div>팝업 등록 관리</div>
