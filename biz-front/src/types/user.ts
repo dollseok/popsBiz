@@ -29,6 +29,11 @@ export interface AgreeDataType {
   checked: boolean;
 }
 
+export interface uploadImageType {
+  url: string;
+  formData: FormData;
+}
+
 // recoil type
 
 export interface SignupUserType {

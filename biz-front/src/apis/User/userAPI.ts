@@ -1,10 +1,14 @@
+import { stringify } from 'querystring';
 import { instance } from '../instance';
 import {
   CertEmailInfo,
   SendEmailInfo,
   SignupEmailInfo,
   UserLoginInfoType,
+  uploadImageType,
 } from '@/types/user';
+import { profile } from 'console';
+import { imageInstance } from '../imageInstance';
 
 const addLogin = async (data: UserLoginInfoType) => {
   try {
@@ -64,6 +68,27 @@ const CheckNickname = async (nickname: string) => {
 };
 
 // 이미지를 업로드 하기 위한 presigned url 생성
+const getPresignedUrl = async () => {
+  try {
+    const response = await instance.get(
+      `/biz-web/v1/common/upload/url?type=profile&count=1`
+    );
+    return response.data.payload;
+  } catch {
+    new Error('get Presigned URL Error');
+  }
+};
+
+const uploadProfileImage = async (data: uploadImageType) => {
+  try {
+    console.log(data.url);
+    console.log(data.formData.get('profile'));
+    const response = await imageInstance.put(data.url, data.formData);
+    return response.data;
+  } catch {
+    new Error('upload Image error');
+  }
+};
 
 // 비밀번호 재설정 이메일 발송
 // 비밀번호 재설정 페이지 진입 전 체크
@@ -72,4 +97,12 @@ const CheckNickname = async (nickname: string) => {
 // 구글로 로그인 요청
 // 구글로 회원가입 정보 저장 요청
 
-export { addLogin, sendEmail, CertEmail, CheckNickname, SignupEmail };
+export {
+  addLogin,
+  sendEmail,
+  CertEmail,
+  CheckNickname,
+  SignupEmail,
+  getPresignedUrl,
+  uploadProfileImage,
+};

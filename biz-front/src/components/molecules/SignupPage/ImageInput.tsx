@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { Wrapper } from '../../atoms/Wrapper/Wrapper';
 import { Text } from '../../atoms/Text/Text';
@@ -6,11 +6,15 @@ import Button from '../../atoms/Button/Button';
 import { Box } from '../../atoms/Box/Box';
 import { Image } from '../../atoms/Image/Image';
 import defaultImage from '@/assets/images/default_image.png';
+import { useGetPresignedUrl } from '@/apis/User/Queries/useGetPresignedUrl';
+import { useUploadProfileImage } from '@/apis/User/Mutations/useUploadProfileImage';
 
 const ImageInput = () => {
   const imageInput = useRef<HTMLInputElement | null>(null);
   const [profileImageUrl, setProfileImageUrl] = useState<string>(defaultImage);
   const [profileImage, setProfileImage] = useState<File | null>(null);
+  const getPresignedUrl = useGetPresignedUrl(); // 이미지 업데이트 해줄 url
+  const uploadProfileImage = useUploadProfileImage();
 
   const handleImageInput = () => {
     imageInput.current?.click();
@@ -28,11 +32,20 @@ const ImageInput = () => {
 
     if (file) {
       let imageUrl = window.URL.createObjectURL(file);
+
       setProfileImageUrl(imageUrl);
       setProfileImage(file);
-      console.log(file, 'file');
     }
   };
+
+  useEffect(() => {
+    const url = getPresignedUrl.data.urls[0]; // S3 Bucket url
+    const formData = new FormData(); // 이미지 보내줄 때는 FormData에 담아 보내줘야함
+    if (profileImage) {
+      formData.append('profile', profileImage);
+      uploadProfileImage.mutate({ url, formData }); // 이미지 업로드하는 api호출
+    }
+  }, [profileImage]);
 
   return (
     <>
@@ -64,6 +77,8 @@ const ImageInput = () => {
           $borderRadius={56}
         />
       </Wrapper>
+
+      <Image src=""></Image>
 
       {/* 보이지 않는 파트 */}
       <input
