@@ -1,4 +1,3 @@
-import { stringify } from 'querystring';
 import { instance } from '../instance';
 import {
   CertEmailInfo,
@@ -7,7 +6,6 @@ import {
   UserLoginInfoType,
   uploadImageType,
 } from '@/types/user';
-import { profile } from 'console';
 import { imageInstance } from '../imageInstance';
 
 const addLogin = async (data: UserLoginInfoType) => {
