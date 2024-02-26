@@ -6,15 +6,13 @@ import Button from '../../atoms/Button/Button';
 import { Box } from '../../atoms/Box/Box';
 import { Image } from '../../atoms/Image/Image';
 import defaultImage from '@/assets/images/default_image.png';
-import { useGetPresignedUrl } from '@/apis/User/Queries/useGetPresignedUrl';
-import { useUploadProfileImage } from '@/apis/User/Mutations/useUploadProfileImage';
+import { useRecoilState } from 'recoil';
+import { imageFileState } from '@/states/User';
 
 const ImageInput = () => {
   const imageInput = useRef<HTMLInputElement | null>(null);
   const [profileImageUrl, setProfileImageUrl] = useState<string>(defaultImage);
-  const [profileImage, setProfileImage] = useState<File | null>(null);
-  const getPresignedUrl = useGetPresignedUrl(); // 이미지 업데이트 해줄 url
-  const uploadProfileImage = useUploadProfileImage();
+  const [imageFile, setImageFile] = useRecoilState(imageFileState);
 
   const handleImageInput = () => {
     imageInput.current?.click();
@@ -34,25 +32,16 @@ const ImageInput = () => {
       let imageUrl = window.URL.createObjectURL(file);
 
       setProfileImageUrl(imageUrl);
-      setProfileImage(file);
+      setImageFile(file);
     }
   };
-
-  useEffect(() => {
-    const url = getPresignedUrl.data.urls[0]; // S3 Bucket url
-    const formData = new FormData(); // 이미지 보내줄 때는 FormData에 담아 보내줘야함
-    if (profileImage) {
-      formData.append('profile', profileImage);
-      uploadProfileImage.mutate({ url, formData }); // 이미지 업로드하는 api호출
-    }
-  }, [profileImage]);
 
   return (
     <>
       <Wrapper option="RowSideEnd" $marginBottom="10px">
         <Wrapper option="Column">
           <Box $option="InputBox">
-            {profileImage ? profileImage.name : '파일 없음'}
+            {imageFile ? imageFile.name : '파일 없음'}
           </Box>
           <Wrapper option="RowSideEnd" $width="423.99px">
             <Wrapper option="Column">
@@ -77,8 +66,6 @@ const ImageInput = () => {
           $borderRadius={56}
         />
       </Wrapper>
-
-      <Image src=""></Image>
 
       {/* 보이지 않는 파트 */}
       <input
