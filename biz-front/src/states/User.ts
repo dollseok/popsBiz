@@ -21,6 +21,11 @@ export const signupInfoState = atom<SignupUserType>({
   },
 });
 
+export const imageFileState = atom<File | null>({
+  key: 'imageFileState',
+  default: null,
+});
+
 // 상태 관련
 
 export const emailCertState = atom<boolean>({
