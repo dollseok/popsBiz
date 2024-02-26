@@ -5,7 +5,7 @@ const imageInstance: Axios = axios.create({
   baseURL: ``,
 
   headers: {
-    'Content-Type': 'multipart/form-data',
+    'Content-Type': 'image/jpeg',
   },
 });
 
