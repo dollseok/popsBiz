@@ -8,6 +8,7 @@ const PATH = {
   POPUPTICKET: 'popup/ticket',
   NOTICE: 'notice',
   INQUIRY: 'inquiry',
+  SOCIALLOGIN: 'sociallogin',
 } as const;
 
 export { PATH };
