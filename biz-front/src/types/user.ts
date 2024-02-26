@@ -31,7 +31,20 @@ export interface AgreeDataType {
 
 export interface uploadImageType {
   url: string;
-  formData: FormData;
+  blob: Blob;
+}
+
+export interface googleLoginInfoType {
+  email: string;
+  idToken: string;
+}
+
+export interface getGoogleAccessTokenInfoType {
+  code: string;
+  client_id: string | undefined;
+  client_secret: string | undefined;
+  redirect_uri: string;
+  grant_type: string;
 }
 
 // recoil type
