@@ -14,6 +14,7 @@ export interface InputProps
   $marginRight?: string;
   $marginBottom?: string;
   $marginTop?: string;
+  value?: string;
 }
 
 const Input = (
@@ -29,6 +30,7 @@ const Input = (
     disabled,
     placeholder,
     type,
+    value,
   }: InputProps,
   ref?: React.LegacyRef<HTMLInputElement>
 ) => {
@@ -47,6 +49,7 @@ const Input = (
       placeholder={placeholder}
       type={type}
       autoComplete="off"
+      value={value}
     />
   );
 };
