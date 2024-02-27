@@ -18,7 +18,17 @@ const SignupPage = () => {
 
   const handleSignupClick = async () => {
     if (agreement) {
-      signupEmail.mutate(signupInfo);
+      if (
+        signupInfo.email !== '' &&
+        signupInfo.nickname !== '' &&
+        signupInfo.password !== '' &&
+        signupInfo.profileKey !== ''
+      ) {
+        console.log('통과요');
+        signupEmail.mutate(signupInfo);
+      } else {
+        console.log(signupInfo);
+      }
     }
   };
 
