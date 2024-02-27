@@ -2,7 +2,7 @@ import { instance } from '../instance';
 import {
   CertEmailInfo,
   SendEmailInfo,
-  SignupEmailInfo,
+  SignupUserType,
   UserLoginInfoType,
   getGoogleAccessTokenInfoType,
   googleLoginInfoType,
@@ -47,7 +47,7 @@ const CertEmail = async (data: CertEmailInfo) => {
 
 // 이메일로 회원 가입
 
-const SignupEmail = async (data: SignupEmailInfo) => {
+const SignupEmail = async (data: SignupUserType) => {
   try {
     const response = await instance.post(
       '/biz-web/v1/auth/sign-up/email',

@@ -1,4 +1,4 @@
-import { useSignupEmail } from '@/apis/User/Mutations/useSignupEmail';
+import { useEmailSignup } from '@/apis/User/Mutations/useEmailSignup';
 import { useUploadProfileImage } from '@/apis/User/Mutations/useUploadProfileImage';
 import { Box } from '@/components/atoms/Box/Box.styles';
 import Button from '@/components/atoms/Button/Button';
@@ -14,7 +14,7 @@ const SignupPage = () => {
   const signupInfo = useRecoilValue(signupInfoState); // 회원가입에 요구되는 데이터
   const agreement = useRecoilValue(agreementState); // 필수 동의 데이터
 
-  const signupEmail = useSignupEmail();
+  const EmailSignup = useEmailSignup();
 
   const handleSignupClick = async () => {
     if (agreement) {
@@ -25,7 +25,7 @@ const SignupPage = () => {
         signupInfo.profileKey !== ''
       ) {
         console.log('통과요');
-        signupEmail.mutate(signupInfo);
+        EmailSignup.mutate(signupInfo);
       } else {
         console.log(signupInfo);
       }

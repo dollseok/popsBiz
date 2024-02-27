@@ -14,14 +14,6 @@ export type CertEmailInfo = {
   sendId: string | null;
 };
 
-export type SignupEmailInfo = {
-  email: string;
-  password: string;
-  nickname: string;
-  profileKey: string;
-  allowEmailMarketing: boolean;
-};
-
 export interface AgreeDataType {
   checkBoxId: string;
   mention: string;
