@@ -1,3 +1,4 @@
+import { useSocialSignup } from '@/apis/User/Mutations/useSocialSignup';
 import Button from '@/components/atoms/Button/Button';
 import { Text } from '@/components/atoms/Text/Text';
 import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
@@ -5,7 +6,6 @@ import { GoBackNavComp } from '@/components/molecules/SignupPage/GoBackNavComp';
 import { UserdataComp } from '@/components/organisms/SignupPage/UserdataComp';
 import {
   agreementState,
-  signupInfoState,
   signupModeState,
   socialSignupInfoState,
 } from '@/states/User';
@@ -18,20 +18,26 @@ const SocialSignupPage = () => {
 
   const setSignupMode = useSetRecoilState(signupModeState);
 
+  const socialSignup = useSocialSignup();
+
   const handleSignupClick = async () => {
     if (agreement) {
       if (
         socialSignupInfo.googleIdToken !== '' &&
         socialSignupInfo.nickname !== '' &&
         socialSignupInfo.profileKey !== ''
-      )
-        console.log('통과요');
-      // signupEmail.mutate(signupInfo); // signup Social 만들어야함
+      ) {
+        // 소셜 로그인 진행
+        socialSignup.mutate(socialSignupInfo);
+      }
+      // 데이터 부족한 것 에러 보여줘야 함
+      else {
+        console.log(socialSignupInfo);
+      }
     }
   };
 
   useEffect(() => {
-    console.log('여기는 소셜 로그인 모드');
     setSignupMode('social');
   }, []);
 

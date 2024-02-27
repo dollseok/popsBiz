@@ -3,6 +3,7 @@ import {
   CertEmailInfo,
   SendEmailInfo,
   SignupUserType,
+  SocialSignupUserType,
   UserLoginInfoType,
   getGoogleAccessTokenInfoType,
   googleLoginInfoType,
@@ -56,6 +57,19 @@ const SignupEmail = async (data: SignupUserType) => {
     return response.data;
   } catch {
     new Error('sign up with email error');
+  }
+};
+
+// 소셜 회원 가입
+const SignupSocial = async (data: SocialSignupUserType) => {
+  try {
+    const response = await instance.post(
+      '/biz-web/v1/auth/sign-up/google',
+      data
+    );
+    return response.data;
+  } catch {
+    new Error('sign up with Social error');
   }
 };
 
@@ -127,6 +141,7 @@ export {
   CertEmail,
   CheckNickname,
   SignupEmail,
+  SignupSocial,
   getPresignedUrl,
   uploadProfileImage,
   googleLogin,

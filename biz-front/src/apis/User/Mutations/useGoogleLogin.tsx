@@ -6,9 +6,12 @@ import { useSetRecoilState } from 'recoil';
 import { socialSignupInfoState } from '@/states/User';
 import { useNavigate } from 'react-router';
 import { PATH } from '@/constants/path';
+import { jwtDecode } from 'jwt-decode';
+import { useState } from 'react';
 
 const useGoogleLogin = () => {
   const setSocialSignupInfoState = useSetRecoilState(socialSignupInfoState);
+  const [googleIdToken, setGoogleIdToken] = useState<string>('');
 
   const navigate = useNavigate();
 
@@ -18,24 +21,25 @@ const useGoogleLogin = () => {
 
   return useMutation<apiSuccessType, apiErrorType, googleLoginInfoType>({
     mutationFn: (data: googleLoginInfoType) => {
+      setGoogleIdToken(data.idToken);
       return googleLogin(data);
     },
     onSuccess: data => {
       console.log('useGoogleLogin 최종:', data);
       setSocialSignupInfoState(prev => ({
         ...prev,
-        googleIdToken: data.payload.googleAccessToken,
+        googleIdToken: googleIdToken,
       }));
-      console.log(data.payload.googleAccessToken);
       // 이미 멤버일 때
       if (data.payload.isMember) {
-        // 엑세스 토큰 저장
-        // handleRouter(PATH.ROOT)
         console.log('이미 멤버');
+        localStorage.setItem('accessToken', data.payload.accessToken);
+        localStorage.setItem('nickname', data.payload.nickname);
+        localStorage.setItem('profileImage', data.payload.profileImage);
+        handleRouter(PATH.ROOT);
       }
       // 멤버가 아니였을 때
       else {
-        // 소셜 회원 가입 페이지 이동
         handleRouter(PATH.SOCIALSIGNUP);
       }
     },
