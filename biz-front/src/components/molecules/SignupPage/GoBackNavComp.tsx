@@ -1,6 +1,7 @@
 import Button from '@/components/atoms/Button/Button';
 import { Text } from '@/components/atoms/Text/Text';
 import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
+import { PATH } from '@/constants/path';
 import { FaArrowLeft } from 'react-icons/fa6';
 import { useNavigate } from 'react-router';
 
@@ -8,7 +9,7 @@ const GoBackNavComp = () => {
   const navigate = useNavigate();
 
   const handleGoback = () => {
-    navigate(-1);
+    navigate(PATH.ROOT);
   };
 
   return (
