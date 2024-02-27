@@ -6,13 +6,14 @@ import Button from '../../atoms/Button/Button';
 import { Box } from '../../atoms/Box/Box';
 import { Image } from '../../atoms/Image/Image';
 import defaultImage from '@/assets/images/default_image.png';
-import { useRecoilState } from 'recoil';
-import { imageFileState } from '@/states/User';
+import { useUploadProfileImage } from '@/apis/User/Mutations/useUploadProfileImage';
 
 const ImageInput = () => {
   const imageInput = useRef<HTMLInputElement | null>(null);
   const [profileImageUrl, setProfileImageUrl] = useState<string>(defaultImage);
-  const [imageFile, setImageFile] = useRecoilState(imageFileState);
+  const [imageFile, setImageFile] = useState<File | null>(null);
+
+  const uploadProfileImage = useUploadProfileImage();
 
   const handleImageInput = () => {
     imageInput.current?.click();
@@ -35,6 +36,18 @@ const ImageInput = () => {
       setImageFile(file);
     }
   };
+
+  const handleUploadImage = () => {
+    if (imageFile) {
+      const blob = new Blob([imageFile], { type: 'image/jpeg' });
+      console.log('blob Image :', imageFile);
+      uploadProfileImage.mutate({ url: '', blob: blob }); // 이미지 업로드하는 api호출, 타입 맞추기 위해 url: ''을 보냄
+    }
+  };
+
+  useEffect(() => {
+    handleUploadImage();
+  }, [imageFile]);
 
   return (
     <>
