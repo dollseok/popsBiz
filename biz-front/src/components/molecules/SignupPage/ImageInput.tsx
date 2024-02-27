@@ -40,7 +40,6 @@ const ImageInput = () => {
   const handleUploadImage = () => {
     if (imageFile) {
       const blob = new Blob([imageFile], { type: 'image/jpeg' });
-      console.log('blob Image :', imageFile);
       uploadProfileImage.mutate({ url: '', blob: blob }); // 이미지 업로드하는 api호출, 타입 맞추기 위해 url: ''을 보냄
     }
   };

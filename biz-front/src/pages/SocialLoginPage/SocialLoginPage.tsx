@@ -19,7 +19,6 @@ const SocialLoginPage = () => {
     const grant_type = 'authorization_code';
 
     if (code) {
-      console.log('코드', code);
       // 구글의 Access Token 요청
       getGoogleAccessToken.mutate({
         code: code,

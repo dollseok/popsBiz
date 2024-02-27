@@ -29,12 +29,9 @@ const useGetGoogleAccessToken = () => {
       return getGoogleAccessToken(data);
     },
     onSuccess: async (data: googleSuccessType) => {
-      console.log('response : ', data);
       const accessToken = data.id_token;
       const decoded: decodeType = jwtDecode(accessToken);
-      console.log('decoded credential : ', accessToken);
-      console.log('email : ', decoded.email);
-
+      // 구글 로그인 진행
       if (decoded.email && accessToken) {
         googleLogin.mutate({ email: decoded.email, idToken: accessToken });
       }

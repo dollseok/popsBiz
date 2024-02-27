@@ -112,12 +112,12 @@ const SignupAgreement = () => {
     handleAgreementState();
   }, [AgreeData]);
 
-  const test = () => {
-    console.log(AgreeData);
-    console.log(agreementStateData);
-    console.log('일반 회원가입 데이터 :', signupInfoStateData);
-    console.log('소셜 회원가입 데이터 : ', socialSignupInfoStateData);
-  };
+  // const test = () => {
+  //   console.log(AgreeData);
+  //   console.log(agreementStateData);
+  //   console.log('일반 회원가입 데이터 :', signupInfoStateData);
+  //   console.log('소셜 회원가입 데이터 : ', socialSignupInfoStateData);
+  // };
 
   return (
     <>
@@ -150,7 +150,7 @@ const SignupAgreement = () => {
         {agreeErrorMention}
       </Text>
 
-      <Button onClick={test}>테스트</Button>
+      {/* <Button onClick={test}>테스트</Button> */}
     </>
   );
 };

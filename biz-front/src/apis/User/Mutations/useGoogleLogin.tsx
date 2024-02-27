@@ -25,7 +25,7 @@ const useGoogleLogin = () => {
       return googleLogin(data);
     },
     onSuccess: data => {
-      console.log('useGoogleLogin 최종:', data);
+      console.log('useGoogleLogin 성공');
       setSocialSignupInfoState(prev => ({
         ...prev,
         googleIdToken: googleIdToken,

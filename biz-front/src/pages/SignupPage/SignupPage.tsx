@@ -24,9 +24,11 @@ const SignupPage = () => {
         signupInfo.password !== '' &&
         signupInfo.profileKey !== ''
       ) {
-        console.log('통과요');
+        // 이메일 회원가입
         EmailSignup.mutate(signupInfo);
-      } else {
+      }
+      //TODO: 데이터 부족한거 에러표시 넣어야함
+      else {
         console.log(signupInfo);
       }
     }
