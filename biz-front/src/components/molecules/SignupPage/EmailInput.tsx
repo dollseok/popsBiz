@@ -4,11 +4,7 @@ import Button from '@/components/atoms/Button/Button';
 import Input from '@/components/atoms/Input/Input';
 import { Text } from '@/components/atoms/Text/Text';
 import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
-import {
-  emailCertState,
-  emailErrorMentionState,
-  timerState,
-} from '@/states/User';
+import { emailCertState, emailErrorState, timerState } from '@/states/User';
 import { Timer } from '@/utils/Timer';
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -18,13 +14,16 @@ const EmailInput = () => {
   const [authCode, setAuthCode] = useState<string>('');
   const [resetTimer, setResetTimer] = useState<boolean>(false); // 타이머 리셋 신호
 
+  // recoil
   const timer = useRecoilValue(timerState);
   const emailCert = useRecoilValue(emailCertState);
-  const emailErrorMention = useRecoilValue(emailErrorMentionState);
+  const emailError = useRecoilValue(emailErrorState);
 
+  //api
   const sendEmailMutation = useSendEmail();
   const certEmailMutation = useCertEmail();
 
+  //function
   const handleUserIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newUserId = e.target.value;
     setTargetEmail(newUserId);
@@ -104,12 +103,12 @@ const EmailInput = () => {
           * 실제로 사용하시는 이메일로 기입해주시기 바랍니다.
           <br />* 중요한 공지사항 및 알림 등을 보내드립니다.
         </Text>
-        {emailErrorMention === '' ? (
-          <></>
-        ) : (
+        {emailError.state ? (
           <Text $color="danger" size="body4" $marginLeft="10px">
-            {emailErrorMention}
+            {emailError.message}
           </Text>
+        ) : (
+          <></>
         )}
         {emailCert ? (
           <Text $color="blue" size="body4" $marginLeft="10px">

@@ -2,10 +2,10 @@ import { apiErrorType, apiSuccessType } from '@/types/apiResponse';
 import { CertEmailInfo } from '@/types/user';
 import { useMutation } from '@tanstack/react-query';
 import { CertEmail } from '../userAPI';
-import { useSetRecoilState } from 'recoil';
+import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import {
   emailCertState,
-  emailErrorMentionState,
+  emailErrorState,
   signupInfoState,
   timerState,
 } from '@/states/User';
@@ -13,10 +13,12 @@ import { useState } from 'react';
 
 const useCertEmail = () => {
   const [targetEmail, setTargetEmail] = useState<string>('');
+
   const setCertEmail = useSetRecoilState(emailCertState);
-  const setSignupInfo = useSetRecoilState(signupInfoState);
   const setTimerStart = useSetRecoilState(timerState);
-  const setEmailMention = useSetRecoilState(emailErrorMentionState);
+  const setEmailError = useSetRecoilState(emailErrorState);
+  const resetEmailError = useResetRecoilState(emailErrorState);
+  const setSignupInfo = useSetRecoilState(signupInfoState);
 
   return useMutation<apiSuccessType, apiErrorType, CertEmailInfo>({
     mutationFn: (data: CertEmailInfo) => {
@@ -29,13 +31,16 @@ const useCertEmail = () => {
       if (data.result === 'success') {
         setCertEmail(true);
         setTimerStart(false);
-        setEmailMention('');
+        resetEmailError();
         setSignupInfo(prev => ({ ...prev, email: targetEmail }));
       }
       // 이메일 인증 실패
       else if (data.result === 'error') {
         if (data.errorCode === 'COM_002') {
-          setEmailMention('인증 코드가 올바르지 않습니다. 다시 입력해주세요.');
+          setEmailError({
+            state: true,
+            message: '인증 코드가 올바르지 않습니다. 다시 입력해주세요.',
+          });
         }
         //TODO: 인증 코드 만료 시 코드
         // else if (data.errorCode === '??') {
