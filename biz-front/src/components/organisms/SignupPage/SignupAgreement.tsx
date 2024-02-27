@@ -6,6 +6,8 @@ import {
   agreeErrorMentionState,
   agreementState,
   signupInfoState,
+  signupModeState,
+  socialSignupInfoState,
 } from '@/states/User';
 import { AgreeDataType } from '@/types/user';
 import { useEffect, useState } from 'react';
@@ -15,9 +17,13 @@ const SignupAgreement = () => {
   const [AgreeData, setAgreeData] = useState<AgreeDataType[]>(AGREEDATA);
   const [allCheck, setAllCheck] = useState<boolean>(false);
   const setAgreementState = useSetRecoilState(agreementState);
-  const setSignupInfoState = useSetRecoilState(signupInfoState);
-  const signupInfoStatedata = useRecoilValue(signupInfoState);
-  const agreementStatedata = useRecoilValue(agreementState);
+  const [signupInfoStateData, setSignupInfoState] =
+    useRecoilState(signupInfoState);
+  const [socialSignupInfoStateData, setSocialSignupInfoState] = useRecoilState(
+    socialSignupInfoState
+  );
+  const signupMode = useRecoilValue(signupModeState);
+  const agreementStateData = useRecoilValue(agreementState);
   const [agreeErrorMention, setAgreeErrorMention] = useRecoilState(
     agreeErrorMentionState
   );
@@ -89,10 +95,17 @@ const SignupAgreement = () => {
 
   // 이메일 동의 확인
   const handleEmailAgreement = (check: boolean) => {
-    setSignupInfoState(prev => ({
-      ...prev,
-      allowEmailMarketing: check,
-    }));
+    if (signupMode === 'basic') {
+      setSignupInfoState(prev => ({
+        ...prev,
+        allowEmailMarketing: check,
+      }));
+    } else if (signupMode === 'social') {
+      setSocialSignupInfoState(prev => ({
+        ...prev,
+        AllowEmailMarketing: check,
+      }));
+    }
   };
 
   useEffect(() => {
@@ -101,8 +114,9 @@ const SignupAgreement = () => {
 
   const test = () => {
     console.log(AgreeData);
-    console.log(signupInfoStatedata);
-    console.log(agreementStatedata);
+    console.log(agreementStateData);
+    console.log('일반 회원가입 데이터 :', signupInfoStateData);
+    console.log('소셜 회원가입 데이터 : ', socialSignupInfoStateData);
   };
 
   return (

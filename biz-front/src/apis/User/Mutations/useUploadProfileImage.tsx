@@ -5,14 +5,22 @@ import { uploadImageType } from '@/types/user';
 import { extractIdFromUrl } from '@/utils/extractIdFromUrl';
 import { useGetPresignedUrl } from '../Queries/useGetPresignedUrl';
 import { useState } from 'react';
-import { useSetRecoilState } from 'recoil';
-import { signupInfoState } from '@/states/User';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import {
+  signupInfoState,
+  signupModeState,
+  socialSignupInfoState,
+} from '@/states/User';
 
 const useUploadProfileImage = () => {
+  // mode == social | mode == basic
+
   const [profileKey, setProfileKey] = useState<string>('');
 
   const getPresignedUrl = useGetPresignedUrl(); // 이미지 업데이트 해줄 url
   const setSignupInfo = useSetRecoilState(signupInfoState); // 회원가입에 요구되는 데이터
+  const setSocialSignupInfo = useSetRecoilState(socialSignupInfoState); // 소셜 로그인일때 요구되는 데이터
+  const signupMode = useRecoilValue(signupModeState);
 
   // response 200 이 리턴값
   return useMutation<number | undefined, apiErrorType, uploadImageType>({
@@ -25,8 +33,14 @@ const useUploadProfileImage = () => {
     onSuccess: data => {
       if (data === 200) {
         console.log('사진 저장 성공', data);
-        setSignupInfo(prev => ({ ...prev, profileKey: profileKey }));
-        return profileKey;
+        // 기본 회원가입
+        if (signupMode === 'basic') {
+          setSignupInfo(prev => ({ ...prev, profileKey: profileKey }));
+        }
+        // 소셜 회원가입
+        else if (signupMode === 'social') {
+          setSocialSignupInfo(prev => ({ ...prev, profileKey: profileKey }));
+        }
       }
     },
     onError: () => {},

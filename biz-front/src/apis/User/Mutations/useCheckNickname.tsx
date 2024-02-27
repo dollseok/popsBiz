@@ -1,17 +1,22 @@
 import { apiErrorType, apiSuccessType } from '@/types/apiResponse';
 import { useMutation } from '@tanstack/react-query';
 import { CheckNickname } from '../userAPI';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import {
   nicknameErrorState,
   nicknamePassState,
   signupInfoState,
+  signupModeState,
+  socialSignupInfoState,
 } from '@/states/User';
 import { useState } from 'react';
 
 const useCheckNickname = () => {
   const setNicknameError = useSetRecoilState(nicknameErrorState);
   const setSignupInfo = useSetRecoilState(signupInfoState);
+  const setSocialSignupInfo = useSetRecoilState(socialSignupInfoState);
+  const signupMode = useRecoilValue(signupModeState);
+
   const setNicknamePass = useSetRecoilState(nicknamePassState);
   const [tmpNickname, setTmpNickname] = useState<string>('');
 
@@ -26,7 +31,11 @@ const useCheckNickname = () => {
         setNicknameError('중복된 닉네임입니다. 다른 닉네임을 입력해주세요.');
       } else {
         setNicknamePass(true);
-        setSignupInfo(prev => ({ ...prev, nickname: tmpNickname }));
+        if (signupMode === 'basic') {
+          setSignupInfo(prev => ({ ...prev, nickname: tmpNickname }));
+        } else if (signupMode === 'social') {
+          setSocialSignupInfo(prev => ({ ...prev, nickname: tmpNickname }));
+        }
       }
     },
     onError: () => {},
