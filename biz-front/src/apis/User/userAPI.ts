@@ -4,6 +4,8 @@ import {
   SendEmailInfo,
   SignupEmailInfo,
   UserLoginInfoType,
+  getGoogleAccessTokenInfoType,
+  googleLoginInfoType,
   uploadImageType,
 } from '@/types/user';
 import { imageInstance } from '../imageInstance';
@@ -77,12 +79,14 @@ const getPresignedUrl = async () => {
   }
 };
 
-const uploadProfileImage = async (data: uploadImageType) => {
+const uploadProfileImage = async (
+  data: uploadImageType
+): Promise<number | undefined> => {
   try {
     console.log(data.url);
-    console.log(data.formData.get('profile'));
-    const response = await imageInstance.put(data.url, data.formData);
-    return response.data;
+    console.log(data.blob);
+    const response = await imageInstance.put(data.url, data.blob);
+    return response.status;
   } catch {
     new Error('upload Image error');
   }
@@ -93,7 +97,29 @@ const uploadProfileImage = async (data: uploadImageType) => {
 // 비밀번호 변경 요청
 
 // 구글로 로그인 요청
+const googleLogin = async (data: googleLoginInfoType) => {
+  try {
+    const response = await instance.post('/biz-web/v1/auth/login/google', data);
+    return response.data;
+  } catch {
+    new Error('google Login error');
+  }
+};
+
 // 구글로 회원가입 정보 저장 요청
+
+// 구글
+const getGoogleAccessToken = async (data: getGoogleAccessTokenInfoType) => {
+  try {
+    const response = await instance.post(
+      'https://oauth2.googleapis.com/token',
+      data
+    );
+    return response.data;
+  } catch {
+    new Error('get google access Token error');
+  }
+};
 
 export {
   addLogin,
@@ -103,4 +129,6 @@ export {
   SignupEmail,
   getPresignedUrl,
   uploadProfileImage,
+  googleLogin,
+  getGoogleAccessToken,
 };
