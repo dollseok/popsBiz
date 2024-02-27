@@ -1,5 +1,6 @@
 import {
   CurrentUserType,
+  ErrorStateType,
   SignupUserType,
   SocialSignupUserType,
 } from '@/types/user';
@@ -69,22 +70,50 @@ export const loginState = atom<boolean>({
 
 // 에러 상태
 
-export const nicknameErrorState = atom<string>({
-  key: 'nicknameErrorState',
-  default: '',
-});
-
-export const loginErrorState = atom<string>({
+export const loginErrorState = atom<ErrorStateType>({
   key: 'loginErrorState',
-  default: '',
+  default: {
+    state: false,
+    message: '',
+  },
 });
 
-export const emailErrorMentionState = atom<string>({
-  key: 'emailErrorMentionState',
-  default: '',
+export const emailErrorState = atom<ErrorStateType>({
+  key: 'emailErrorState',
+  default: {
+    state: false,
+    message: '',
+  },
 });
 
-export const agreeErrorMentionState = atom<string>({
-  key: 'agreeErrorMentionState',
-  default: '',
+export const passwordErrorState = atom<ErrorStateType>({
+  key: 'passwordErrorState',
+  default: {
+    state: false,
+    message: '',
+  },
+});
+
+export const imageErrorState = atom<ErrorStateType>({
+  key: 'imageErrorState',
+  default: {
+    state: false,
+    message: '',
+  },
+});
+
+export const nicknameErrorState = atom<ErrorStateType>({
+  key: 'nicknameErrorState',
+  default: {
+    state: false,
+    message: '',
+  },
+});
+
+export const agreeErrorState = atom<ErrorStateType>({
+  key: 'agreeErrorState',
+  default: {
+    state: false,
+    message: '',
+  },
 });

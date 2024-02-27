@@ -61,3 +61,10 @@ export interface SocialSignupUserType {
   profileKey: string;
   AllowEmailMarketing: boolean;
 }
+
+// error state type
+
+export interface ErrorStateType {
+  state: boolean;
+  message: string;
+}
