@@ -12,6 +12,7 @@ import NoticePage from '@/pages/NoticePage/NoticePage';
 import InquiryPage from '@/pages/InquiryPage/InquiryPage';
 import HomePage from '@/pages/HomePage/HomePage';
 import SocialLoginPage from '@/pages/SocialLoginPage/SocialLoginPage';
+import SocialSignupPage from '@/pages/SocialSignupPage/SocialSignupPage';
 
 // import LandingPage from '../pages/LandingPage/LandingPage';
 // import MainPage from '../pages/MainPage/MainPage';
@@ -39,6 +40,7 @@ const router = createBrowserRouter([
 
   // social login
   { path: PATH.SOCIALLOGIN, element: <SocialLoginPage /> },
+  { path: PATH.SOCIALSIGNUP, element: <SocialSignupPage /> },
   // 회원가입
   { path: PATH.SIGNUP, element: <SignupPage /> },
 ]);
