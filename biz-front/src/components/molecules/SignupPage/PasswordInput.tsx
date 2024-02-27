@@ -12,11 +12,13 @@ const PasswordInput = () => {
     useState<boolean>(true);
   const [validateSecondPassword, setValidateSecondPassword] =
     useState<boolean>(true);
+
+  // recoil
   const [passwordError, setPasswordError] = useRecoilState(passwordErrorState);
   const resetPasswordError = useResetRecoilState(passwordErrorState);
-
   const setSignupInfo = useSetRecoilState(signupInfoState);
 
+  // function
   const handleCheckPassword = (p1: string, p2: string) => {
     if (p1 !== p2) {
       // 비밀번호 유효성 검사 실패
@@ -57,6 +59,7 @@ const PasswordInput = () => {
     setSecondPassword(checkPassword);
   };
 
+  // useEffect
   useEffect(() => {
     // 비밀번호 조건 확인
     if (firstPassword !== '') {
