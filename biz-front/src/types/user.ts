@@ -62,3 +62,10 @@ export interface CurrentUserType {
   profileImage: string;
   nickname: string;
 }
+
+export interface SocialSignupUserType {
+  googleIdToken: string;
+  nickname: string;
+  profileKey: string;
+  AllowEmailMarketing: boolean;
+}

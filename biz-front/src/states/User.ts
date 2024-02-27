@@ -1,4 +1,8 @@
-import { CurrentUserType, SignupUserType } from '@/types/user';
+import {
+  CurrentUserType,
+  SignupUserType,
+  SocialSignupUserType,
+} from '@/types/user';
 import { atom } from 'recoil';
 
 export const currentUserState = atom<CurrentUserType>({
@@ -21,9 +25,19 @@ export const signupInfoState = atom<SignupUserType>({
   },
 });
 
-export const imageFileState = atom<File | null>({
-  key: 'imageFileState',
-  default: null,
+export const socialSignupInfoState = atom<SocialSignupUserType>({
+  key: 'socialSignupInfoState',
+  default: {
+    googleIdToken: '',
+    nickname: '',
+    profileKey: '',
+    AllowEmailMarketing: false,
+  },
+});
+
+export const signupModeState = atom<string>({
+  key: 'signupModeState',
+  default: 'basic',
 });
 
 // 상태 관련
