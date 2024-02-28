@@ -3,15 +3,24 @@ import { Text } from '@/components/atoms/Text/Text';
 import { CheckBox } from '@/components/molecules/SignupPage/CheckBox';
 import { AGREEDATA } from '@/constants/agreeData';
 import {
-  agreeErrorMentionState,
+  agreeErrorState,
   agreementState,
+  emailErrorState,
+  imageErrorState,
+  nicknameErrorState,
+  passwordErrorState,
   signupInfoState,
   signupModeState,
   socialSignupInfoState,
 } from '@/states/User';
 import { AgreeDataType } from '@/types/user';
 import { useEffect, useState } from 'react';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import {
+  useRecoilState,
+  useRecoilValue,
+  useResetRecoilState,
+  useSetRecoilState,
+} from 'recoil';
 
 const SignupAgreement = () => {
   const [AgreeData, setAgreeData] = useState<AgreeDataType[]>(AGREEDATA);
@@ -23,10 +32,9 @@ const SignupAgreement = () => {
     socialSignupInfoState
   );
   const signupMode = useRecoilValue(signupModeState);
-  const agreementStateData = useRecoilValue(agreementState);
-  const [agreeErrorMention, setAgreeErrorMention] = useRecoilState(
-    agreeErrorMentionState
-  );
+
+  const [agreeError, setAgreeError] = useRecoilState(agreeErrorState);
+  const resetAgreeError = useResetRecoilState(agreeErrorState);
 
   // 각자 체크
   const handleCheck = (idx: string) => {
@@ -37,9 +45,10 @@ const SignupAgreement = () => {
         // 필수 취소 에러
         if (idx !== 2 && item.checked) {
           // 선택사항이 아니고 체크되었던게 true 였다면
-          setAgreeErrorMention(
-            '필수 약관에 동의하셔야 회원으로 가입할 수 있습니다.'
-          );
+          setAgreeError({
+            state: true,
+            message: '필수 약관에 동의하셔야 회원으로 가입할 수 있습니다.',
+          });
         }
 
         return { ...item, checked: !item.checked };
@@ -58,9 +67,10 @@ const SignupAgreement = () => {
       // 필수 취소 에러
       if (item.checked) {
         // 선택사항이 아니고 체크되었던게 true 였다면
-        setAgreeErrorMention(
-          '필수 약관에 동의하셔야 회원으로 가입할 수 있습니다.'
-        );
+        setAgreeError({
+          state: true,
+          message: '필수 약관에 동의하셔야 회원으로 가입할 수 있습니다.',
+        });
       }
       return { ...item, checked: !allCheck };
     });
@@ -73,7 +83,7 @@ const SignupAgreement = () => {
     // 필수 동의 확인
     if (AgreeData[0].checked && AgreeData[1].checked) {
       setAgreementState(true);
-      setAgreeErrorMention('');
+      resetAgreeError();
     } else {
       setAgreementState(false);
     }
@@ -112,12 +122,23 @@ const SignupAgreement = () => {
     handleAgreementState();
   }, [AgreeData]);
 
-  // const test = () => {
-  //   console.log(AgreeData);
-  //   console.log(agreementStateData);
-  //   console.log('일반 회원가입 데이터 :', signupInfoStateData);
-  //   console.log('소셜 회원가입 데이터 : ', socialSignupInfoStateData);
-  // };
+  // test
+  const emailError = useRecoilValue(emailErrorState);
+  const passwordError = useRecoilValue(passwordErrorState);
+  const imageError = useRecoilValue(imageErrorState);
+  const nicknameError = useRecoilValue(nicknameErrorState);
+
+  const test = () => {
+    console.log(AgreeData);
+
+    console.log('emailError', emailError);
+    console.log('passwordError', passwordError);
+    console.log('imageError', imageError);
+    console.log('nicknameError', nicknameError);
+    console.log('agreeError', agreeError);
+    console.log('일반 회원가입 데이터 :', signupInfoStateData);
+    console.log('소셜 회원가입 데이터 : ', socialSignupInfoStateData);
+  };
 
   return (
     <>
@@ -147,10 +168,10 @@ const SignupAgreement = () => {
       ))}
 
       <Text $color="danger" size="body4" $marginLeft="10px">
-        {agreeErrorMention}
+        {agreeError.message}
       </Text>
 
-      {/* <Button onClick={test}>테스트</Button> */}
+      <Button onClick={test}>테스트</Button>
     </>
   );
 };
