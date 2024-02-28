@@ -1,7 +1,6 @@
 import Button from '@/components/atoms/Button/Button';
 import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
 import { PATH } from '@/constants/path';
-import axios from 'axios';
 import { useNavigate } from 'react-router';
 
 const SignupButtonsComp = () => {

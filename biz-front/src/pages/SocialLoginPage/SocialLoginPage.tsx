@@ -1,7 +1,4 @@
 import { useGetGoogleAccessToken } from '@/apis/User/Mutations/useGetGoogleAccessToken';
-import { useGoogleLogin } from '@/apis/User/Mutations/useGoogleLogin';
-import Button from '@/components/atoms/Button/Button';
-import axios from 'axios';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router';
 
