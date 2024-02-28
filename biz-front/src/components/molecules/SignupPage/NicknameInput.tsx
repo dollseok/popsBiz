@@ -9,11 +9,14 @@ import { useRecoilState } from 'recoil';
 
 const NicknameInput = () => {
   const [nickname, setNickname] = useState('');
+  //recoil
   const [nicknameError, setNicknameError] = useRecoilState(nicknameErrorState);
   const [nicknamePass, setNicknamePass] = useRecoilState(nicknamePassState);
 
+  // api
   const checkNicknameMutation = useCheckNickname();
 
+  // function
   const handleNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newNickname = e.target.value;
     setNicknamePass(false);
@@ -24,19 +27,29 @@ const NicknameInput = () => {
 
     setNickname(newNickname);
     if (!lengthReg) {
-      setNicknameError('닉네임은 2-10자 이내로 입력해야 합니다.');
+      setNicknameError({
+        state: true,
+        message: '닉네임은 2-10자 이내로 입력해야 합니다.',
+      });
     } else if (onlyEngNumResult) {
-      setNicknameError('닉네임은 영문,한글,숫자만 입력 가능합니다.');
+      setNicknameError({
+        state: true,
+        message: '닉네임은 영문,한글,숫자만 입력 가능합니다.',
+      });
     } else {
       // 둘다 통과 되었을 때
-      setNicknameError('');
+      console.log('둘다 통과');
+      setNicknameError({
+        state: true,
+        message: '',
+      });
       setNickname(newNickname);
     }
   };
 
   const handleCheckNicknameClick = () => {
     console.log(nickname);
-    if (nicknameError === '') {
+    if (nicknameError.message === '') {
       checkNicknameMutation.mutate(nickname);
     }
   };
@@ -73,7 +86,7 @@ const NicknameInput = () => {
         )}
 
         <Text $color="danger" size="body4" $marginLeft="10px">
-          {nicknameError}
+          {nicknameError.message}
         </Text>
       </Wrapper>
     </>

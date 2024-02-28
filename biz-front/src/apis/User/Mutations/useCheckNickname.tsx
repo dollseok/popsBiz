@@ -1,7 +1,7 @@
 import { apiErrorType, apiSuccessType } from '@/types/apiResponse';
 import { useMutation } from '@tanstack/react-query';
 import { CheckNickname } from '../userAPI';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 import {
   nicknameErrorState,
   nicknamePassState,
@@ -12,13 +12,16 @@ import {
 import { useState } from 'react';
 
 const useCheckNickname = () => {
-  const setNicknameError = useSetRecoilState(nicknameErrorState);
+  const [tmpNickname, setTmpNickname] = useState<string>('');
+
+  // recoil
   const setSignupInfo = useSetRecoilState(signupInfoState);
   const setSocialSignupInfo = useSetRecoilState(socialSignupInfoState);
-  const signupMode = useRecoilValue(signupModeState);
-
+  const setNicknameError = useSetRecoilState(nicknameErrorState);
   const setNicknamePass = useSetRecoilState(nicknamePassState);
-  const [tmpNickname, setTmpNickname] = useState<string>('');
+  const resetNicknameError = useResetRecoilState(nicknameErrorState);
+
+  const signupMode = useRecoilValue(signupModeState);
 
   return useMutation<apiSuccessType, apiErrorType, string>({
     mutationFn: (nickname: string) => {
@@ -28,8 +31,12 @@ const useCheckNickname = () => {
     onSuccess: data => {
       console.log(data);
       if (data.result === 'error') {
-        setNicknameError('중복된 닉네임입니다. 다른 닉네임을 입력해주세요.');
+        setNicknameError({
+          state: true,
+          message: '중복된 닉네임입니다. 다른 닉네임을 입력해주세요.',
+        });
       } else {
+        resetNicknameError();
         setNicknamePass(true);
         if (signupMode === 'basic') {
           setSignupInfo(prev => ({ ...prev, nickname: tmpNickname }));
