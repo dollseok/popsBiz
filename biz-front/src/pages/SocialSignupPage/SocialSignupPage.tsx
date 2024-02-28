@@ -5,40 +5,72 @@ import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
 import { GoBackNavComp } from '@/components/molecules/SignupPage/GoBackNavComp';
 import { UserdataComp } from '@/components/organisms/SignupPage/UserdataComp';
 import {
+  agreeErrorState,
   agreementState,
+  imageErrorState,
+  nicknameErrorState,
   signupModeState,
   socialSignupInfoState,
 } from '@/states/User';
 import { useEffect } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 
 const SocialSignupPage = () => {
   const socialSignupInfo = useRecoilValue(socialSignupInfoState); // 회원가입에 요구되는 데이터
   const agreement = useRecoilValue(agreementState); // 필수 동의 데이터
 
   const setSignupMode = useSetRecoilState(signupModeState);
+  const [imageError, setImageError] = useRecoilState(imageErrorState);
+  const [nicknameError, setNicknameError] = useRecoilState(nicknameErrorState);
+  const [agreeError, setAgreeError] = useRecoilState(agreeErrorState);
 
   const socialSignup = useSocialSignup();
 
   const handleSignupClick = async () => {
     if (agreement) {
-      if (
-        socialSignupInfo.googleIdToken !== '' &&
-        socialSignupInfo.nickname !== '' &&
-        socialSignupInfo.profileKey !== ''
-      ) {
+      if (!imageError && !nicknameError && !agreeError) {
         // 소셜 로그인 진행
         socialSignup.mutate(socialSignupInfo);
       }
       // 데이터 부족한 것 에러 보여줘야 함
       else {
+        // 이미지에 문제
+        if (imageError.state) {
+          setImageError(prev => ({
+            ...prev,
+            message: '이미지를 정상적으로 등록해야 회원가입이 가능합니다.',
+          }));
+        }
+        // 닉네임에 문제
+        if (nicknameError.state) {
+          setNicknameError(prev => ({
+            ...prev,
+            message: '닉네임을 정상적으로 입력해야 회원가입이 가능합니다.',
+          }));
+        }
+        window.scrollTo(0, 0);
         console.log(socialSignupInfo);
       }
     }
+    // 필수 동의 안했을 때
+    else {
+      setAgreeError({
+        state: true,
+        message: '필수 약관에 동의하셔야 회원으로 가입할 수 있습니다.',
+      });
+    }
   };
 
+  // 페이지 렌더링 시 소셜 로그인임을 체크
   useEffect(() => {
     setSignupMode('social');
+  }, []);
+
+  // 페이지 렌더링 되었을 때 errorstate 전부 true로 -> 그래야 아무것도 아닐 때 회원가입 못하게 막음
+  useEffect(() => {
+    setImageError(prev => ({ ...prev, state: true }));
+    setNicknameError(prev => ({ ...prev, state: true }));
+    setAgreeError(prev => ({ ...prev, state: true }));
   }, []);
 
   return (
