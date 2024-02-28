@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
-import { useSetRecoilState } from 'recoil';
+import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { addLogin } from '../userAPI';
 import { UserLoginInfoType } from '@/types/user';
 import { currentUserState, loginErrorState, loginState } from '@/states/User';
@@ -11,13 +11,13 @@ const useAddLogin = (redirectPath: string) => {
   const [tmpUser, setTmpUser] = useState<UserLoginInfoType>();
   const setUser = useSetRecoilState(currentUserState);
   const setLoginError = useSetRecoilState(loginErrorState);
+  const resetLoginError = useResetRecoilState(loginErrorState);
   const setLogin = useSetRecoilState(loginState);
   const navigate = useNavigate();
 
   return useMutation<apiSuccessType, apiErrorType, UserLoginInfoType>({
     mutationFn: (user: UserLoginInfoType) => {
       setTmpUser(user);
-      console.log(user);
       return addLogin(user);
     },
     onSuccess: data => {
@@ -29,22 +29,36 @@ const useAddLogin = (redirectPath: string) => {
         localStorage.setItem('profileImage', successData.profileImage);
         setUser(successData); // 현재 유저의 데이터 accessToken, profileImage, nickname
         setLogin(true); // 로그인 상태 설정
-        setLoginError(''); // 로그인 에러 상태 설정
+        resetLoginError();
         navigate(redirectPath); //리 랜더링
       }
       // 로그인 실패
       else if (data.result === 'error') {
         // 파라미터 오류
         if (data.errorCode === 'COM_001') {
-          if (tmpUser?.email === '') {
-            setLoginError('가입한 이메일을 입력하세요.');
-          } else if (tmpUser?.password === '') {
-            setLoginError('비밀번호를 입력하세요.');
+          if (tmpUser?.password === '') {
+            setLoginError({
+              state: true,
+              message: '비밀번호를 입력하세요.',
+            });
+          } else if (tmpUser?.email === '') {
+            setLoginError({
+              state: true,
+              message: '가입한 이메일을 입력하세요.',
+            });
+          } else {
+            setLoginError({
+              state: true,
+              message: '이메일 형태에 맞게 입력하세요.',
+            });
           }
         }
         // 데이터 오류
         else if (data.errorCode === 'EBA_001') {
-          setLoginError('이메일 또는 비밀번호가 틀립니다. 다시 입력해주세요.');
+          setLoginError({
+            state: true,
+            message: '이메일 또는 비밀번호가 틀립니다. 다시 입력해주세요.',
+          });
         }
       }
     },

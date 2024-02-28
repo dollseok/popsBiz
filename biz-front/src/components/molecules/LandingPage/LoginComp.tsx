@@ -1,6 +1,5 @@
 import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
 import { useState } from 'react';
-
 import { useAddLogin } from '@/apis/User/Mutations/useAddLogin';
 import { Text } from '@/components/atoms/Text/Text';
 import Input from '@/components/atoms/Input/Input';
@@ -64,7 +63,7 @@ const LoginComp = () => {
       {loginError ? (
         <Wrapper option="Column" $width="363px">
           <Text size="small" $color="danger">
-            {loginError}
+            {loginError.message}
           </Text>
         </Wrapper>
       ) : (
