@@ -1,14 +1,9 @@
-import Button from '@/components/atoms/Button/Button';
 import { Text } from '@/components/atoms/Text/Text';
 import { CheckBox } from '@/components/molecules/SignupPage/CheckBox';
 import { AGREEDATA } from '@/constants/agreeData';
 import {
   agreeErrorState,
   agreementState,
-  emailErrorState,
-  imageErrorState,
-  nicknameErrorState,
-  passwordErrorState,
   signupInfoState,
   signupModeState,
   socialSignupInfoState,
@@ -26,11 +21,8 @@ const SignupAgreement = () => {
   const [AgreeData, setAgreeData] = useState<AgreeDataType[]>(AGREEDATA);
   const [allCheck, setAllCheck] = useState<boolean>(false);
   const setAgreementState = useSetRecoilState(agreementState);
-  const [signupInfoStateData, setSignupInfoState] =
-    useRecoilState(signupInfoState);
-  const [socialSignupInfoStateData, setSocialSignupInfoState] = useRecoilState(
-    socialSignupInfoState
-  );
+  const setSignupInfoState = useSetRecoilState(signupInfoState);
+  const setSocialSignupInfoState = useSetRecoilState(socialSignupInfoState);
   const signupMode = useRecoilValue(signupModeState);
 
   const [agreeError, setAgreeError] = useRecoilState(agreeErrorState);
@@ -122,24 +114,6 @@ const SignupAgreement = () => {
     handleAgreementState();
   }, [AgreeData]);
 
-  // test
-  const emailError = useRecoilValue(emailErrorState);
-  const passwordError = useRecoilValue(passwordErrorState);
-  const imageError = useRecoilValue(imageErrorState);
-  const nicknameError = useRecoilValue(nicknameErrorState);
-
-  const test = () => {
-    console.log(AgreeData);
-
-    console.log('emailError', emailError);
-    console.log('passwordError', passwordError);
-    console.log('imageError', imageError);
-    console.log('nicknameError', nicknameError);
-    console.log('agreeError', agreeError);
-    console.log('일반 회원가입 데이터 :', signupInfoStateData);
-    console.log('소셜 회원가입 데이터 : ', socialSignupInfoStateData);
-  };
-
   return (
     <>
       <Text size="body2" $marginBottom="15px">
@@ -170,8 +144,6 @@ const SignupAgreement = () => {
       <Text $color="danger" size="body4" $marginLeft="10px">
         {agreeError.message}
       </Text>
-
-      <Button onClick={test}>테스트</Button>
     </>
   );
 };
