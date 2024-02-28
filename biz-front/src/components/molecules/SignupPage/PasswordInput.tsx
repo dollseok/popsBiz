@@ -137,6 +137,10 @@ const PasswordInput = () => {
             비밀번호 확인란이 올바르지 않습니다.
           </Text>
         )}
+
+        <Text $color="danger" size="body4" $marginLeft="10px" $marginTop="10px">
+          {passwordError.message}
+        </Text>
       </Wrapper>
     </>
   );
