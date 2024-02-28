@@ -88,7 +88,9 @@ const SocialSignupPage = () => {
           </Text>
         </Wrapper>
         <UserdataComp />
-        <Button onClick={handleSignupClick}>회원 가입</Button>
+        <Button onClick={handleSignupClick} $marginBottom="70px">
+          회원 가입
+        </Button>
       </Wrapper>
     </>
   );
