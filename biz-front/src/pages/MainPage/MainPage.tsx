@@ -9,7 +9,7 @@ const MainPage = () => {
   return (
     <>
       <Navbar></Navbar>
-      <Wrapper option="Row">
+      <Wrapper option="Flex">
         <SideNavBar></SideNavBar>
         <Wrapper $width="90%">
           <Wrapper $size="MainContent">
