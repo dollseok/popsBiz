@@ -3,6 +3,9 @@ import { ButtonProps } from './Button';
 
 const getOptionStyling = (option: Required<ButtonProps>['option']) => {
   const styles = {
+    none: css`
+      background-color: ${({ theme }) => theme.color.transparent};
+    `,
     activated: css`
       background-color: ${({ theme }) => theme.color.blue};
     `,
@@ -29,7 +32,9 @@ const getOptionStyling = (option: Required<ButtonProps>['option']) => {
       display: flex;
       justify-content: flex-start;
       align-items: none;
-      width: 220px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      height: 30px;
     `,
     SideNavButton: css`
       background-color: ${({ theme }) => theme.color.transparent};
@@ -37,9 +42,10 @@ const getOptionStyling = (option: Required<ButtonProps>['option']) => {
       display: flex;
       justify-content: flex-start;
       align-items: none;
-      width: 220px;
-      height: 40px;
       padding-left: 21px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      height: 30px;
     `,
   };
 
@@ -48,14 +54,17 @@ const getOptionStyling = (option: Required<ButtonProps>['option']) => {
 
 const getSizeStyling = (size: Required<ButtonProps>['size']) => {
   const styles = {
+    none: css``,
     large: css`
       width: 363px;
+      height: 50px;
     `,
     medium: css`
       width: 235px;
     `,
     small: css`
       width: 147px;
+      height: 50px;
     `,
     extraSmall: css`
       width: 102px;
@@ -78,8 +87,6 @@ const Button = styled.button<ButtonProps>`
   cursor: pointer;
   font-family: 'Pretendard';
   font-weight: ${props => props.$fontWeight || '400'};
-  height: 50px;
-  width: 100%;
   padding: 0px;
   color: ${props => props.$color || 'white'};
   ${({ size = 'large' }) => getSizeStyling(size)};

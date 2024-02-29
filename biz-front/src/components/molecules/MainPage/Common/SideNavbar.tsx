@@ -12,40 +12,45 @@ const SideNavBar = () => {
   };
 
   return (
-    <Wrapper option="Column" $size="SideNav">
-      <Button option="SideNavMainButton">
+    <Wrapper $size="SideNav">
+      <Button option="SideNavMainButton" size="none">
         <Text>회원 정보 관리</Text>
       </Button>
       <Button
         option="SideNavButton"
+        size="none"
         onClick={() => handleRouter(PATH.USERPROFILE)}
       >
         프로필 관리
       </Button>
       <Button
         option="SideNavButton"
+        size="none"
         onClick={() => handleRouter(PATH.USERPAYMENT)}
       >
         결제 정보 관리
       </Button>
 
-      <Button option="SideNavMainButton" $marginTop="20px">
+      <Button option="SideNavMainButton" size="none" $marginTop="20px">
         <Text>팝업 정보 관리</Text>
       </Button>
       <Button
         option="SideNavButton"
+        size="none"
         onClick={() => handleRouter(PATH.POPUPLIST)}
       >
         팝업 목록
       </Button>
       <Button
         option="SideNavButton"
+        size="none"
         onClick={() => handleRouter(PATH.POPUPREGIST)}
       >
         팝업 등록
       </Button>
       <Button
         option="SideNavButton"
+        size="none"
         onClick={() => handleRouter(PATH.POPUPTICKET)}
       >
         티켓 관리
@@ -53,6 +58,7 @@ const SideNavBar = () => {
 
       <Button
         option="SideNavMainButton"
+        size="none"
         $marginTop="20px"
         onClick={() => handleRouter(PATH.NOTICE)}
       >
@@ -61,6 +67,7 @@ const SideNavBar = () => {
 
       <Button
         option="SideNavMainButton"
+        size="none"
         $marginTop="20px"
         onClick={() => handleRouter(PATH.INQUIRY)}
       >

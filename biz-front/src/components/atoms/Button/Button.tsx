@@ -5,6 +5,7 @@ import * as S from './Button.styles';
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   option?:
+    | 'none'
     | 'activated'
     | 'deactivated'
     | 'danger'
@@ -12,7 +13,7 @@ export interface ButtonProps
     | 'textButton'
     | 'SideNavButton'
     | 'SideNavMainButton';
-  size?: 'small' | 'medium' | 'large' | 'extraSmall' | 'textSize';
+  size?: 'none' | 'small' | 'medium' | 'large' | 'extraSmall' | 'textSize';
   $fontSize?: string;
   $backgroundColor?: string;
   $border?: string;

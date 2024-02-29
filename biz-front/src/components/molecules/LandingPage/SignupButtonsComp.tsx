@@ -21,7 +21,7 @@ const SignupButtonsComp = () => {
   return (
     <>
       <Wrapper option="Row" $width="363px">
-        <Wrapper $marginLeft="auto">
+        <Wrapper $marginLeft="auto" option="Row">
           <Button
             size="extraSmall"
             option="textButton"

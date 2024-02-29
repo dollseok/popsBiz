@@ -11,13 +11,13 @@ const MainPage = () => {
       <Navbar></Navbar>
       <Wrapper option="Row">
         <SideNavBar></SideNavBar>
-        <Wrapper $size="MainContent">
-          <Wrapper $size="InnerMainContent">
+        <Wrapper $width="90%">
+          <Wrapper $size="MainContent">
             <Outlet></Outlet>
           </Wrapper>
+          <Footer></Footer>
         </Wrapper>
       </Wrapper>
-      <Footer></Footer>
     </>
   );
 };

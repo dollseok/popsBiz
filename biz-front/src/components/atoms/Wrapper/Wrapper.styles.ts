@@ -33,7 +33,7 @@ const getSizeStyling = ($size: Required<WrapperProps>['$size']) => {
     Default: css``,
     SideNav: css`
       width: 220px;
-      height: 100vh;
+      height: 120vh;
       border-right: 1px solid rgba(0, 0, 0, 0.2);
       padding-left: 20px;
       padding-top: 20px;
@@ -42,10 +42,12 @@ const getSizeStyling = ($size: Required<WrapperProps>['$size']) => {
       width: 100%;
       height: 80px;
       border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      padding-left: 80px;
+      padding-right: 80px;
     `,
     Footer: css`
       width: 100%;
-      height: 200px;
+      height: 20vh;
       position: relative;
       bottom: 0px;
       border-top: 1px solid rgba(0, 0, 0, 0.2);
@@ -53,12 +55,7 @@ const getSizeStyling = ($size: Required<WrapperProps>['$size']) => {
     MainContent: css`
       height: 100vh;
       width: 100%;
-      padding: 33px;
-    `,
-    InnerMainContent: css`
-      height: 100vh;
-      width: 100%;
-      padding-top: 33px;
+      padding: 60px;
       padding-left: 130px;
       padding-right: 130px;
       background-color: ${theme.color.grey2};
@@ -76,18 +73,21 @@ const getSizeStyling = ($size: Required<WrapperProps>['$size']) => {
 };
 
 const Wrapper = styled.div<WrapperProps>`
-  display: flex;
+  width: ${props => props.$width};
   background-color: ${props =>
     props.$backgroundColor
       ? props.theme.color[props.$backgroundColor]
       : props.theme.color.white};
   ${({ option = 'Default' }) => getOptionStyling(option)};
   ${({ $size = 'Default' }) => getSizeStyling($size)};
-  width: ${props => props.$width};
   margin-left: ${props => props.$marginLeft};
   margin-right: ${props => props.$marginRight};
   margin-bottom: ${props => props.$marginBottom};
   margin-top: ${props => props.$marginTop};
+  padding-left: ${props => props.$paddingLeft};
+  padding-right: ${props => props.$paddingRight};
+  padding-bottom: ${props => props.$paddingBottom};
+  padding-top: ${props => props.$paddingTop};
 `;
 
 export { Wrapper };

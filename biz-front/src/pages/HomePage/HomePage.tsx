@@ -1,5 +1,4 @@
 import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
-import React from 'react';
 
 const HomePage = () => {
   return (

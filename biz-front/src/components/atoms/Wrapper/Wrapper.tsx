@@ -10,13 +10,16 @@ export interface WrapperProps {
     | 'Signup'
     | 'Footer'
     | 'Default'
-    | 'MainContent'
-    | 'InnerMainContent';
+    | 'MainContent';
   $backgroundColor?: string;
   $marginLeft?: string;
   $marginRight?: string;
   $marginTop?: string;
   $marginBottom?: string;
+  $paddingLeft?: string;
+  $paddingRight?: string;
+  $paddingTop?: string;
+  $paddingBottom?: string;
   $width?: string;
   children: React.ReactNode;
 }
@@ -28,6 +31,10 @@ const Wrapper = ({
   $marginRight,
   $marginBottom,
   $marginTop,
+  $paddingLeft,
+  $paddingRight,
+  $paddingBottom,
+  $paddingTop,
   $size,
   $width,
   children,
@@ -40,6 +47,10 @@ const Wrapper = ({
       $marginRight={$marginRight}
       $marginTop={$marginTop}
       $marginBottom={$marginBottom}
+      $paddingLeft={$paddingLeft}
+      $paddingRight={$paddingRight}
+      $paddingTop={$paddingTop}
+      $paddingBottom={$paddingBottom}
       $size={$size}
       $width={$width}
     >
