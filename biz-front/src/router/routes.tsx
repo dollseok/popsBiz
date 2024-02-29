@@ -13,6 +13,9 @@ import InquiryPage from '@/pages/InquiryPage/InquiryPage';
 import HomePage from '@/pages/HomePage/HomePage';
 import SocialLoginPage from '@/pages/SocialLoginPage/SocialLoginPage';
 import SocialSignupPage from '@/pages/SocialSignupPage/SocialSignupPage';
+import BasicDataComp from '@/components/organisms/MainPage/Popup/Regist/BasicDataComp';
+import AddtionalDataComp from '@/components/organisms/MainPage/Popup/Regist/AdditionalDataComp';
+import TicketDataComp from '@/components/organisms/MainPage/Popup/Regist/TicketDataComp';
 
 // import LandingPage from '../pages/LandingPage/LandingPage';
 // import MainPage from '../pages/MainPage/MainPage';
@@ -29,7 +32,16 @@ const router = createBrowserRouter([
       { path: PATH.USERPAYMENT, element: <UserPaymentPage /> },
       //popup
       { path: PATH.POPUPLIST, element: <PopupListPage /> },
-      { path: PATH.POPUPREGIST, element: <PopupRegistPage /> },
+      //popupregist 디테일
+      {
+        path: PATH.POPUPREGIST,
+        element: <PopupRegistPage />,
+        children: [
+          { index: true, element: <BasicDataComp /> },
+          { path: PATH.ADDITIONALDATA, element: <AddtionalDataComp /> },
+          { path: PATH.TICKETDATA, element: <TicketDataComp /> },
+        ],
+      },
       { path: PATH.POPUPTICKET, element: <PopupTicketPage /> },
       //notice
       { path: PATH.NOTICE, element: <NoticePage /> },
