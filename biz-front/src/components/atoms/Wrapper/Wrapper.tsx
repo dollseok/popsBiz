@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './Wrapper.styles';
 
 export interface WrapperProps {
-  option?: 'Column' | 'Row' | 'Center' | 'RowSideEnd' | 'Default';
+  option?: 'Flex' | 'Column' | 'Row' | 'Center' | 'RowSideEnd' | 'Default';
   $size?:
     | 'SideNav'
     | 'Nav'
@@ -10,7 +10,8 @@ export interface WrapperProps {
     | 'Signup'
     | 'Footer'
     | 'Default'
-    | 'MainContent';
+    | 'MainContent'
+    | 'HomeComp';
   $backgroundColor?: string;
   $marginLeft?: string;
   $marginRight?: string;

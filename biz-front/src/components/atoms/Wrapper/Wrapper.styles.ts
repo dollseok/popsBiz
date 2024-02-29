@@ -4,6 +4,9 @@ import theme from '@/styles/theme';
 
 const getOptionStyling = (option: Required<WrapperProps>['option']) => {
   const styles = {
+    Flex: css`
+      display: flex;
+    `,
     Column: css`
       display: flex;
       flex-direction: column;
@@ -33,10 +36,12 @@ const getSizeStyling = ($size: Required<WrapperProps>['$size']) => {
     Default: css``,
     SideNav: css`
       width: 220px;
-      height: 120vh;
+      height: 140vh;
       border-right: 1px solid rgba(0, 0, 0, 0.2);
       padding-left: 20px;
       padding-top: 20px;
+      position: relative;
+      vertical-align: top;
     `,
     Nav: css`
       width: 100%;
@@ -47,13 +52,10 @@ const getSizeStyling = ($size: Required<WrapperProps>['$size']) => {
     `,
     Footer: css`
       width: 100%;
-      height: 20vh;
-      position: relative;
-      bottom: 0px;
+      height: 50px;
       border-top: 1px solid rgba(0, 0, 0, 0.2);
     `,
     MainContent: css`
-      height: 100vh;
       width: 100%;
       padding: 60px;
       padding-left: 130px;
@@ -67,6 +69,11 @@ const getSizeStyling = ($size: Required<WrapperProps>['$size']) => {
     Signup: css`
       width: 100%;
       height: 100%;
+    `,
+    HomeComp: css`
+      width: 900px;
+      height: 300px;
+      margin-bottom: 40px;
     `,
   };
   return styles[$size];
