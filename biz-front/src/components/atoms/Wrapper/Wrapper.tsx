@@ -21,6 +21,7 @@ export interface WrapperProps {
   $paddingRight?: string;
   $paddingTop?: string;
   $paddingBottom?: string;
+  $padding?: string;
   $width?: string;
   children: React.ReactNode;
 }
@@ -36,6 +37,7 @@ const Wrapper = ({
   $paddingRight,
   $paddingBottom,
   $paddingTop,
+  $padding,
   $size,
   $width,
   children,
@@ -52,6 +54,7 @@ const Wrapper = ({
       $paddingRight={$paddingRight}
       $paddingTop={$paddingTop}
       $paddingBottom={$paddingBottom}
+      $padding={$padding}
       $size={$size}
       $width={$width}
     >

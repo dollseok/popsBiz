@@ -95,6 +95,7 @@ const Wrapper = styled.div<WrapperProps>`
   padding-right: ${props => props.$paddingRight};
   padding-bottom: ${props => props.$paddingBottom};
   padding-top: ${props => props.$paddingTop};
+  padding: ${props => props.$padding};
 `;
 
 export { Wrapper };
