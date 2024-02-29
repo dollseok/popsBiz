@@ -12,6 +12,8 @@ function App() {
     const accessToken = localStorage.getItem('accessToken');
     if (accessToken) {
       setLogin(true);
+    } else {
+      setLogin(false);
     }
   }, []);
 
