@@ -11,6 +11,7 @@ export interface ButtonProps
     | 'danger'
     | 'border'
     | 'textButton'
+    | 'blueTextButton'
     | 'SideNavButton'
     | 'SideNavMainButton';
   size?: 'none' | 'small' | 'medium' | 'large' | 'extraSmall' | 'textSize';

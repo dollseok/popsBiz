@@ -6,7 +6,12 @@ import { Outlet } from 'react-router';
 const PopupRegistPage = () => {
   return (
     <>
-      <Wrapper $paddingLeft="62px" $paddingTop="45px">
+      <Wrapper
+        $paddingLeft="62px"
+        $paddingRight="62px"
+        $paddingTop="45px"
+        $paddingBottom="45px"
+      >
         <Text size="heading" $fontWeight="bold">
           팝업 등록
         </Text>

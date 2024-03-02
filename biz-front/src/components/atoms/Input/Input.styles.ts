@@ -5,7 +5,7 @@ const getOptionStyling = (option: Required<InputProps>['option']) => {
   const styles = {
     default: css`
       background-color: white;
-      border: 1px solid black;
+      border: 0.1rem solid ${({ theme }) => theme.color.grey1};
     `,
     grey: css`
       background-color: ${({ theme }) => theme.color.grey};
@@ -18,6 +18,9 @@ const getInputSizeStyling = (
   $inputsize: Required<InputProps>['$inputsize']
 ) => {
   const styles = {
+    extraLarge: css`
+      width: 100%;
+    `,
     large: css`
       width: 424px;
     `,
@@ -26,6 +29,12 @@ const getInputSizeStyling = (
     `,
     small: css`
       width: 218px;
+    `,
+    dateSize: css`
+      width: 175px;
+    `,
+    extraSmall: css`
+      width: 115px;
     `,
   };
   return styles[$inputsize];
@@ -42,18 +51,17 @@ const Input = styled.input<InputProps>`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  border: 0.1rem solid ${({ theme }) => theme.color.black}
-
+  border-radius: 5px;
   margin-left: ${props => props.$marginLeft};
   margin-right: ${props => props.$marginRight};
   margin-bottom: ${props => props.$marginBottom};
   margin-bottom: ${props => props.$marginTop};
   ${({ option = 'default' }) => getOptionStyling(option)};
   ${({ $inputsize = 'large' }) => getInputSizeStyling($inputsize)};
-  font-size: ${({ theme }) => theme.fontsize.body2};
+  font-size: ${({ theme }) => theme.fontsize.body3};
 
   &::placeholder {
-    color: ${({ theme }) => theme.color.grey1};
+    color: ${({ theme }) => theme.color.grey2};
   }
 
   &:disabled {

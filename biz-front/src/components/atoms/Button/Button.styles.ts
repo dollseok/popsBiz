@@ -26,6 +26,10 @@ const getOptionStyling = (option: Required<ButtonProps>['option']) => {
       background-color: ${({ theme }) => theme.color.transparent};
       color: ${({ theme }) => theme.color.grey1};
     `,
+    blueTextButton: css`
+      background-color: ${({ theme }) => theme.color.transparent};
+      color: ${({ theme }) => theme.color.blue1};
+    `,
     SideNavMainButton: css`
       background-color: ${({ theme }) => theme.color.transparent};
       color: ${({ theme }) => theme.color.black1};
@@ -98,6 +102,7 @@ const Button = styled.button<ButtonProps>`
   margin-right: ${props => props.$marginRight};
   margin-bottom: ${props => props.$marginBottom};
   margin-top: ${props => props.$marginTop};
+  border-radius: 5px;
 `;
 
 export { Button };
