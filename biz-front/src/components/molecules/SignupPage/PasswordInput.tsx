@@ -6,12 +6,17 @@ import { useEffect, useState } from 'react';
 import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil';
 
 const PasswordInput = () => {
+  // trim 완료되고 최종 변수
   const [firstPassword, setFirstPassword] = useState<string>('');
   const [secondPassword, setSecondPassword] = useState<string>('');
+  // 바뀔 때마다 체크하기 위한 임시 변수
+  const [tmpFirstPassword, setTmpFirstPassword] = useState<string>('');
+  const [tmpSecondPassword, setTmpSecondPassword] = useState<string>('');
+
   const [validateFirstPassword, setValidateFirstPassword] =
     useState<boolean>(true);
-  const [validateSecondPassword, setValidateSecondPassword] =
-    useState<boolean>(true);
+  const [firstPasswordErrorMessage, setFirstPasswordErrorMessage] =
+    useState<string>('');
 
   // recoil
   const [passwordError, setPasswordError] = useRecoilState(passwordErrorState);
@@ -22,12 +27,13 @@ const PasswordInput = () => {
   const handleCheckPassword = (p1: string, p2: string) => {
     if (p1 !== p2) {
       // 비밀번호 유효성 검사 실패
-      setValidateSecondPassword(false);
       setSignupInfo(prev => ({ ...prev, password: '' }));
-      setPasswordError(prev => ({ ...prev, state: true })); // 상태만 체크
+      setPasswordError(prev => ({
+        state: true,
+        message: '비밀번호 확인란이 올바르지 않습니다.',
+      })); // 상태만 체크
     } else {
       // 비밀번호 유효성 검사 통과
-      setValidateSecondPassword(true);
       setSignupInfo(prev => ({ ...prev, password: p1 }));
       resetPasswordError();
     }
@@ -36,27 +42,26 @@ const PasswordInput = () => {
   const onChangeFirstPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     const trimmedPassword = e.target.value.trim();
     console.log(trimmedPassword);
-    setFirstPassword(trimmedPassword);
+    setTmpFirstPassword(trimmedPassword);
   };
 
   const onChangeSecondPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     const trimmedPassword = e.target.value.trim();
     console.log(trimmedPassword);
-    setSecondPassword(trimmedPassword);
+    setTmpSecondPassword(trimmedPassword);
   };
 
   const onBlurFirstPassword = async (e: React.FocusEvent<HTMLInputElement>) => {
-    const newPassword = e.target.value.trim();
-    if (newPassword === '') {
-      setPasswordError({ state: true, message: '비밀번호를 입력해주세요' });
+    if (tmpFirstPassword === '') {
+      setPasswordError(prev => ({ ...prev, state: true }));
+      setFirstPasswordErrorMessage('비밀번호를 입력해주세요');
       setValidateFirstPassword(false);
     }
-    setFirstPassword(newPassword);
+    setFirstPassword(tmpFirstPassword);
   };
 
   const onBlurSecondPassword = (e: React.FocusEvent<HTMLInputElement>) => {
-    const checkPassword = e.target.value;
-    setSecondPassword(checkPassword);
+    setSecondPassword(tmpSecondPassword);
   };
 
   // useEffect
@@ -76,12 +81,10 @@ const PasswordInput = () => {
       ) {
         setValidateFirstPassword(true);
       } else {
-        setPasswordError({
-          state: true,
-          message: '비밀번호 형식에 맞지 않습니다. 형식을 다시 확인해주세요.',
-        });
-
         setValidateFirstPassword(false);
+        setFirstPasswordErrorMessage(
+          '비밀번호 형식에 맞지 않습니다. 형식을 다시 확인해주세요.'
+        );
       }
     }
 
@@ -99,7 +102,7 @@ const PasswordInput = () => {
         </Text>
         <Input
           type="password"
-          value={firstPassword}
+          value={tmpFirstPassword}
           placeholder="비밀번호를 입력해주세요"
           onChange={onChangeFirstPassword}
           onBlur={onBlurFirstPassword}
@@ -109,11 +112,12 @@ const PasswordInput = () => {
           * 총 8 ~ 20자리의 영문/숫자/특수문자 중 2가지 이상을 포함하여
           입력하세요.
         </Text>
+
         {validateFirstPassword ? (
           <></>
         ) : (
           <Text $color="danger" size="body4" $marginLeft="10px">
-            {passwordError.message}
+            {firstPasswordErrorMessage}
           </Text>
         )}
       </Wrapper>
@@ -123,24 +127,20 @@ const PasswordInput = () => {
         </Text>
         <Input
           type="password"
-          value={secondPassword}
+          value={tmpSecondPassword}
           placeholder="비밀번호를 다시 입력해주세요"
           onBlur={onBlurSecondPassword}
           onChange={onChangeSecondPassword}
           $marginBottom="10px"
         />
 
-        {validateSecondPassword ? (
-          <></>
-        ) : (
+        {passwordError.state ? (
           <Text $color="danger" size="body4" $marginLeft="10px">
-            비밀번호 확인란이 올바르지 않습니다.
+            {passwordError.message}
           </Text>
+        ) : (
+          <></>
         )}
-
-        <Text $color="danger" size="body4" $marginLeft="10px" $marginTop="10px">
-          {passwordError.message}
-        </Text>
       </Wrapper>
     </>
   );
