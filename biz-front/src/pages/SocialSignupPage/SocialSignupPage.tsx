@@ -13,7 +13,12 @@ import {
   socialSignupInfoState,
 } from '@/states/User';
 import { useEffect } from 'react';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import {
+  useRecoilState,
+  useRecoilValue,
+  useResetRecoilState,
+  useSetRecoilState,
+} from 'recoil';
 
 const SocialSignupPage = () => {
   const socialSignupInfo = useRecoilValue(socialSignupInfoState); // 회원가입에 요구되는 데이터
@@ -23,6 +28,8 @@ const SocialSignupPage = () => {
   const [imageError, setImageError] = useRecoilState(imageErrorState);
   const [nicknameError, setNicknameError] = useRecoilState(nicknameErrorState);
   const [agreeError, setAgreeError] = useRecoilState(agreeErrorState);
+
+  const resetSocialSignupInfo = useResetRecoilState(socialSignupInfoState);
 
   const socialSignup = useSocialSignup();
 
@@ -68,6 +75,8 @@ const SocialSignupPage = () => {
 
   // 페이지 렌더링 되었을 때 errorstate 전부 true로 -> 그래야 아무것도 아닐 때 회원가입 못하게 막음
   useEffect(() => {
+    resetSocialSignupInfo();
+
     setImageError(prev => ({ ...prev, state: true }));
     setNicknameError(prev => ({ ...prev, state: true }));
     setAgreeError(prev => ({ ...prev, state: true }));

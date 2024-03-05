@@ -8,14 +8,17 @@ import { UserdataComp } from '@/components/organisms/SignupPage/UserdataComp';
 import {
   agreeErrorState,
   agreementState,
+  emailCertState,
   emailErrorState,
   imageErrorState,
   nicknameErrorState,
+  nicknamePassState,
   passwordErrorState,
   signupInfoState,
+  timerState,
 } from '@/states/User';
 import { useEffect } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 
 const SignupPage = () => {
   const signupInfo = useRecoilValue(signupInfoState); // 회원가입에 요구되는 데이터
@@ -27,10 +30,26 @@ const SignupPage = () => {
   const [nicknameError, setNicknameError] = useRecoilState(nicknameErrorState);
   const [agreeError, setAgreeError] = useRecoilState(agreeErrorState);
 
+  const resetEmailCertState = useResetRecoilState(emailCertState);
+  const resetTimerState = useResetRecoilState(timerState);
+  const resetAgreementState = useResetRecoilState(agreementState);
+  const resetNicknamePassState = useResetRecoilState(nicknamePassState);
+  const resetSignupInfo = useResetRecoilState(signupInfoState);
+
   const EmailSignup = useEmailSignup();
 
   // 페이지 렌더링 되었을 때 errorstate 전부 true로 -> 그래야 아무것도 아닐 때 회원가입 못하게 막음
   useEffect(() => {
+    // 돌아왔을 때 데이터 리셋
+    resetSignupInfo();
+
+    // recoil 리셋
+    resetEmailCertState();
+    resetTimerState();
+    resetAgreementState();
+    resetNicknamePassState();
+
+    // errorstate 설정
     setEmailError(prev => ({ ...prev, state: true }));
     setPasswordError(prev => ({ ...prev, state: true }));
     setImageError(prev => ({ ...prev, state: true }));
@@ -42,10 +61,10 @@ const SignupPage = () => {
     if (agreement) {
       if (
         !emailError.state &&
-        !passwordError &&
-        !imageError &&
-        !nicknameError &&
-        !agreeError
+        !passwordError.state &&
+        !imageError.state &&
+        !nicknameError.state &&
+        !agreeError.state
       ) {
         // 이메일 회원가입
         EmailSignup.mutate(signupInfo);
@@ -81,7 +100,6 @@ const SignupPage = () => {
           }));
         }
         window.scrollTo(0, 0);
-        console.log(signupInfo);
       }
     }
     // 필수 동의 안했을 때
