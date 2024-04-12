@@ -29,8 +29,8 @@ const SignupAgreement = () => {
   const resetAgreeError = useResetRecoilState(agreeErrorState);
 
   // 각자 체크
-  const handleCheck = (idx: string) => {
-    const numberIdx = parseInt(idx); // item이 자체적으로 가지고 있는 idx
+  const handleCheck = (idx: number) => {
+    const numberIdx = idx; // item이 자체적으로 가지고 있는 idx
 
     const updateData = AgreeData.map((item, idx) => {
       if (idx === numberIdx - 1) {
@@ -122,7 +122,7 @@ const SignupAgreement = () => {
       <CheckBox
         $marginBottom="15px"
         checked={allCheck}
-        checkBoxId={'0'}
+        checkBoxId={0}
         mention={'전체 동의'}
         detailContent={''}
         handleCheck={handleAllCheck}
