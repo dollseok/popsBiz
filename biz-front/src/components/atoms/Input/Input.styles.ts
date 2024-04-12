@@ -30,10 +30,10 @@ const getInputSizeStyling = (
     small: css`
       width: 218px;
     `,
-    dateSize: css`
+    dateInput: css`
       width: 175px;
     `,
-    extraSmall: css`
+    timeInput: css`
       width: 115px;
     `,
   };

@@ -5,12 +5,12 @@ export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   option?: 'default' | 'grey';
   $inputsize?:
-    | 'extraSmall'
     | 'small'
     | 'medium'
     | 'large'
     | 'extraLarge'
-    | 'dateSize';
+    | 'dateInput'
+    | 'timeInput';
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
   disabled?: boolean;
