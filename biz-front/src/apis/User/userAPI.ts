@@ -1,4 +1,6 @@
 import { instance } from '../instance';
+import { imageInstance } from '../imageInstance';
+
 import {
   CertEmailInfo,
   SendEmailInfo,
@@ -9,7 +11,6 @@ import {
   googleLoginInfoType,
   uploadImageType,
 } from '@/types/user';
-import { imageInstance } from '../imageInstance';
 
 const addLogin = async (data: UserLoginInfoType) => {
   try {
