@@ -14,7 +14,7 @@ const LocationInputComp = () => {
           <Wrapper>
             <Text size="body3">시/도</Text>
             <Input
-              $inputsize="dateSize"
+              $inputsize="dateInput"
               type="text"
               placeholder="시/도를 선택해주세요."
             ></Input>
@@ -22,7 +22,7 @@ const LocationInputComp = () => {
           <Wrapper>
             <Text size="body3">시/구</Text>
             <Input
-              $inputsize="dateSize"
+              $inputsize="dateInput"
               type="text"
               placeholder="시/구를 선택해주세요."
             ></Input>
