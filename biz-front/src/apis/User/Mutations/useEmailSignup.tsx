@@ -8,6 +8,10 @@ import { PATH } from '@/constants/path';
 const useEmailSignup = () => {
   const navigate = useNavigate();
 
+  const handleRouter = (url: string): void => {
+    navigate(url);
+  };
+
   return useMutation<apiSuccessType, apiErrorType, SignupUserType>({
     mutationFn: data => {
       return SignupEmail(data);
@@ -22,7 +26,7 @@ const useEmailSignup = () => {
       else {
         console.log('회원 가입 성공');
         // TODO: 자동 로그인? 할거인지
-        navigate(PATH.ROOT);
+        handleRouter(PATH.ROOT);
       }
     },
     onError: () => {},
