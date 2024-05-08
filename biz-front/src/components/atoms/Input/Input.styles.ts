@@ -66,6 +66,7 @@ const Input = styled.input<InputProps>`
 
   &:disabled {
     background-color: ${({ theme }) => theme.color.grey2};
+    color: ${({ theme }) => theme.color.grey1};
   }
 
   &:focus {
