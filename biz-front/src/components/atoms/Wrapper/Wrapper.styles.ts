@@ -96,6 +96,7 @@ const Wrapper = styled.div<WrapperProps>`
   padding-bottom: ${props => props.$paddingBottom};
   padding-top: ${props => props.$paddingTop};
   padding: ${props => props.$padding};
+  position: relative;
 `;
 
 export { Wrapper };

@@ -13,6 +13,7 @@ export interface InputProps
     | 'timeInput';
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
+  onClick?: () => void;
   disabled?: boolean;
   placeholder?: string;
   type: string;
@@ -33,6 +34,7 @@ const Input = (
     $marginTop,
     onChange,
     onBlur,
+    onClick,
     disabled,
     placeholder,
     type,
@@ -51,6 +53,7 @@ const Input = (
       $marginTop={$marginTop}
       onChange={onChange}
       onBlur={onBlur}
+      onClick={onClick}
       disabled={disabled}
       placeholder={placeholder}
       type={type}
