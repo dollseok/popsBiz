@@ -56,7 +56,7 @@ const DateTimeInputComp = () => {
 
   return (
     <>
-      <Wrapper>
+      <Wrapper $marginBottom="40px">
         <Text size="body1" $fontWeight="bold" $marginBottom="15px">
           기간 / 시간 (Date and Time)
         </Text>
@@ -90,17 +90,18 @@ const DateTimeInputComp = () => {
             </Wrapper>
           </Wrapper>
         </Wrapper>
+
+        {/* 시간 상세 설정 파트 */}
+        {tabState ? (
+          <Wrapper option="Row" $marginTop="25px">
+            {popupData.time.map((day, index) => (
+              <DayTimeInput key={index} index={index} timeData={day} />
+            ))}
+          </Wrapper>
+        ) : (
+          <></>
+        )}
       </Wrapper>
-      {/* 시간 상세 설정 파트 */}
-      {tabState ? (
-        <Wrapper option="Row" $marginTop="25px">
-          {popupData.time.map((day, index) => (
-            <DayTimeInput key={index} index={index} timeData={day} />
-          ))}
-        </Wrapper>
-      ) : (
-        <></>
-      )}
     </>
   );
 };

@@ -11,10 +11,18 @@ export interface ButtonProps
     | 'danger'
     | 'border'
     | 'textButton'
+    | 'blackButton'
     | 'blueTextButton'
     | 'SideNavButton'
     | 'SideNavMainButton';
-  size?: 'none' | 'small' | 'medium' | 'large' | 'extraSmall' | 'textSize';
+  size?:
+    | 'none'
+    | 'small'
+    | 'medium'
+    | 'large'
+    | 'extraSmall'
+    | 'textSize'
+    | 'blackButton';
   $fontSize?: string;
   $backgroundColor?: string;
   $border?: string;

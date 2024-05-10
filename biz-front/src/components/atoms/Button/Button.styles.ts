@@ -26,6 +26,10 @@ const getOptionStyling = (option: Required<ButtonProps>['option']) => {
       background-color: ${({ theme }) => theme.color.transparent};
       color: ${({ theme }) => theme.color.grey1};
     `,
+    blackButton: css`
+      background-color: ${({ theme }) => theme.color.black1};
+      color: ${({ theme }) => theme.color.white};
+    `,
     blueTextButton: css`
       background-color: ${({ theme }) => theme.color.transparent};
       color: ${({ theme }) => theme.color.blue1};
@@ -77,6 +81,10 @@ const getSizeStyling = (size: Required<ButtonProps>['size']) => {
     textSize: css`
       width: 100px;
       height: 20px;
+    `,
+    blackButton: css`
+      width: 90px;
+      height: 30px;
     `,
   };
 

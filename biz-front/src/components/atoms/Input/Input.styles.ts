@@ -55,7 +55,7 @@ const Input = styled.input<InputProps>`
   margin-left: ${props => props.$marginLeft};
   margin-right: ${props => props.$marginRight};
   margin-bottom: ${props => props.$marginBottom};
-  margin-bottom: ${props => props.$marginTop};
+  margin-top: ${props => props.$marginTop};
   ${({ option = 'default' }) => getOptionStyling(option)};
   ${({ $inputsize = 'large' }) => getInputSizeStyling($inputsize)};
   font-size: ${({ theme }) => theme.fontsize.body3};

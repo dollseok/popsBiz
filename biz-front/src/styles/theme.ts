@@ -1,7 +1,7 @@
 const color = {
   // text color
   white: '#FFFFFF',
-  black1: '#303030',
+  black1: '#000000',
   grey1: '#7E7E7E',
   grey2: '#D9D9D9',
   blue1: '#3300FF',

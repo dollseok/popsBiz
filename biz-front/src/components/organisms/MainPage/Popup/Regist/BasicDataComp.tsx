@@ -18,7 +18,7 @@ const BasicDataComp = () => {
       <DateTimeInputComp />
       {/* 장소 input */}
       <LocationInputComp />
-      {/* 해시태그 input */}
+      {/* 간단 설명 input */}
       <HashtagInputComp />
       {/* 이미지 input */}
       <ImageInputComp />
