@@ -2,7 +2,7 @@ import Button from '@/components/atoms/Button/Button';
 import { Text } from '@/components/atoms/Text/Text';
 import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
 
-const ImageInputComp = () => {
+const ImagesInputComp = () => {
   return (
     <>
       <Wrapper>
@@ -18,4 +18,4 @@ const ImageInputComp = () => {
   );
 };
 
-export default ImageInputComp;
+export default ImagesInputComp;

@@ -1,7 +1,7 @@
 import BrandInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/BrandInputComp';
 import DateTimeInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/DateTimeInputComp';
 import DescriptInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/DescriptInputComp';
-import ImageInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/ImageInputcomp';
+import ImagesInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/ImagesInputcomp';
 import LocationInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/LocationInputComp';
 import TitleInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/TitleInputComp';
 
@@ -19,7 +19,7 @@ const BasicDataComp = () => {
       {/* 간단 설명 input */}
       <DescriptInputComp />
       {/* 이미지 input */}
-      <ImageInputComp />
+      <ImagesInputComp />
       {/* 다음 버튼 */}
     </>
   );
