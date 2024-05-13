@@ -16,6 +16,7 @@ const useImageInput = (): ImageInputHookReturnType => {
     // 여기에 팝업스토어 이미지 등록 추가해야함
     // TODO: 이미지 저장 로직 api 완성되면 추가
     const file = e.target.files && e.target.files[0];
+    console.log('files', e.target.files);
     console.log(file);
     if (file) {
       const reader = new FileReader();

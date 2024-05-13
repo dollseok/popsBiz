@@ -29,6 +29,11 @@ const getOptionStyling = (option: Required<WrapperProps>['option']) => {
     Grid: css`
       display: grid;
     `,
+    Scrollx: css`
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+    `,
     Default: css``,
   };
   return styles[option];

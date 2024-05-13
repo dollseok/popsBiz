@@ -65,10 +65,9 @@ const DescriptInputComp = () => {
           </Wrapper>
 
           <Text size="body4" $color="grey1" $marginTop="10px">
-            * 추천 사이즈 : 1,200 x 900 px (비율 4:3)
-            <br />
-            * 대표 이미지 1장만 업로드 가능
-            <br />* 용량 : 10MB 이하 (파일 유형 jpg,jpeg,png)
+            * 추천 사이즈 : 1,200 x 900 px (비율 4:3) <br />
+            * 대표 이미지 1장만 업로드 가능 <br />
+            * 용량 : 10MB 이하 (파일 유형 jpg,jpeg,png) <br />
           </Text>
         </Wrapper>
       </Wrapper>

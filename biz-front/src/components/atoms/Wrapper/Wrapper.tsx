@@ -9,6 +9,7 @@ export interface WrapperProps {
     | 'Row'
     | 'Center'
     | 'RowSideEnd'
+    | 'Scrollx'
     | 'Default';
   $size?:
     | 'SideNav'

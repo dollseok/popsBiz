@@ -1,3 +1,5 @@
+import Button from '@/components/atoms/Button/Button';
+import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
 import BrandInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/BrandInputComp';
 import DateTimeInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/DateTimeInputComp';
 import DescriptInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/DescriptInputComp';
@@ -21,6 +23,11 @@ const BasicDataComp = () => {
       {/* 이미지 input */}
       <ImagesInputComp />
       {/* 다음 버튼 */}
+      <Wrapper option="Flex" $marginTop="50px">
+        <Button size="small" $marginLeft="auto">
+          다음
+        </Button>
+      </Wrapper>
     </>
   );
 };

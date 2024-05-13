@@ -14,7 +14,9 @@ export interface ButtonProps
     | 'blackButton'
     | 'blueTextButton'
     | 'SideNavButton'
-    | 'SideNavMainButton';
+    | 'SideNavMainButton'
+    | 'ImageAddButton'
+    | 'ImageDelButton';
   size?:
     | 'none'
     | 'small'
@@ -68,6 +70,7 @@ const Button = (
       $marginTop={$marginTop}
       $marginBottom={$marginBottom}
       $fontWeight={$fontWeight}
+      $width={$width}
       {...attributes}
     >
       {children}

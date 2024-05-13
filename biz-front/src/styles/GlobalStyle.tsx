@@ -43,7 +43,6 @@ const GlobalStyle = createGlobalStyle`
 	
 	* {
 		box-sizing: border-box;
-		color: ${({ theme }) => theme.color.black1};
 	}
 	
 	button, input {
