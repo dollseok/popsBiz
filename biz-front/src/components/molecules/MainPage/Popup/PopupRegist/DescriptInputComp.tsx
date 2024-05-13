@@ -4,6 +4,7 @@ import { Text } from '@/components/atoms/Text/Text';
 import { Textarea } from '@/components/atoms/Textarea/Textarea';
 import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
 import { useImageInput } from '@/hooks/useImageInput';
+import { useState } from 'react';
 
 const DescriptInputComp = () => {
   const {
@@ -13,6 +14,13 @@ const DescriptInputComp = () => {
     handleButtonClick,
     clearImage,
   } = useImageInput();
+
+  const [descript, setDescript] = useState<string>('');
+
+  const handleDescriptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputData = e.target.value;
+    setDescript(inputData);
+  };
 
   return (
     <>
@@ -28,7 +36,15 @@ const DescriptInputComp = () => {
             $width="500px"
             $height="250px"
             $placeholder="예시: 팝스,인스타툰(instatoon)"
+            onChange={e => {
+              handleDescriptChange(e);
+            }}
           />
+          <Wrapper option="Flex">
+            <Text size="body3" $marginLeft="auto">
+              {descript.length}/1,500
+            </Text>
+          </Wrapper>
         </Wrapper>
         <Wrapper>
           <Text size="body4" $color="grey1">
