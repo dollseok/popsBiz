@@ -26,6 +26,9 @@ const getOptionStyling = (option: Required<WrapperProps>['option']) => {
       align-items: center;
       justify-content: center;
     `,
+    Grid: css`
+      display: grid;
+    `,
     Default: css``,
   };
   return styles[option];
@@ -96,6 +99,8 @@ const Wrapper = styled.div<WrapperProps>`
   padding-bottom: ${props => props.$paddingBottom};
   padding-top: ${props => props.$paddingTop};
   padding: ${props => props.$padding};
+  gap: ${props => props.$gap};
+  grid-template-columns: ${props => props.$gridColumns};
   position: relative;
 `;
 

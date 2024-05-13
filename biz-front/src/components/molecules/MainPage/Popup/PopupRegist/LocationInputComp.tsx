@@ -41,7 +41,7 @@ const LocationInputComp = () => {
             ></Input>
           </Wrapper>
         </Wrapper>
-        <Wrapper option="Flex">
+        <Wrapper option="Flex" $width="795px">
           <Button
             $marginLeft="auto"
             $marginTop="10px"

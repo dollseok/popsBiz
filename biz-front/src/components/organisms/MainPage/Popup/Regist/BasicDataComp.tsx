@@ -1,8 +1,6 @@
-import { Text } from '@/components/atoms/Text/Text';
-import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
 import BrandInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/BrandInputComp';
 import DateTimeInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/DateTimeInputComp';
-import HashtagInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/HashtagInputComp';
+import DescriptInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/DescriptInputComp';
 import ImageInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/ImageInputcomp';
 import LocationInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/LocationInputComp';
 import TitleInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/TitleInputComp';
@@ -19,7 +17,7 @@ const BasicDataComp = () => {
       {/* 장소 input */}
       <LocationInputComp />
       {/* 간단 설명 input */}
-      <HashtagInputComp />
+      <DescriptInputComp />
       {/* 이미지 input */}
       <ImageInputComp />
       {/* 다음 버튼 */}

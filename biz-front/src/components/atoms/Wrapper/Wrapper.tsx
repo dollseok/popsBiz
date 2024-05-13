@@ -2,7 +2,14 @@ import React from 'react';
 import * as S from './Wrapper.styles';
 
 export interface WrapperProps {
-  option?: 'Flex' | 'Column' | 'Row' | 'Center' | 'RowSideEnd' | 'Default';
+  option?:
+    | 'Flex'
+    | 'Grid'
+    | 'Column'
+    | 'Row'
+    | 'Center'
+    | 'RowSideEnd'
+    | 'Default';
   $size?:
     | 'SideNav'
     | 'Nav'
@@ -23,6 +30,8 @@ export interface WrapperProps {
   $paddingBottom?: string;
   $padding?: string;
   $width?: string;
+  $gap?: string;
+  $gridColumns?: string;
   children: React.ReactNode;
 }
 
@@ -40,6 +49,8 @@ const Wrapper = ({
   $padding,
   $size,
   $width,
+  $gap,
+  $gridColumns,
   children,
 }: WrapperProps) => {
   return (
@@ -57,6 +68,8 @@ const Wrapper = ({
       $padding={$padding}
       $size={$size}
       $width={$width}
+      $gap={$gap}
+      $gridColumns={$gridColumns}
     >
       <>{children}</>
     </S.Wrapper>
