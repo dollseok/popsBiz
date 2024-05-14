@@ -43,8 +43,8 @@ const getSizeStyling = ($size: Required<WrapperProps>['$size']) => {
   const styles = {
     Default: css``,
     SideNav: css`
-      min-width: 220px;
-      height: 140vh;
+      width: 15%;
+      height: 100vh;
       border-right: 1px solid rgba(0, 0, 0, 0.2);
       padding-left: 20px;
       padding-top: 20px;
@@ -64,7 +64,7 @@ const getSizeStyling = ($size: Required<WrapperProps>['$size']) => {
       border-top: 1px solid rgba(0, 0, 0, 0.2);
     `,
     MainContent: css`
-      width: 100%;
+      width: 85%;
       padding: 60px;
       padding-left: 130px;
       padding-right: 130px;
