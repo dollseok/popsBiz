@@ -1,9 +1,9 @@
-import { Text } from '@/components/atoms/Text/Text';
+import Button from '@/components/atoms/Button/Button';
 import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
 import BrandInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/BrandInputComp';
 import DateTimeInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/DateTimeInputComp';
-import HashtagInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/HashtagInputComp';
-import ImageInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/ImageInputcomp';
+import DescriptInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/DescriptInputComp';
+import ImagesInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/ImagesInputcomp';
 import LocationInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/LocationInputComp';
 import TitleInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/TitleInputComp';
 
@@ -18,11 +18,16 @@ const BasicDataComp = () => {
       <DateTimeInputComp />
       {/* 장소 input */}
       <LocationInputComp />
-      {/* 해시태그 input */}
-      <HashtagInputComp />
+      {/* 간단 설명 input */}
+      <DescriptInputComp />
       {/* 이미지 input */}
-      <ImageInputComp />
+      <ImagesInputComp />
       {/* 다음 버튼 */}
+      <Wrapper option="Flex" $marginTop="50px">
+        <Button size="small" $marginLeft="auto">
+          다음
+        </Button>
+      </Wrapper>
     </>
   );
 };

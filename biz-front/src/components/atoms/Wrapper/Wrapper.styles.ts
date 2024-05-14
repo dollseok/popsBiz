@@ -26,6 +26,14 @@ const getOptionStyling = (option: Required<WrapperProps>['option']) => {
       align-items: center;
       justify-content: center;
     `,
+    Grid: css`
+      display: grid;
+    `,
+    Scrollx: css`
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+    `,
     Default: css``,
   };
   return styles[option];
@@ -35,8 +43,8 @@ const getSizeStyling = ($size: Required<WrapperProps>['$size']) => {
   const styles = {
     Default: css``,
     SideNav: css`
-      min-width: 220px;
-      height: 140vh;
+      width: 15%;
+      height: 100vh;
       border-right: 1px solid rgba(0, 0, 0, 0.2);
       padding-left: 20px;
       padding-top: 20px;
@@ -56,7 +64,7 @@ const getSizeStyling = ($size: Required<WrapperProps>['$size']) => {
       border-top: 1px solid rgba(0, 0, 0, 0.2);
     `,
     MainContent: css`
-      width: 100%;
+      width: 85%;
       padding: 60px;
       padding-left: 130px;
       padding-right: 130px;
@@ -96,6 +104,9 @@ const Wrapper = styled.div<WrapperProps>`
   padding-bottom: ${props => props.$paddingBottom};
   padding-top: ${props => props.$paddingTop};
   padding: ${props => props.$padding};
+  gap: ${props => props.$gap};
+  grid-template-columns: ${props => props.$gridColumns};
+  position: relative;
 `;
 
 export { Wrapper };

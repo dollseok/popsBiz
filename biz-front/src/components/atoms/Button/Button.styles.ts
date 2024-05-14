@@ -26,6 +26,10 @@ const getOptionStyling = (option: Required<ButtonProps>['option']) => {
       background-color: ${({ theme }) => theme.color.transparent};
       color: ${({ theme }) => theme.color.grey1};
     `,
+    blackButton: css`
+      background-color: ${({ theme }) => theme.color.black1};
+      color: ${({ theme }) => theme.color.white};
+    `,
     blueTextButton: css`
       background-color: ${({ theme }) => theme.color.transparent};
       color: ${({ theme }) => theme.color.blue1};
@@ -51,6 +55,21 @@ const getOptionStyling = (option: Required<ButtonProps>['option']) => {
       margin-bottom: 10px;
       height: 30px;
     `,
+    ImageAddButton: css`
+      height: 190px;
+      border-radius: 5px;
+      background-color: white;
+      border: 1px grey solid;
+    `,
+    ImageDelButton: css`
+      width: 33px;
+      height: 33px;
+      border-radius: 20px;
+      position: absolute;
+      margin-top: 12px;
+      margin-left: 151px;
+      box-shadow: 0 2px 5px 0 grey;
+    `,
   };
 
   return styles[option] || styles.activated;
@@ -75,8 +94,12 @@ const getSizeStyling = (size: Required<ButtonProps>['size']) => {
       height: 45px;
     `,
     textSize: css`
-      width: 100px;
+      width: 155px;
       height: 20px;
+    `,
+    blackButton: css`
+      width: 90px;
+      height: 30px;
     `,
   };
 
@@ -85,6 +108,7 @@ const getSizeStyling = (size: Required<ButtonProps>['size']) => {
 
 const Button = styled.button<ButtonProps>`
   white-space: pre;
+  border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -102,7 +126,7 @@ const Button = styled.button<ButtonProps>`
   margin-right: ${props => props.$marginRight};
   margin-bottom: ${props => props.$marginBottom};
   margin-top: ${props => props.$marginTop};
-  border-radius: 5px;
+  width: ${props => props.$width};
 `;
 
 export { Button };

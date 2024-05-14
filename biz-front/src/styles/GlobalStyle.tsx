@@ -21,8 +21,14 @@ const GlobalStyle = createGlobalStyle`
 		font: inherit;
 		vertical-align: baseline;
 		::-webkit-scrollbar {
-    		display: none;
-  		}
+			background: rgba(0, 205, 206, 0.1);
+			width: 10px;
+			height: 10px;
+		}
+		::-webkit-scrollbar-thumb {
+			background: #00cdce;
+			border-radius: 5px;
+		}
 	}
 
 	article, aside, details, figcaption, figure, 
@@ -35,15 +41,14 @@ const GlobalStyle = createGlobalStyle`
 	}
 
 	body {
-		width: 100vw;
-		height: 100vh;
+		width: 100%;
+		height: 100%;
 		font-weight: 700;
 		touch-action: none;
 	}
 	
 	* {
 		box-sizing: border-box;
-		color: ${({ theme }) => theme.color.black1};
 	}
 	
 	button, input {

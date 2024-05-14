@@ -2,11 +2,11 @@ import Button from '@/components/atoms/Button/Button';
 import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
 
 interface signupAgreementProps {
-  checkBoxId: string;
+  checkBoxId: number;
   checked: boolean;
   mention: string;
   detailContent?: string;
-  handleCheck: (idx: string) => void;
+  handleCheck: (idx: number) => void;
   $marginBottom?: string;
   $marginLeft?: string;
 }
@@ -34,12 +34,12 @@ const CheckBox = ({
         <Wrapper>
           <input
             type="checkbox"
-            id={checkBoxId}
+            id={String(checkBoxId)}
             name="signupAgreement"
             checked={checked}
             onChange={handleChange}
           ></input>
-          <label htmlFor={checkBoxId}>{mention}</label>
+          <label htmlFor={String(checkBoxId)}>{mention}</label>
         </Wrapper>
         {/* TODO: 아래 텍스트 대신에 링크를 넣어야할듯 */}
         {detailContent ? (

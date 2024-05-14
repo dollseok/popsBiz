@@ -30,10 +30,10 @@ const getInputSizeStyling = (
     small: css`
       width: 218px;
     `,
-    dateSize: css`
+    dateInput: css`
       width: 175px;
     `,
-    extraSmall: css`
+    timeInput: css`
       width: 115px;
     `,
   };
@@ -55,7 +55,7 @@ const Input = styled.input<InputProps>`
   margin-left: ${props => props.$marginLeft};
   margin-right: ${props => props.$marginRight};
   margin-bottom: ${props => props.$marginBottom};
-  margin-bottom: ${props => props.$marginTop};
+  margin-top: ${props => props.$marginTop};
   ${({ option = 'default' }) => getOptionStyling(option)};
   ${({ $inputsize = 'large' }) => getInputSizeStyling($inputsize)};
   font-size: ${({ theme }) => theme.fontsize.body3};
@@ -66,6 +66,7 @@ const Input = styled.input<InputProps>`
 
   &:disabled {
     background-color: ${({ theme }) => theme.color.grey2};
+    color: ${({ theme }) => theme.color.grey1};
   }
 
   &:focus {

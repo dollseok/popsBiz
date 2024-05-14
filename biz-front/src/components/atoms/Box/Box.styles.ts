@@ -27,6 +27,16 @@ const getOptionStyling = ($option: Required<BoxProps>['$option']) => {
       width: 700px;
       margin-bottom: 30px;
     `,
+    dropdown: css`
+      background-color: ${({ theme }) => theme.color.white};
+      box-shadow: 0 3px 8px 0 grey;
+      height: 200px;
+      width: 147px;
+      position: absolute;
+      top: 50px;
+      z-index: 1;
+      overflow: scroll;
+    `,
   };
   return styles[$option];
 };

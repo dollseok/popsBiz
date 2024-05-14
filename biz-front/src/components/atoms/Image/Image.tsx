@@ -10,6 +10,7 @@ export interface ImageProps extends ComponentPropsWithRef<'img'> {
 }
 
 const Image = ({
+  src,
   width,
   height,
   $margin,
@@ -19,6 +20,7 @@ const Image = ({
 }: ImageProps) => {
   return (
     <S.ImageContainer
+      src={src}
       width={width}
       height={height}
       $margin={$margin}

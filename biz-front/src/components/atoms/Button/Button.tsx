@@ -11,10 +11,20 @@ export interface ButtonProps
     | 'danger'
     | 'border'
     | 'textButton'
+    | 'blackButton'
     | 'blueTextButton'
     | 'SideNavButton'
-    | 'SideNavMainButton';
-  size?: 'none' | 'small' | 'medium' | 'large' | 'extraSmall' | 'textSize';
+    | 'SideNavMainButton'
+    | 'ImageAddButton'
+    | 'ImageDelButton';
+  size?:
+    | 'none'
+    | 'small'
+    | 'medium'
+    | 'large'
+    | 'extraSmall'
+    | 'textSize'
+    | 'blackButton';
   $fontSize?: string;
   $backgroundColor?: string;
   $border?: string;
@@ -60,6 +70,7 @@ const Button = (
       $marginTop={$marginTop}
       $marginBottom={$marginBottom}
       $fontWeight={$fontWeight}
+      $width={$width}
       {...attributes}
     >
       {children}

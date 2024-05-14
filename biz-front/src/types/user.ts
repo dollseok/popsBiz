@@ -15,7 +15,7 @@ export type CertEmailInfo = {
 };
 
 export interface AgreeDataType {
-  checkBoxId: string;
+  checkBoxId: number;
   mention: string;
   detailContent: string;
   checked: boolean;
