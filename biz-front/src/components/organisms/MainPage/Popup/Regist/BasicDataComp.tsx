@@ -1,11 +1,11 @@
 import Button from '@/components/atoms/Button/Button';
 import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
-import BrandInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/BrandInputComp';
-import DateTimeInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/DateTimeInputComp';
-import DescriptInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/DescriptInputComp';
-import ImagesInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/ImagesInputcomp';
-import LocationInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/LocationInputComp';
-import TitleInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/TitleInputComp';
+import BrandInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/BasicData/BrandInputComp';
+import DateTimeInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/BasicData/DateTimeInputComp';
+import DescriptInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/BasicData/DescriptInputComp';
+import ImagesInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/BasicData/ImagesInputcomp';
+import LocationInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/BasicData/LocationInputComp';
+import TitleInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/BasicData/TitleInputComp';
 
 const BasicDataComp = () => {
   return (

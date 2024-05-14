@@ -1,9 +1,9 @@
 import Button from '@/components/atoms/Button/Button';
 import { Text } from '@/components/atoms/Text/Text';
 import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
-import DateInput from '../Common/DateInput';
+import DateInput from '../../Common/DateInput';
 import { useEffect, useState } from 'react';
-import DayTimeInput from '../Common/DayTimeInput';
+import DayTimeInput from '../../Common/DayTimeInput';
 import { useRecoilState } from 'recoil';
 import { popupBasicDataState } from '@/states/Popup';
 import Dropdown from '@/components/atoms/Dropdown/Dropdown';

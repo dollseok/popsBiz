@@ -1,4 +1,4 @@
-import { TimeStartEnd } from '../PopupRegist/DateTimeInputComp';
+import { TimeStartEnd } from '../PopupRegist/BasicData/DateTimeInputComp';
 import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
 import { Text } from '@/components/atoms/Text/Text';
 import { CheckBox } from '@/components/molecules/SignupPage/CheckBox';
