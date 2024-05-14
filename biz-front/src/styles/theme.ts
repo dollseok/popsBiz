@@ -5,7 +5,8 @@ const color = {
   grey1: '#7E7E7E',
   grey2: '#D9D9D9',
   blue1: '#3300FF',
-  danger: '#FA6B3C',
+  red1: '#FF0000',
+  danger: '#FF5D58',
   transparent: 'transparent',
 
   //main color

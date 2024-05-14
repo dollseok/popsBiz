@@ -94,7 +94,7 @@ const getSizeStyling = (size: Required<ButtonProps>['size']) => {
       height: 45px;
     `,
     textSize: css`
-      width: 100px;
+      width: 155px;
       height: 20px;
     `,
     blackButton: css`
