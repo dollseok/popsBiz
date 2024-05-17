@@ -1,28 +1,28 @@
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
-import Input from '../Input/Input';
 import { Wrapper } from '../Wrapper/Wrapper';
+import Input from '../Input/Input';
 import { Box } from '../Box/Box';
 import Button from '../Button/Button';
-import { TIME_LIST } from '@/constants/defaultTimeData';
 
-interface TimeInputPropsType {
-  content: string;
-  disabled: boolean;
-  defaultValue: string;
+interface DropdownPropsType {
+  selectData: string[];
+  placeholder?: string;
+  content?: 'timeInput' | 'siteInput';
+  disabled?: boolean;
+  $width?: string;
+  value: string;
   setFn: Dispatch<SetStateAction<string>>;
 }
 
-const Dropdown = (data: TimeInputPropsType) => {
-  const timeList = TIME_LIST;
+const Dropdown = (props: DropdownPropsType) => {
+  const dataList = props.selectData;
 
-  const [inputValue, setInputValue] = useState<string>(data.defaultValue);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const dropRef = useRef<HTMLDivElement>(null);
 
-  const handleSelect = (time: string) => {
-    setInputValue(time);
-    data.setFn(time);
+  const handleSelect = (data: string) => {
+    props.setFn(data);
     setIsOpen(!isOpen);
   };
 
@@ -40,22 +40,21 @@ const Dropdown = (data: TimeInputPropsType) => {
   }, []);
 
   return (
-    <Wrapper $marginRight="15px" option="Center">
+    <Wrapper option="Center">
       <Input
-        $inputsize="timeInput"
+        $inputsize={props.content}
         type="text"
-        placeholder={data.content}
-        disabled={data.disabled}
+        placeholder={props.placeholder}
+        disabled={props.disabled}
         onClick={() => {
           setIsOpen(!isOpen);
         }}
-        value={inputValue}
-        onChange={e => setInputValue(e.target.value)}
+        value={props.value}
       ></Input>
       {isOpen && (
         <Box $option="dropdown" ref={dropRef}>
           <>
-            {timeList.map((data, idx) => (
+            {dataList.map((data, idx) => (
               <Button
                 key={idx}
                 option="textButton"
