@@ -24,7 +24,8 @@ export interface ButtonProps
     | 'large'
     | 'extraSmall'
     | 'textSize'
-    | 'blackButton';
+    | 'blackButton'
+    | 'iconSize';
   $fontSize?: string;
   $backgroundColor?: string;
   $border?: string;

@@ -10,6 +10,14 @@ const getOptionStyling = (option: Required<InputProps>['option']) => {
     grey: css`
       background-color: ${({ theme }) => theme.color.grey};
     `,
+    transparent: css`
+      border: border: 0.1rem solid ${({ theme }) => theme.color.transparent};
+      background-color: ${({ theme }) => theme.color.transparent};
+      &:focus {
+        border: 0.1rem solid ${({ theme }) => theme.color.transparent};
+        outline: 0.2rem solid ${({ theme }) => theme.color.transparent};
+      }
+    `,
   };
   return styles[option];
 };
@@ -36,6 +44,11 @@ const getInputSizeStyling = (
     timeInput: css`
       width: 115px;
     `,
+    hashtagInput: css`
+      height: 30px;
+      padding-left: 0px;
+      padding-right: 0px;
+    `,
   };
   return styles[$inputsize];
 };
@@ -56,8 +69,6 @@ const Input = styled.input<InputProps>`
   margin-right: ${props => props.$marginRight};
   margin-bottom: ${props => props.$marginBottom};
   margin-top: ${props => props.$marginTop};
-  ${({ option = 'default' }) => getOptionStyling(option)};
-  ${({ $inputsize = 'large' }) => getInputSizeStyling($inputsize)};
   font-size: ${({ theme }) => theme.fontsize.body3};
 
   &::placeholder {
@@ -78,6 +89,8 @@ const Input = styled.input<InputProps>`
   &:focus::placeholder {
     color: transparent;
   }
+  ${({ option = 'default' }) => getOptionStyling(option)};
+  ${({ $inputsize = 'large' }) => getInputSizeStyling($inputsize)};
 `;
 
 export { Input };

@@ -37,6 +37,19 @@ const getOptionStyling = ($option: Required<BoxProps>['$option']) => {
       z-index: 1;
       overflow: scroll;
     `,
+    hashtagBox: css`
+      display: flex;
+      justify-content: center;
+      background-color: ${({ theme }) => theme.color.blue};
+      height: 30px;
+      border-radius: 15px;
+      text-align: center;
+      color: ${({ theme }) => theme.color.white};
+      text-align: center;
+      align-items: center;
+      padding: 10px;
+      margin: 0 5px 10px 0;
+    `,
   };
   return styles[$option];
 };

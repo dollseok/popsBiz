@@ -3,14 +3,15 @@ import * as S from './Input.styles';
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  option?: 'default' | 'grey';
+  option?: 'default' | 'transparent' | 'grey';
   $inputsize?:
     | 'small'
     | 'medium'
     | 'large'
     | 'extraLarge'
     | 'dateInput'
-    | 'timeInput';
+    | 'timeInput'
+    | 'hashtagInput';
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
   onClick?: () => void;

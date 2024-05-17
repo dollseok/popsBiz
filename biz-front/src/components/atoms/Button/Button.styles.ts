@@ -101,6 +101,7 @@ const getSizeStyling = (size: Required<ButtonProps>['size']) => {
       width: 90px;
       height: 30px;
     `,
+    iconSize: css``,
   };
 
   return styles[size] || styles.large;

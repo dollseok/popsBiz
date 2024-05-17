@@ -34,6 +34,18 @@ const getOptionStyling = (option: Required<WrapperProps>['option']) => {
       flex-wrap: nowrap;
       overflow-x: auto;
     `,
+    LineChangeBox: css`
+      display: flex;
+      padding: 5px;
+      border: 1px solid black;
+      padding-left: 13px;
+      padding-right: 13px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      flex-wrap: wrap;
+      border-radius: 5px;
+      width: 100%;
+    `,
     Default: css``,
   };
   return styles[option];
