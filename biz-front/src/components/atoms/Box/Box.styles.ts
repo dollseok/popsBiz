@@ -30,12 +30,11 @@ const getOptionStyling = ($option: Required<BoxProps>['$option']) => {
     dropdown: css`
       background-color: ${({ theme }) => theme.color.white};
       box-shadow: 0 3px 8px 0 grey;
-      height: 200px;
-      width: 147px;
+      max-height: 200px;
       position: absolute;
       top: 50px;
       z-index: 1;
-      overflow: scroll;
+      overflow-y: scroll;
     `,
     hashtagBox: css`
       display: flex;
