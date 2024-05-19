@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { popupBasicDataState } from '@/states/Popup';
 import Dropdown from '@/components/atoms/Dropdown/Dropdown';
+import { TIME_LIST } from '@/constants/defaultTimeData';
 
 interface DayTimeInputPropsType {
   timeData: TimeStartEnd;
@@ -16,6 +17,7 @@ const DayTimeInput = (data: DayTimeInputPropsType) => {
   const [startTime, setStartTime] = useState<string>(data.timeData.startTime);
   const [endTime, setEndTime] = useState<string>(data.timeData.endTime);
   const setPopupData = useSetRecoilState(popupBasicDataState);
+  const timeList = TIME_LIST;
 
   const handleCheck = (index: number) => {
     setPopupData(prevData => {
@@ -82,16 +84,20 @@ const DayTimeInput = (data: DayTimeInputPropsType) => {
           {data.timeData.date}
         </Text>
         <Dropdown
-          content={'시작 시간'}
+          selectData={timeList}
+          placeholder={'시작 시간'}
+          content={'timeInput'}
           disabled={data.timeData.closed}
           setFn={setStartTime}
-          defaultValue={startTime}
+          value={startTime}
         />
         <Dropdown
-          content={'종료 시간'}
+          selectData={timeList}
+          placeholder={'종료 시간'}
+          content={'timeInput'}
           disabled={data.timeData.closed}
           setFn={setEndTime}
-          defaultValue={endTime}
+          value={endTime}
         />
         <CheckBox
           checkBoxId={data.index}
