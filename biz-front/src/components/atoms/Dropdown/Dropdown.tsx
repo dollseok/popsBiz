@@ -50,6 +50,7 @@ const Dropdown = (props: DropdownPropsType) => {
           setIsOpen(!isOpen);
         }}
         value={props.value}
+        onChange={e => props.setFn(e.target.value)}
       ></Input>
       {isOpen && (
         <Box $option="dropdown" ref={dropRef}>
