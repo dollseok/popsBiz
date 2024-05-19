@@ -26,7 +26,7 @@ const getInputSizeStyling = (
   $inputsize: Required<InputProps>['$inputsize']
 ) => {
   const styles = {
-    extraLarge: css`
+    fullSize: css`
       width: 100%;
     `,
     large: css`
@@ -43,6 +43,9 @@ const getInputSizeStyling = (
     `,
     timeInput: css`
       width: 115px;
+    `,
+    siteInput: css`
+      width: 100%;
     `,
     hashtagInput: css`
       height: 30px;
@@ -72,7 +75,7 @@ const Input = styled.input<InputProps>`
   font-size: ${({ theme }) => theme.fontsize.body3};
 
   &::placeholder {
-    color: ${({ theme }) => theme.color.grey2};
+    color: ${({ theme }) => theme.color.grey1};
   }
 
   &:disabled {
