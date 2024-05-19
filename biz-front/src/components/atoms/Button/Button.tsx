@@ -16,7 +16,8 @@ export interface ButtonProps
     | 'SideNavButton'
     | 'SideNavMainButton'
     | 'ImageAddButton'
-    | 'ImageDelButton';
+    | 'ImageDelButton'
+    | 'siteDeleteButton';
   size?:
     | 'none'
     | 'small'

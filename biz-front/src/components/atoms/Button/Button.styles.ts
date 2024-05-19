@@ -19,7 +19,7 @@ const getOptionStyling = (option: Required<ButtonProps>['option']) => {
     `,
     border: css`
       background-color: ${({ theme }) => theme.color.white};
-      border: 1px solid black;
+      border: 1px solid ${({ theme }) => theme.color.grey1};
       color: black;
     `,
     textButton: css`
@@ -69,6 +69,11 @@ const getOptionStyling = (option: Required<ButtonProps>['option']) => {
       margin-top: 12px;
       margin-left: 151px;
       box-shadow: 0 2px 5px 0 grey;
+    `,
+    siteDeleteButton: css`
+      background-color: ${({ theme }) => theme.color.transparent};
+      position: absolute;
+      right: 5px;
     `,
   };
 
