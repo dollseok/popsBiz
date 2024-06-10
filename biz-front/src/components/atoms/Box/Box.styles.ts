@@ -30,12 +30,52 @@ const getOptionStyling = ($option: Required<BoxProps>['$option']) => {
     dropdown: css`
       background-color: ${({ theme }) => theme.color.white};
       box-shadow: 0 3px 8px 0 grey;
-      height: 200px;
-      width: 147px;
+      max-height: 200px;
       position: absolute;
       top: 50px;
       z-index: 1;
-      overflow: scroll;
+      overflow-y: scroll;
+    `,
+    hashtagBox: css`
+      display: flex;
+      justify-content: center;
+      background-color: ${({ theme }) => theme.color.blue};
+      height: 30px;
+      border-radius: 15px;
+      text-align: center;
+      color: ${({ theme }) => theme.color.white};
+      text-align: center;
+      align-items: center;
+      padding: 10px;
+      margin: 0 5px 10px 0;
+    `,
+    sideModalBox: css`
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 40px 25px 25px;
+      border-left: solid 1px grey;
+      width: 500px;
+      height: 100%;
+      position: fixed;
+      right: 0;
+      top: 0;
+      background: white;
+      z-index: 2;
+      transition: right 1s;
+    `,
+    borderBox: css`
+      background-color: ${({ theme }) => theme.color.white};
+      border: 1px solid ${({ theme }) => theme.color.grey1};
+      color: black;
+      width: 100%;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 5px;
+      margin: 5px 0;
+      padding: 0 13px;
     `,
   };
   return styles[$option];

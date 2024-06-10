@@ -23,7 +23,7 @@ const BrandInputComp = () => {
         </Text>
         <Input
           type="text"
-          $inputsize="extraLarge"
+          $inputsize="fullSize"
           placeholder="예시: 팝스, 인스타툰(instatoon)"
           onChange={e => {
             handleBrandChange(e);

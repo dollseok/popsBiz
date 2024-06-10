@@ -7,6 +7,7 @@ export interface ButtonProps
   option?:
     | 'none'
     | 'activated'
+    | 'cancel'
     | 'deactivated'
     | 'danger'
     | 'border'
@@ -16,7 +17,8 @@ export interface ButtonProps
     | 'SideNavButton'
     | 'SideNavMainButton'
     | 'ImageAddButton'
-    | 'ImageDelButton';
+    | 'ImageDelButton'
+    | 'siteDeleteButton';
   size?:
     | 'none'
     | 'small'
@@ -24,7 +26,8 @@ export interface ButtonProps
     | 'large'
     | 'extraSmall'
     | 'textSize'
-    | 'blackButton';
+    | 'blackButton'
+    | 'iconSize';
   $fontSize?: string;
   $backgroundColor?: string;
   $border?: string;

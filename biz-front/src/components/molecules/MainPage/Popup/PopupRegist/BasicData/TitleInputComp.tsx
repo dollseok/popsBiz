@@ -19,7 +19,7 @@ const TitleInputComp = () => {
         </Text>
         <Input
           type="text"
-          $inputsize="extraLarge"
+          $inputsize="fullSize"
           placeholder="글자를 입력해주세요."
           onChange={e => {
             handleTitleChange(e);

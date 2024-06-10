@@ -19,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
 		border: 0;
 		font-size: 100%;
 		font: inherit;
+		font-family: pretendard;
 		vertical-align: baseline;
 		::-webkit-scrollbar {
 			background: rgba(0, 205, 206, 0.1);

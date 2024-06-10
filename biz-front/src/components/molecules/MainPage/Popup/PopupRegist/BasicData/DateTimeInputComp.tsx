@@ -1,12 +1,13 @@
 import Button from '@/components/atoms/Button/Button';
 import { Text } from '@/components/atoms/Text/Text';
 import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
-import DateInput from '../Common/DateInput';
+import DateInput from '../../Common/DateInput';
 import { useEffect, useState } from 'react';
-import DayTimeInput from '../Common/DayTimeInput';
+import DayTimeInput from '../../Common/DayTimeInput';
 import { useRecoilState } from 'recoil';
 import { popupBasicDataState } from '@/states/Popup';
 import Dropdown from '@/components/atoms/Dropdown/Dropdown';
+import { TIME_LIST } from '@/constants/defaultTimeData';
 
 // 타입
 export interface TimeStartEnd {
@@ -18,8 +19,9 @@ export interface TimeStartEnd {
 
 const DateTimeInputComp = () => {
   const [popupData, setPopupData] = useRecoilState(popupBasicDataState);
-  const [startTime, setStartTime] = useState<string>('00:00');
-  const [endTime, setEndTime] = useState<string>('00:00');
+  const [startTime, setStartTime] = useState<string>('');
+  const [endTime, setEndTime] = useState<string>('');
+  const timeList = TIME_LIST;
 
   const [tabState, setTabState] = useState<boolean>(false);
 
@@ -69,16 +71,20 @@ const DateTimeInputComp = () => {
             </Text>
             <Wrapper option="Row">
               <Dropdown
-                content="시작 시간"
+                selectData={timeList}
+                placeholder={'시작 시간'}
+                content={'timeInput'}
                 disabled={tabState}
                 setFn={setStartTime}
-                defaultValue={''}
+                value={startTime}
               />
               <Dropdown
-                content="종료 시간"
+                selectData={timeList}
+                placeholder={'종료 시간'}
+                content={'timeInput'}
                 disabled={tabState}
                 setFn={setEndTime}
-                defaultValue={''}
+                value={endTime}
               />
               <Button
                 option="blueTextButton"

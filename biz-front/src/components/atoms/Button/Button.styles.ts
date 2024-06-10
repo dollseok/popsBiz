@@ -9,6 +9,9 @@ const getOptionStyling = (option: Required<ButtonProps>['option']) => {
     activated: css`
       background-color: ${({ theme }) => theme.color.blue};
     `,
+    cancel: css`
+      background-color: ${({ theme }) => theme.color.grey1};
+    `,
     deactivated: css`
       background-color: ${({ theme }) => theme.color.grey1};
       pointer-events: none;
@@ -19,7 +22,7 @@ const getOptionStyling = (option: Required<ButtonProps>['option']) => {
     `,
     border: css`
       background-color: ${({ theme }) => theme.color.white};
-      border: 1px solid black;
+      border: 1px solid ${({ theme }) => theme.color.grey1};
       color: black;
     `,
     textButton: css`
@@ -70,6 +73,11 @@ const getOptionStyling = (option: Required<ButtonProps>['option']) => {
       margin-left: 151px;
       box-shadow: 0 2px 5px 0 grey;
     `,
+    siteDeleteButton: css`
+      background-color: ${({ theme }) => theme.color.transparent};
+      position: absolute;
+      right: 5px;
+    `,
   };
 
   return styles[option] || styles.activated;
@@ -83,7 +91,8 @@ const getSizeStyling = (size: Required<ButtonProps>['size']) => {
       height: 50px;
     `,
     medium: css`
-      width: 235px;
+      width: 200px;
+      height: 50px;
     `,
     small: css`
       width: 147px;
@@ -101,6 +110,7 @@ const getSizeStyling = (size: Required<ButtonProps>['size']) => {
       width: 90px;
       height: 30px;
     `,
+    iconSize: css``,
   };
 
   return styles[size] || styles.large;

@@ -3,17 +3,20 @@ import * as S from './Input.styles';
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  option?: 'default' | 'grey';
+  option?: 'default' | 'transparent' | 'grey';
   $inputsize?:
     | 'small'
     | 'medium'
     | 'large'
-    | 'extraLarge'
+    | 'fullSize'
     | 'dateInput'
-    | 'timeInput';
+    | 'timeInput'
+    | 'siteInput'
+    | 'hashtagInput';
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
   onClick?: () => void;
+  onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   disabled?: boolean;
   placeholder?: string;
   type: string;
@@ -35,6 +38,7 @@ const Input = (
     onChange,
     onBlur,
     onClick,
+    onKeyUp,
     disabled,
     placeholder,
     type,
@@ -54,6 +58,7 @@ const Input = (
       onChange={onChange}
       onBlur={onBlur}
       onClick={onClick}
+      onKeyUp={onKeyUp}
       disabled={disabled}
       placeholder={placeholder}
       type={type}
