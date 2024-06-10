@@ -28,6 +28,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "dev": "set \"GENERATE_SOURCEMAP=false\" && craco start",
     "start": "set \"GENERATE_SOURCEMAP=false\" && craco start",
     "build": "set \"GENERATE_SOURCEMAP=false\" && craco build",
     "test": "craco test",
