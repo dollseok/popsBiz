@@ -64,6 +64,19 @@ const getOptionStyling = ($option: Required<BoxProps>['$option']) => {
       z-index: 2;
       transition: right 1s;
     `,
+    borderBox: css`
+      background-color: ${({ theme }) => theme.color.white};
+      border: 1px solid ${({ theme }) => theme.color.grey1};
+      color: black;
+      width: 100%;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 5px;
+      margin: 5px 0;
+      padding: 0 13px;
+    `,
   };
   return styles[$option];
 };

@@ -8,6 +8,7 @@ export interface BoxProps {
     | 'dropdown'
     | 'hashtagBox'
     | 'sideModalBox'
+    | 'borderBox'
     | 'none';
   $width?: string;
   $height?: string;
