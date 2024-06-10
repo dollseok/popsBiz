@@ -6,9 +6,12 @@ import { Textarea } from '@/components/atoms/Textarea/Textarea';
 import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
 import { useModalRef } from '@/hooks/useModalRef';
 import { Dispatch, SetStateAction, useState } from 'react';
+import { eventDataType } from './EventInputComp';
+import { checkObjectBlank } from '@/utils/checkBlank';
 
 interface modalPropsType {
   setOpen: Dispatch<SetStateAction<boolean>>;
+  addEventList: (data: eventDataType) => void;
 }
 
 const EventAddModal = (props: modalPropsType) => {
@@ -29,6 +32,14 @@ const EventAddModal = (props: modalPropsType) => {
   const handleEventContentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputData = e.target.value;
     setEventContent(inputData);
+  };
+
+  const handleSaveClick = () => {
+    const newData = { title: eventTitle, content: eventContent };
+    if (!checkObjectBlank(newData)) {
+      props.addEventList(newData);
+      props.setOpen(false);
+    }
   };
 
   return (
@@ -79,7 +90,9 @@ const EventAddModal = (props: modalPropsType) => {
           <Button size="medium" option="cancel" onClick={handleCancelClick}>
             취소
           </Button>
-          <Button size="medium">저장</Button>
+          <Button size="medium" onClick={handleSaveClick}>
+            저장
+          </Button>
         </Wrapper>
       </Box>
     </>

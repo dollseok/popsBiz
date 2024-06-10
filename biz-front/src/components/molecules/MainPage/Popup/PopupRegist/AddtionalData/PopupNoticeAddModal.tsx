@@ -6,9 +6,12 @@ import TuiEditor from '@/components/atoms/TuiEditor/TuiEditor';
 import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
 import { useModalRef } from '@/hooks/useModalRef';
 import { Dispatch, SetStateAction, useState } from 'react';
+import { popupNoticeDataType } from './PopupNoticeInputComp';
+import { checkObjectBlank } from '@/utils/checkBlank';
 
 interface modalPropsType {
   setOpen: Dispatch<SetStateAction<boolean>>;
+  addPopupNoticeList: (data: popupNoticeDataType) => void;
 }
 
 const PopupNoticeAddModal = (props: modalPropsType) => {
@@ -24,6 +27,14 @@ const PopupNoticeAddModal = (props: modalPropsType) => {
   const handleNoticeTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputData = e.target.value;
     setNoticeTitle(inputData);
+  };
+
+  const handleSaveClick = () => {
+    const newData = { title: noticeTitle, content: noticeContent };
+    if (!checkObjectBlank(newData)) {
+      props.addPopupNoticeList(newData);
+      props.setOpen(false);
+    }
   };
 
   return (
@@ -62,7 +73,9 @@ const PopupNoticeAddModal = (props: modalPropsType) => {
           <Button size="medium" option="cancel" onClick={handleCancelClick}>
             취소
           </Button>
-          <Button size="medium">저장</Button>
+          <Button size="medium" onClick={handleSaveClick}>
+            저장
+          </Button>
         </Wrapper>
       </Box>
     </>
