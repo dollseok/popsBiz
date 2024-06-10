@@ -4,6 +4,7 @@ import LandingPage from '@/pages/LandingPage/LandingPage';
 import MainPage from '@/pages/MainPage/MainPage';
 import { useRecoilState } from 'recoil';
 import { loginState } from './states/User';
+import '@toast-ui/editor/dist/toastui-editor.css';
 
 function App() {
   const [login, setLogin] = useRecoilState(loginState);
