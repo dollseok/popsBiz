@@ -2,7 +2,13 @@ import React, { forwardRef } from 'react';
 import * as S from './Box.styles';
 
 export interface BoxProps {
-  $option?: 'InputBox' | 'greyLine' | 'dropdown' | 'hashtagBox' | 'none';
+  $option?:
+    | 'InputBox'
+    | 'greyLine'
+    | 'dropdown'
+    | 'hashtagBox'
+    | 'sideModalBox'
+    | 'none';
   $width?: string;
   $height?: string;
   $backgroundColor?: string;

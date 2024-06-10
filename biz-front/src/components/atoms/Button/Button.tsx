@@ -7,6 +7,7 @@ export interface ButtonProps
   option?:
     | 'none'
     | 'activated'
+    | 'cancel'
     | 'deactivated'
     | 'danger'
     | 'border'

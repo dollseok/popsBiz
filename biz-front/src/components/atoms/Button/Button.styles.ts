@@ -9,6 +9,9 @@ const getOptionStyling = (option: Required<ButtonProps>['option']) => {
     activated: css`
       background-color: ${({ theme }) => theme.color.blue};
     `,
+    cancel: css`
+      background-color: ${({ theme }) => theme.color.grey1};
+    `,
     deactivated: css`
       background-color: ${({ theme }) => theme.color.grey1};
       pointer-events: none;
@@ -88,7 +91,8 @@ const getSizeStyling = (size: Required<ButtonProps>['size']) => {
       height: 50px;
     `,
     medium: css`
-      width: 235px;
+      width: 200px;
+      height: 50px;
     `,
     small: css`
       width: 147px;

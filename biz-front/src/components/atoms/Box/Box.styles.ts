@@ -49,6 +49,21 @@ const getOptionStyling = ($option: Required<BoxProps>['$option']) => {
       padding: 10px;
       margin: 0 5px 10px 0;
     `,
+    sideModalBox: css`
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 40px 25px 25px;
+      border-left: solid 1px grey;
+      width: 500px;
+      height: 100%;
+      position: fixed;
+      right: 0;
+      top: 0;
+      background: white;
+      z-index: 2;
+      transition: right 1s;
+    `,
   };
   return styles[$option];
 };
