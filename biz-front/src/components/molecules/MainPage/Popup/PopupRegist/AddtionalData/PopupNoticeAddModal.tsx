@@ -2,7 +2,6 @@ import { Box } from '@/components/atoms/Box/Box';
 import Button from '@/components/atoms/Button/Button';
 import Input from '@/components/atoms/Input/Input';
 import { Text } from '@/components/atoms/Text/Text';
-import { Textarea } from '@/components/atoms/Textarea/Textarea';
 import TuiEditor from '@/components/atoms/TuiEditor/TuiEditor';
 import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
 import { useModalRef } from '@/hooks/useModalRef';

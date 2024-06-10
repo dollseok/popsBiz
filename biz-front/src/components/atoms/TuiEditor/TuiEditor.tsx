@@ -1,5 +1,5 @@
 import { Editor } from '@toast-ui/react-editor';
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useRef } from 'react';
 
 interface TuiEditorPropsType {
   data: string;
