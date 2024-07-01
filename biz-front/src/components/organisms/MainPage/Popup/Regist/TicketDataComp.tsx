@@ -1,5 +1,11 @@
+import TicketInputComp from '@/components/molecules/MainPage/Popup/PopupRegist/TicketData/TicketInputComp';
+
 const TicketDataComp = () => {
-  return <>티켓 데이터</>;
+  return (
+    <>
+      <TicketInputComp />
+    </>
+  );
 };
 
 export default TicketDataComp;

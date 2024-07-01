@@ -11,6 +11,7 @@ function App() {
 
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken');
+    //TODO: 여기 accessToken만 있으면 안되고 token유효성 검사 요구
     if (accessToken) {
       setLogin(true);
     } else {

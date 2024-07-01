@@ -15,7 +15,7 @@ const PopupNoticeInputComp = () => {
   const [open, setOpen] = useState<boolean>(false);
 
   const tmp = { title: '임시데이터1', content: '임시데이터 내용1' };
-  const [popupNoticeListData, setPopupNoticeContentData] = useState<
+  const [popupNoticeListData, setPopupNoticeListData] = useState<
     popupNoticeDataType[]
   >([tmp]);
 
@@ -24,7 +24,7 @@ const PopupNoticeInputComp = () => {
   };
 
   const addPopupNoticeList = (data: popupNoticeDataType) => {
-    setPopupNoticeContentData(prev => {
+    setPopupNoticeListData(prev => {
       return [...prev, data];
     });
   };

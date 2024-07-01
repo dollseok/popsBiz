@@ -9,17 +9,27 @@ export interface BoxProps {
     | 'hashtagBox'
     | 'sideModalBox'
     | 'borderBox'
+    | 'ticketBox'
     | 'none';
   $width?: string;
   $height?: string;
   $backgroundColor?: string;
   $border?: string;
+  $top?: string;
   children?: React.ReactNode;
 }
 
 const Box = forwardRef<HTMLDivElement, BoxProps>(
   (
-    { $option, $width, $height, $backgroundColor, $border, children }: BoxProps,
+    {
+      $option,
+      $width,
+      $height,
+      $backgroundColor,
+      $border,
+      $top,
+      children,
+    }: BoxProps,
     ref
   ) => {
     return (
@@ -29,6 +39,7 @@ const Box = forwardRef<HTMLDivElement, BoxProps>(
         $height={$height}
         $backgroundColor={$backgroundColor}
         $border={$border}
+        $top={$top}
         ref={ref}
       >
         <>{children}</>

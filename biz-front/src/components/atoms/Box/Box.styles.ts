@@ -52,17 +52,17 @@ const getOptionStyling = ($option: Required<BoxProps>['$option']) => {
     sideModalBox: css`
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       padding: 40px 25px 25px;
       border-left: solid 1px grey;
-      width: 500px;
-      height: 100%;
+      width: 520px;
+      height: 100vh;
       position: fixed;
       right: 0;
       top: 0;
       background: white;
       z-index: 2;
       transition: right 1s;
+      overflow-y: auto;
     `,
     borderBox: css`
       background-color: ${({ theme }) => theme.color.white};
@@ -77,6 +77,25 @@ const getOptionStyling = ($option: Required<BoxProps>['$option']) => {
       margin: 5px 0;
       padding: 0 13px;
     `,
+    ticketBox: css`
+      text-align: center;
+      flex: 110;
+      &:nth-child(2) {
+        flex: 310;
+      }
+      &:nth-child(3) {
+        flex: 115;
+      }
+      &:nth-child(4) {
+        flex: 115;
+      }
+      &:nth-child(5) {
+        flex: 125;
+      }
+      &:nth-child(6) {
+        flex: 56;
+      }
+    `,
   };
   return styles[$option];
 };
@@ -87,6 +106,7 @@ const Box = styled.div<BoxProps>`
   border: ${props => props.$border};
   background-color: ${props => props.$backgroundColor};
   ${({ $option = 'none' }) => getOptionStyling($option)};
+  top: ${props => props.$top};
 `;
 
 export { Box };

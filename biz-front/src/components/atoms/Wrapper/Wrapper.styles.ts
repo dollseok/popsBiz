@@ -46,6 +46,22 @@ const getOptionStyling = (option: Required<WrapperProps>['option']) => {
       border-radius: 5px;
       width: 100%;
     `,
+    TicketRow: css`
+      display: flex;
+      align-items: center;
+      border-radius: 5px;
+      border: 1px ${theme.color.grey1} solid;
+      height: 70px;
+      margin-bottom: 5px;
+    `,
+    TicketNavRow: css`
+      display: flex;
+      align-items: center;
+      border-radius: 5px;
+      background-color: ${theme.color.grey3};
+      height: 50px;
+      margin-bottom: 5px;
+    `,
     Default: css``,
   };
   return styles[option];

@@ -11,6 +11,8 @@ export interface WrapperProps {
     | 'RowSideEnd'
     | 'Scrollx'
     | 'LineChangeBox'
+    | 'TicketRow'
+    | 'TicketNavRow'
     | 'Default';
   $size?:
     | 'SideNav'

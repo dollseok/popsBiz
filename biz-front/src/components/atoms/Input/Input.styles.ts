@@ -47,6 +47,20 @@ const getInputSizeStyling = (
     siteInput: css`
       width: 100%;
     `,
+    ticketDataInput: css`
+      width: 90px;
+    `,
+    ticketTimeInput: css`
+      height: 25px;
+      width: 70px;
+      margin-bottom: 5px;
+    `,
+    ticketDateInput: css`
+      width: 150px;
+      height: 25px;
+      margin-right: 3px;
+      margin-bottom: 5px;
+    `,
     hashtagInput: css`
       height: 30px;
       padding-left: 0px;
@@ -76,6 +90,7 @@ const Input = styled.input<InputProps>`
 
   &::placeholder {
     color: ${({ theme }) => theme.color.grey1};
+    font-size: 14px;
   }
 
   &:disabled {
