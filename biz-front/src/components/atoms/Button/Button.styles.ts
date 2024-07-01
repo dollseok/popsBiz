@@ -40,24 +40,18 @@ const getOptionStyling = (option: Required<ButtonProps>['option']) => {
     SideNavMainButton: css`
       background-color: ${({ theme }) => theme.color.transparent};
       color: ${({ theme }) => theme.color.black1};
-      display: flex;
-      justify-content: flex-start;
-      align-items: none;
-      margin-top: 10px;
-      margin-bottom: 10px;
+      margin-top: 30px;
       height: 30px;
     `,
     SideNavButton: css`
       background-color: ${({ theme }) => theme.color.transparent};
       color: ${({ theme }) => theme.color.black1};
-      display: flex;
-      justify-content: flex-start;
-      align-items: none;
       padding-left: 21px;
-      margin-top: 10px;
+      margin-top: 20px;
       margin-bottom: 10px;
       height: 30px;
     `,
+
     ImageAddButton: css`
       height: 190px;
       border-radius: 5px;
@@ -77,6 +71,12 @@ const getOptionStyling = (option: Required<ButtonProps>['option']) => {
       background-color: ${({ theme }) => theme.color.transparent};
       position: absolute;
       right: 5px;
+    `,
+    blueBorderTextButton: css`
+      border: 1px ${({ theme }) => theme.color.blue} solid;
+      background-color: ${({ theme }) => theme.color.transparent};
+      color: ${({ theme }) => theme.color.blue};
+      width: 140px;
     `,
   };
 
