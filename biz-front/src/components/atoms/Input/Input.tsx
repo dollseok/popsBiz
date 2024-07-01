@@ -12,6 +12,9 @@ export interface InputProps
     | 'dateInput'
     | 'timeInput'
     | 'siteInput'
+    | 'ticketDataInput'
+    | 'ticketDateInput'
+    | 'ticketTimeInput'
     | 'hashtagInput';
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
@@ -24,7 +27,8 @@ export interface InputProps
   $marginRight?: string;
   $marginBottom?: string;
   $marginTop?: string;
-  value?: string;
+  value?: string | number;
+  $readonly?: boolean;
 }
 
 const Input = (
@@ -43,6 +47,7 @@ const Input = (
     placeholder,
     type,
     value,
+    $readonly,
   }: InputProps,
   ref?: React.LegacyRef<HTMLInputElement>
 ) => {
@@ -64,6 +69,7 @@ const Input = (
       type={type}
       autoComplete="off"
       value={value}
+      $readonly={$readonly}
     />
   );
 };

@@ -4,24 +4,25 @@ import Input from '../Input/Input';
 import { Box } from '../Box/Box';
 import Button from '../Button/Button';
 
-interface DropdownPropsType {
-  selectData: string[];
+interface DropdownPropsType<T> {
+  selectData: T[];
   placeholder?: string;
-  content?: 'timeInput' | 'siteInput';
+  content?: 'timeInput' | 'siteInput' | 'ticketDataInput' | 'ticketTimeInput';
   disabled?: boolean;
   $width?: string;
-  value: string;
-  setFn: Dispatch<SetStateAction<string>>;
+  $top?: string;
+  value: T;
+  setFn: Dispatch<SetStateAction<T>>;
 }
 
-const Dropdown = (props: DropdownPropsType) => {
+const Dropdown = <T extends string | number>(props: DropdownPropsType<T>) => {
   const dataList = props.selectData;
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const dropRef = useRef<HTMLDivElement>(null);
 
-  const handleSelect = (data: string) => {
+  const handleSelect = (data: T) => {
     props.setFn(data);
     setIsOpen(!isOpen);
   };
@@ -42,6 +43,7 @@ const Dropdown = (props: DropdownPropsType) => {
   return (
     <Wrapper option="Center">
       <Input
+        $readonly={true}
         $inputsize={props.content}
         type="text"
         placeholder={props.placeholder}
@@ -50,10 +52,10 @@ const Dropdown = (props: DropdownPropsType) => {
           setIsOpen(!isOpen);
         }}
         value={props.value}
-        onChange={e => props.setFn(e.target.value)}
+        onChange={e => props.setFn(e.target.value as T)}
       ></Input>
       {isOpen && (
-        <Box $option="dropdown" ref={dropRef}>
+        <Box $option="dropdown" $top={props.$top} ref={dropRef}>
           <>
             {dataList.map((data, idx) => (
               <Button
