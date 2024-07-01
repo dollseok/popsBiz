@@ -101,6 +101,12 @@ const getSizeStyling = ($size: Required<WrapperProps>['$size']) => {
       padding-right: 130px;
       background-color: ${theme.color.grey2};
     `,
+    InnerContent: css`
+      padding-left: 62px;
+      padding-right: 62px;
+      padding-top: 45px;
+      padding-bottom: 45px;
+    `,
     Login: css`
       width: 50%;
       height: 100vh;

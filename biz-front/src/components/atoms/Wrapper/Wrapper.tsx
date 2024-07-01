@@ -22,6 +22,7 @@ export interface WrapperProps {
     | 'Footer'
     | 'Default'
     | 'MainContent'
+    | 'InnerContent'
     | 'HomeComp';
   $backgroundColor?: string;
   $marginLeft?: string;
