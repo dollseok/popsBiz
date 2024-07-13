@@ -21,8 +21,11 @@ const getSizeStyling = (size: Required<TextProps>['size'] = 'heading') => {
     body4: css`
       font-size: ${({ theme }) => theme.fontsize.body4};
     `,
-    small: css`
-      font-size: ${({ theme }) => theme.fontsize.small};
+    body5: css`
+      font-size: ${({ theme }) => theme.fontsize.body5};
+    `,
+    body6: css`
+      font-size: ${({ theme }) => theme.fontsize.body6};
     `,
   };
   return style[size];

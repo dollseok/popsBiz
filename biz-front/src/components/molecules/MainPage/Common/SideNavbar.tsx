@@ -30,13 +30,6 @@ const SideNavBar = () => {
         >
           프로필 관리
         </Button>
-        <Button
-          option="SideNavButton"
-          size="none"
-          onClick={() => handleRouter(PATH.USERPAYMENT)}
-        >
-          결제 정보 관리
-        </Button>
       </Wrapper>
 
       <Wrapper $marginLeft="20px">

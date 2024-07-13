@@ -10,9 +10,14 @@ export interface WrapperProps {
     | 'Center'
     | 'RowSideEnd'
     | 'Scrollx'
+    | 'WordWrap'
+    | 'TextEllipsis'
     | 'LineChangeBox'
     | 'TicketRow'
     | 'TicketNavRow'
+    | 'PopupListNavRow'
+    | 'PopupListItem'
+    | 'TicketListItem'
     | 'Default';
   $size?:
     | 'SideNav'
@@ -22,7 +27,10 @@ export interface WrapperProps {
     | 'Footer'
     | 'Default'
     | 'MainContent'
-    | 'HomeComp';
+    | 'InnerContent'
+    | 'CenterContent'
+    | 'HomeComp'
+    | 'PopupDataItem';
   $backgroundColor?: string;
   $marginLeft?: string;
   $marginRight?: string;
@@ -34,6 +42,7 @@ export interface WrapperProps {
   $paddingBottom?: string;
   $padding?: string;
   $width?: string;
+  $height?: string;
   $gap?: string;
   $gridColumns?: string;
   children: React.ReactNode;
@@ -53,6 +62,7 @@ const Wrapper = ({
   $padding,
   $size,
   $width,
+  $height,
   $gap,
   $gridColumns,
   children,
@@ -72,6 +82,7 @@ const Wrapper = ({
       $padding={$padding}
       $size={$size}
       $width={$width}
+      $height={$height}
       $gap={$gap}
       $gridColumns={$gridColumns}
     >

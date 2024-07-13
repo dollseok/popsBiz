@@ -12,7 +12,11 @@ const MainPage = () => {
       <Wrapper option="Flex">
         <SideNavBar></SideNavBar>
         <Wrapper $size="MainContent">
-          <Outlet></Outlet>
+          <Wrapper $size="InnerContent">
+            <Wrapper $size="CenterContent">
+              <Outlet></Outlet>
+            </Wrapper>
+          </Wrapper>
         </Wrapper>
       </Wrapper>
       <Footer></Footer>
