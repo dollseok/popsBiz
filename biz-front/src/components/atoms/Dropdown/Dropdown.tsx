@@ -44,6 +44,7 @@ const Dropdown = <T extends string | number>(props: DropdownPropsType<T>) => {
     <Wrapper option="Center">
       <Input
         $readonly={true}
+        $marginBottom="5px"
         $inputsize={props.content}
         type="text"
         placeholder={props.placeholder}

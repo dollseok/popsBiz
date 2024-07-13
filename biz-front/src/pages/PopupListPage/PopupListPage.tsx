@@ -1,9 +1,10 @@
 import React from 'react';
+import { Outlet } from 'react-router';
 
 const PopupListPage = () => {
   return (
     <>
-      <h1>팝업 목록 페이지</h1>
+      <Outlet></Outlet>
     </>
   );
 };

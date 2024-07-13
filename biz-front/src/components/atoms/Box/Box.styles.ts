@@ -96,17 +96,61 @@ const getOptionStyling = ($option: Required<BoxProps>['$option']) => {
         flex: 56;
       }
     `,
+    popupNavBox: css`
+      text-align: center;
+      flex: 325;
+      &:nth-child(2) {
+        flex: 109;
+      }
+      &:nth-child(3) {
+        flex: 109;
+      }
+      &:nth-child(4) {
+        flex: 109;
+      }
+      &:nth-child(5) {
+        flex: 80;
+      }
+      &:nth-child(6) {
+        flex: 52;
+      }
+    `,
+    shadowBox: css`
+      margin-top: 30px;
+      padding: 29px 67px;
+      width: 100%;
+      box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+      border-radius: 5px;
+    `,
+    shortColBox: css`
+      height: 70px;
+      width: 2px;
+      background: ${({ theme }) => theme.color.grey3};
+    `,
+    searchBox: css`
+      border: 1px solid black;
+      border-radius: 5px;
+      margin-top: 30px;
+      width: 100%;
+      display: flex;
+      padding-left: 16px;
+      align-items: center;
+    `,
+    PopupDataBox: css`
+      width: 385px;
+      border: 1px solid ${({ theme }) => theme.color.grey2};
+    `,
   };
   return styles[$option];
 };
 
 const Box = styled.div<BoxProps>`
-  width: ${props => props.$width};
-  height: ${props => props.$height};
   border: ${props => props.$border};
   background-color: ${props => props.$backgroundColor};
   ${({ $option = 'none' }) => getOptionStyling($option)};
   top: ${props => props.$top};
+  width: ${props => props.$width};
+  height: ${props => props.$height};
 `;
 
 export { Box };

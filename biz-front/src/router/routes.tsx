@@ -4,7 +4,6 @@ import App from '../App';
 import SignupPage from '@/pages/SignupPage/SignupPage';
 import { PATH } from '@/constants/path';
 import UserProfilePage from '@/pages/UserProfliePage/UserProfilePage';
-import UserPaymentPage from '@/pages/UserPaymentPage/UserPaymentPage';
 import PopupListPage from '@/pages/PopupListPage/PopupListPage';
 import PopupRegistPage from '@/pages/PopupRegistPage/PopupRegistPage';
 import PopupTicketPage from '@/pages/PopupTicketPage/PopupTicketPage';
@@ -16,6 +15,10 @@ import SocialSignupPage from '@/pages/SocialSignupPage/SocialSignupPage';
 import BasicDataComp from '@/components/organisms/MainPage/Popup/Regist/BasicDataComp';
 import AddtionalDataComp from '@/components/organisms/MainPage/Popup/Regist/AdditionalDataComp';
 import TicketDataComp from '@/components/organisms/MainPage/Popup/Regist/TicketDataComp';
+import PopupListComp from '@/components/organisms/MainPage/Popup/List/PopupListComp';
+import PopupDetailComp from '@/components/organisms/MainPage/Popup/List/PopupDetailComp';
+import PopupDetailInquiryComp from '@/components/organisms/MainPage/Popup/List/PopupDetailInquiryComp';
+import PopupDetailCommentComp from '@/components/organisms/MainPage/Popup/List/PopupDetailCommentComp';
 
 // import LandingPage from '../pages/LandingPage/LandingPage';
 // import MainPage from '../pages/MainPage/MainPage';
@@ -29,9 +32,17 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage /> }, // outlet에 기본값으로 넣어줌
       //user
       { path: PATH.USERPROFILE, element: <UserProfilePage /> },
-      { path: PATH.USERPAYMENT, element: <UserPaymentPage /> },
       //popup
-      { path: PATH.POPUPLIST, element: <PopupListPage /> },
+      {
+        path: PATH.POPUPLIST,
+        element: <PopupListPage />,
+        children: [
+          { index: true, element: <PopupListComp /> },
+          { path: PATH.POPUPDETAIL, element: <PopupDetailComp /> }, // 여기 변수 설정
+          { path: PATH.POPUPCOMMENT, element: <PopupDetailCommentComp /> },
+          { path: PATH.POPUPINQUIRY, element: <PopupDetailInquiryComp /> },
+        ],
+      },
       //popupregist 디테일
       {
         path: PATH.POPUPREGIST,

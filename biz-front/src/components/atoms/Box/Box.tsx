@@ -10,6 +10,11 @@ export interface BoxProps {
     | 'sideModalBox'
     | 'borderBox'
     | 'ticketBox'
+    | 'shadowBox'
+    | 'shortColBox'
+    | 'searchBox'
+    | 'popupNavBox'
+    | 'PopupDataBox'
     | 'none';
   $width?: string;
   $height?: string;

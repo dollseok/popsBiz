@@ -62,7 +62,7 @@ const LoginComp = () => {
 
       {loginError ? (
         <Wrapper option="Column" $width="363px">
-          <Text size="small" $color="danger">
+          <Text size="body5" $color="danger">
             {loginError.message}
           </Text>
         </Wrapper>

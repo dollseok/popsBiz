@@ -49,7 +49,7 @@ const AdmissionInfoComp = () => {
             checked={payChecked}
             onChange={e => handleChange(e)}
           ></input>
-          <label htmlFor="free">유료</label>
+          <label htmlFor="pay">유료</label>
         </Wrapper>
         <Wrapper>
           <Textarea

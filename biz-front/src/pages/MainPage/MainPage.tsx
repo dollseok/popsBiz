@@ -13,7 +13,9 @@ const MainPage = () => {
         <SideNavBar></SideNavBar>
         <Wrapper $size="MainContent">
           <Wrapper $size="InnerContent">
-            <Outlet></Outlet>
+            <Wrapper $size="CenterContent">
+              <Outlet></Outlet>
+            </Wrapper>
           </Wrapper>
         </Wrapper>
       </Wrapper>

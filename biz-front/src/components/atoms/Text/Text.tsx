@@ -8,12 +8,14 @@ export type TextSize =
   | 'body2'
   | 'body3'
   | 'body4'
-  | 'small';
+  | 'body5'
+  | 'body6';
 
 export type FontWeightType = 'regular' | 'bold' | 'extraBold' | 'heavy';
 
 export interface TextProps {
   size?: TextSize;
+
   $color?: string;
   $fontWeight?: FontWeightType;
   $marginLeft?: string;
@@ -27,6 +29,7 @@ export interface TextProps {
 const Text = ({
   size,
   $color,
+
   $fontWeight,
   $marginRight,
   $marginLeft,

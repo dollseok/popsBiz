@@ -21,7 +21,8 @@ const fontsize = {
   body2: '18px',
   body3: '16px',
   body4: '14px',
-  small: '12px',
+  body5: '12px',
+  body6: '10px',
 } as const;
 
 const shadow = {
