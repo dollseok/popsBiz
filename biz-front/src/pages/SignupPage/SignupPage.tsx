@@ -11,8 +11,8 @@ import {
   emailCertState,
   emailErrorState,
   imageErrorState,
-  nicknameErrorState,
-  nicknamePassState,
+  profileNameErrorState,
+  profileNamePassState,
   passwordErrorState,
   signupInfoState,
   timerState,
@@ -27,13 +27,15 @@ const SignupPage = () => {
   const [emailError, setEmailError] = useRecoilState(emailErrorState);
   const [passwordError, setPasswordError] = useRecoilState(passwordErrorState);
   const [imageError, setImageError] = useRecoilState(imageErrorState);
-  const [nicknameError, setNicknameError] = useRecoilState(nicknameErrorState);
+  const [profileNameError, setProfileNameError] = useRecoilState(
+    profileNameErrorState
+  );
   const [agreeError, setAgreeError] = useRecoilState(agreeErrorState);
 
   const resetEmailCertState = useResetRecoilState(emailCertState);
   const resetTimerState = useResetRecoilState(timerState);
   const resetAgreementState = useResetRecoilState(agreementState);
-  const resetNicknamePassState = useResetRecoilState(nicknamePassState);
+  const resetProfileNamePassState = useResetRecoilState(profileNamePassState);
   const resetSignupInfo = useResetRecoilState(signupInfoState);
 
   const EmailSignup = useEmailSignup();
@@ -47,13 +49,13 @@ const SignupPage = () => {
     resetEmailCertState();
     resetTimerState();
     resetAgreementState();
-    resetNicknamePassState();
+    resetProfileNamePassState();
 
     // errorstate 설정
     setEmailError(prev => ({ ...prev, state: true }));
     setPasswordError(prev => ({ ...prev, state: true }));
     setImageError(prev => ({ ...prev, state: true }));
-    setNicknameError(prev => ({ ...prev, state: true }));
+    setProfileNameError(prev => ({ ...prev, state: true }));
     setAgreeError(prev => ({ ...prev, state: true }));
   }, []);
 
@@ -63,7 +65,7 @@ const SignupPage = () => {
         !emailError.state &&
         !passwordError.state &&
         !imageError.state &&
-        !nicknameError.state &&
+        !profileNameError.state &&
         !agreeError.state
       ) {
         // 이메일 회원가입
@@ -93,8 +95,8 @@ const SignupPage = () => {
           }));
         }
         // 닉네임에 문제
-        if (nicknameError.state) {
-          setNicknameError(prev => ({
+        if (profileNameError.state) {
+          setProfileNameError(prev => ({
             ...prev,
             message: '닉네임을 정상적으로 입력해야 회원가입이 가능합니다.',
           }));
