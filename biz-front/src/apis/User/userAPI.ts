@@ -17,7 +17,7 @@ const addLogin = async (data: UserLoginInfoType) => {
     const response = await instance.post('/biz-web/v1/auth/login/email', data);
     return response.data;
   } catch {
-    new Error('login error');
+    throw new Error('login error');
   }
 };
 
@@ -30,7 +30,7 @@ const sendEmail = async (data: SendEmailInfo) => {
     );
     return response.data;
   } catch {
-    new Error('send email error');
+    throw new Error('send email error');
   }
 };
 
@@ -43,7 +43,7 @@ const CertEmail = async (data: CertEmailInfo) => {
     );
     return response.data;
   } catch {
-    new Error('certificate email error');
+    throw new Error('certificate email error');
   }
 };
 
@@ -57,7 +57,7 @@ const SignupEmail = async (data: SignupUserType) => {
     );
     return response.data;
   } catch {
-    new Error('sign up with email error');
+    throw new Error('sign up with email error');
   }
 };
 
@@ -70,7 +70,7 @@ const SignupSocial = async (data: SocialSignupUserType) => {
     );
     return response.data;
   } catch {
-    new Error('sign up with Social error');
+    throw new Error('sign up with Social error');
   }
 };
 
@@ -86,11 +86,11 @@ const CheckNickname = async (nickname: string) => {
 const getPresignedUrl = async () => {
   try {
     const response = await instance.get(
-      `/biz-web/v1/common/upload/url?type=profile&count=1`
+      `/biz-web/v1/file/upload/url?type=profile&count=1`
     );
     return response.data.payload;
   } catch {
-    new Error('get Presigned URL Error');
+    throw new Error('get Presigned URL Error');
   }
 };
 
@@ -103,7 +103,7 @@ const uploadProfileImage = async (
     const response = await imageInstance.put(data.url, data.blob);
     return response.status;
   } catch {
-    new Error('upload Image error');
+    throw new Error('upload Image error');
   }
 };
 
@@ -117,7 +117,7 @@ const googleLogin = async (data: googleLoginInfoType) => {
     const response = await instance.post('/biz-web/v1/auth/login/google', data);
     return response.data;
   } catch {
-    new Error('google Login error');
+    throw new Error('google Login error');
   }
 };
 
@@ -132,7 +132,7 @@ const getGoogleAccessToken = async (data: getGoogleAccessTokenInfoType) => {
     );
     return response.data;
   } catch {
-    new Error('get google access Token error');
+    throw new Error('get google access Token error');
   }
 };
 
