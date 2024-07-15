@@ -1,6 +1,7 @@
 export type apiErrorType = {
   result: string;
-  errorMsg: string;
+  error: string;
+  errorMessage: string;
   errorCode: string;
 };
 
