@@ -8,11 +8,15 @@ export interface SendEmailInfo {
   targetEmail: string;
 }
 
-export type CertEmailInfo = {
+export interface CertEmailInfo {
   targetEmail: string;
   authCode: string;
   sendId: string | null;
-};
+}
+
+export interface SendTextInfoType {
+  phoneNumber: string;
+}
 
 export interface AgreeDataType {
   checkBoxId: number;
@@ -44,9 +48,10 @@ export interface getGoogleAccessTokenInfoType {
 export interface SignupUserType {
   email: string;
   password: string;
-  nickname: string;
-  profileKey: string;
+  profileName: string;
+  hasProfileImage: boolean;
   allowEmailMarketing: boolean;
+  phoneNumber: string;
 }
 
 export interface CurrentUserType {
