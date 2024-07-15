@@ -12,6 +12,9 @@ const instance: Axios = axios.create({
 // 요청 인터셉터
 instance.interceptors.request.use(
   (config: any) => {
+    if (localStorage.getItem('accessToken') === null) {
+      return config;
+    } // 로그인 전에는 config만
     config.headers = {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
     };
