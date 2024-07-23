@@ -2,8 +2,9 @@ import { instance } from '../instance';
 import { imageInstance } from '../imageInstance';
 
 import {
-  CertEmailInfo,
+  CertInfo,
   SendEmailInfo,
+  SendTextInfoType,
   SignupUserType,
   SocialSignupUserType,
   UserLoginInfoType,
@@ -29,26 +30,25 @@ const sendEmail = async (data: SendEmailInfo) => {
       data // target Email
     );
     return response.data;
-  } catch {
+  } catch (error) {
     throw new Error('send email error');
   }
 };
 
 // 인증 코드 메일 인증
-const CertEmail = async (data: CertEmailInfo) => {
+const CertEmail = async (data: CertInfo) => {
   try {
     const response = await instance.post(
       '/biz-web/v1/auth/cert/email/code',
       data
     );
     return response.data;
-  } catch {
-    throw new Error('certificate email error');
+  } catch (error) {
+    throw error;
   }
 };
 
 // 이메일로 회원 가입
-
 const SignupEmail = async (data: SignupUserType) => {
   try {
     const response = await instance.post(
@@ -77,7 +77,7 @@ const SignupSocial = async (data: SocialSignupUserType) => {
 // 닉네임 중복검사
 const CheckNickname = async (nickname: string) => {
   const response = await instance.get(
-    `/biz-web/v1/va/check/nickname/${nickname}`
+    `/biz-web/v1/user/check/profileName/${nickname}`
   );
   return response.data;
 };
@@ -136,6 +136,29 @@ const getGoogleAccessToken = async (data: getGoogleAccessTokenInfoType) => {
   }
 };
 
+// 핸드폰 번호 전송
+const sendText = async (data: SendTextInfoType) => {
+  try {
+    const response = await instance.post('/biz-web/v1/sms/auth-code', data);
+    return response.data;
+  } catch {
+    throw new Error('send Text message Error');
+  }
+};
+
+// 핸드폰 인증
+const CertPhoneNum = async (data: CertInfo) => {
+  try {
+    const response = await instance.post(
+      '/biz-web/v1/auth/cert/phone/code',
+      data
+    );
+    return response.data;
+  } catch {
+    throw new Error('certification PhoneNumber Error');
+  }
+};
+
 export {
   addLogin,
   sendEmail,
@@ -147,4 +170,6 @@ export {
   uploadProfileImage,
   googleLogin,
   getGoogleAccessToken,
+  sendText,
+  CertPhoneNum,
 };
