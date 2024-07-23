@@ -34,36 +34,37 @@ const useAddLogin = (redirectPath: string) => {
       }
       // 로그인 실패
       else if (data.result === 'error') {
-        // 파라미터 오류
-        if (data.errorCode === 'COM_001') {
-          if (tmpUser?.password === '') {
-            setLoginError({
-              state: true,
-              message: '비밀번호를 입력하세요.',
-            });
-          } else if (tmpUser?.email === '') {
-            setLoginError({
-              state: true,
-              message: '가입한 이메일을 입력하세요.',
-            });
-          } else {
-            setLoginError({
-              state: true,
-              message: '이메일 형태에 맞게 입력하세요.',
-            });
-          }
-        }
-        // 데이터 오류
-        else if (data.errorCode === 'EBA_001') {
+      }
+    },
+    onError: error => {
+      const errorResponse = error.response.data;
+      console.log('로그인 api의 오류입니다.');
+      // 파라미터 오류
+      if (errorResponse.errorCode === 'COM_001') {
+        if (tmpUser?.password === '') {
           setLoginError({
             state: true,
-            message: '이메일 또는 비밀번호가 틀립니다. 다시 입력해주세요.',
+            message: '비밀번호를 입력하세요.',
+          });
+        } else if (tmpUser?.email === '') {
+          setLoginError({
+            state: true,
+            message: '가입한 이메일을 입력하세요.',
+          });
+        } else {
+          setLoginError({
+            state: true,
+            message: '이메일 형태에 맞게 입력하세요.',
           });
         }
       }
-    },
-    onError: () => {
-      console.log('로그인 api의 오류입니다.');
+      // 데이터 오류
+      else if (errorResponse.errorCode === 'EBA_001') {
+        setLoginError({
+          state: true,
+          message: '이메일 또는 비밀번호가 틀립니다. 다시 입력해주세요.',
+        });
+      }
     },
   });
 };

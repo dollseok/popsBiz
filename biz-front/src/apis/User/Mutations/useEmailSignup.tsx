@@ -29,7 +29,15 @@ const useEmailSignup = () => {
         handleRouter(PATH.ROOT);
       }
     },
-    onError: () => {},
+    onError: error => {
+      const errorResponse = error.response.data;
+      if (errorResponse.errorCode === 'COM_001') {
+        console.log(errorResponse.errorMessage);
+      }
+      if (errorResponse.errorCode === 'COM_004') {
+        console.log(errorResponse.errorMessage);
+      }
+    },
   });
 };
 

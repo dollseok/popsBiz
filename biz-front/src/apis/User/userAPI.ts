@@ -17,8 +17,9 @@ const addLogin = async (data: UserLoginInfoType) => {
   try {
     const response = await instance.post('/biz-web/v1/auth/login/email', data);
     return response.data;
-  } catch {
-    throw new Error('login error');
+  } catch (error) {
+    console.log('login error');
+    throw error;
   }
 };
 
@@ -31,7 +32,8 @@ const sendEmail = async (data: SendEmailInfo) => {
     );
     return response.data;
   } catch (error) {
-    throw new Error('send email error');
+    console.log('send email error');
+    throw error;
   }
 };
 
@@ -44,6 +46,7 @@ const CertEmail = async (data: CertInfo) => {
     );
     return response.data;
   } catch (error) {
+    console.log('certificate email Error');
     throw error;
   }
 };
@@ -56,8 +59,9 @@ const SignupEmail = async (data: SignupUserType) => {
       data
     );
     return response.data;
-  } catch {
-    throw new Error('sign up with email error');
+  } catch (error) {
+    console.log('sign up with email Error');
+    throw error;
   }
 };
 
@@ -69,17 +73,23 @@ const SignupSocial = async (data: SocialSignupUserType) => {
       data
     );
     return response.data;
-  } catch {
-    throw new Error('sign up with Social error');
+  } catch (error) {
+    console.log('sign up with Social error');
+    throw error;
   }
 };
 
 // 닉네임 중복검사
 const CheckNickname = async (nickname: string) => {
-  const response = await instance.get(
-    `/biz-web/v1/user/check/profileName/${nickname}`
-  );
-  return response.data;
+  try {
+    const response = await instance.get(
+      `/biz-web/v1/user/check/profileName/${nickname}`
+    );
+    return response.data;
+  } catch (error) {
+    console.log('nickname double check Error');
+    throw error;
+  }
 };
 
 // 이미지를 업로드 하기 위한 presigned url 생성
@@ -89,8 +99,9 @@ const getPresignedUrl = async () => {
       `/biz-web/v1/file/upload/url?type=profile&count=1`
     );
     return response.data.payload;
-  } catch {
-    throw new Error('get Presigned URL Error');
+  } catch (error) {
+    console.log('get Presigned URL Error');
+    throw error;
   }
 };
 
@@ -102,8 +113,9 @@ const uploadProfileImage = async (
     console.log(data.blob);
     const response = await imageInstance.put(data.url, data.blob);
     return response.status;
-  } catch {
-    throw new Error('upload Image error');
+  } catch (error) {
+    console.log('upload Image error');
+    throw error;
   }
 };
 
@@ -116,8 +128,9 @@ const googleLogin = async (data: googleLoginInfoType) => {
   try {
     const response = await instance.post('/biz-web/v1/auth/login/google', data);
     return response.data;
-  } catch {
-    throw new Error('google Login error');
+  } catch (error) {
+    console.log('google Login error');
+    throw error;
   }
 };
 
@@ -131,8 +144,9 @@ const getGoogleAccessToken = async (data: getGoogleAccessTokenInfoType) => {
       data
     );
     return response.data;
-  } catch {
-    throw new Error('get google access Token error');
+  } catch (error) {
+    console.log('get google access Token error');
+    throw error;
   }
 };
 
@@ -141,8 +155,9 @@ const sendText = async (data: SendTextInfoType) => {
   try {
     const response = await instance.post('/biz-web/v1/sms/auth-code', data);
     return response.data;
-  } catch {
-    throw new Error('send Text message Error');
+  } catch (error) {
+    console.log('send Text message Error');
+    throw error;
   }
 };
 
@@ -154,8 +169,9 @@ const CertPhoneNum = async (data: CertInfo) => {
       data
     );
     return response.data;
-  } catch {
-    throw new Error('certification PhoneNumber Error');
+  } catch (error) {
+    console.log('certification PhoneNumber Error');
+    throw error;
   }
 };
 

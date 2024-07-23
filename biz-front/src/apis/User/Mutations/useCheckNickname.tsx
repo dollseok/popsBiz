@@ -28,24 +28,33 @@ const useCheckNickname = () => {
       setTmpProfileName(profileName);
       return CheckNickname(profileName);
     },
+
     onSuccess: data => {
       console.log(data);
-      if (data.result === 'error') {
-        setProfileNameError({
-          state: true,
-          message: '중복된 닉네임입니다. 다른 닉네임을 입력해주세요.',
-        });
-      } else {
-        resetProfileNameError();
-        setProfileNamePass(true);
-        if (signupMode === 'basic') {
-          setSignupInfo(prev => ({ ...prev, nickname: tmpProfileName }));
-        } else if (signupMode === 'social') {
-          setSocialSignupInfo(prev => ({ ...prev, nickname: tmpProfileName }));
-        }
+      resetProfileNameError();
+      setProfileNamePass(true);
+      if (signupMode === 'basic') {
+        setSignupInfo(prev => ({ ...prev, nickname: tmpProfileName }));
+      } else if (signupMode === 'social') {
+        setSocialSignupInfo(prev => ({ ...prev, nickname: tmpProfileName }));
       }
     },
-    onError: () => {},
+
+    onError: error => {
+      const errorResponse = error.response.data;
+      if (errorResponse.errorCode === 'COM_005') {
+        setProfileNameError({
+          state: true,
+          message: errorResponse.errorMessage,
+        });
+      }
+      if (errorResponse.errorCode === 'COM_001') {
+        setProfileNameError({
+          state: true,
+          message: errorResponse.errorMessage,
+        });
+      }
+    },
   });
 };
 

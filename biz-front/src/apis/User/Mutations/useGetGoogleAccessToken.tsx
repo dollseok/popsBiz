@@ -36,7 +36,11 @@ const useGetGoogleAccessToken = () => {
         googleLogin.mutate({ email: decoded.email, idToken: accessToken });
       }
     },
-    onError: () => {},
+    onError: error => {
+      const errorResponse = error.response.data;
+      console.log(error);
+      console.log(errorResponse);
+    },
   });
 };
 

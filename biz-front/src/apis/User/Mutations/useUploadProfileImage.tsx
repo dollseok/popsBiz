@@ -48,7 +48,9 @@ const useUploadProfileImage = () => {
         }
       }
     },
-    onError: () => {
+    onError: error => {
+      const errorResponse = error.response.data;
+      console.log(errorResponse);
       setImageError({
         state: true,
         message: '파일 업로드 중 오류가 발생했습니다. 다시 시도해주세요.',
