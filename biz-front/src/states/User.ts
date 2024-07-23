@@ -20,9 +20,10 @@ export const signupInfoState = atom<SignupUserType>({
   default: {
     email: '',
     password: '',
-    nickname: '',
-    profileKey: '',
+    profileName: '',
+    hasProfileImage: false,
     allowEmailMarketing: false,
+    phoneNumber: '',
   },
 });
 
@@ -48,8 +49,18 @@ export const emailCertState = atom<boolean>({
   default: false,
 });
 
-export const timerState = atom<boolean>({
-  key: 'timerState',
+// export const timerState = atom<boolean>({
+//   key: 'timerState',
+//   default: false,
+// });
+
+export const emailSentState = atom<boolean>({
+  key: 'emailSentState',
+  default: false,
+});
+
+export const messageSentState = atom<boolean>({
+  key: 'messageSentState',
   default: false,
 });
 
@@ -58,14 +69,19 @@ export const agreementState = atom<boolean>({
   default: false,
 });
 
-export const nicknamePassState = atom<boolean>({
-  key: 'nicknamePassState',
+export const profileNamePassState = atom<boolean>({
+  key: 'profileNamePassState',
   default: false,
 });
 
 export const loginState = atom<boolean>({
   key: 'loginState',
   default: true,
+});
+
+export const phoneNumberState = atom<boolean>({
+  key: 'phoneNumberState',
+  default: false,
 });
 
 // 에러 상태
@@ -102,8 +118,8 @@ export const imageErrorState = atom<ErrorStateType>({
   },
 });
 
-export const nicknameErrorState = atom<ErrorStateType>({
-  key: 'nicknameErrorState',
+export const profileNameErrorState = atom<ErrorStateType>({
+  key: 'profileNameErrorState',
   default: {
     state: false,
     message: '',
@@ -112,6 +128,14 @@ export const nicknameErrorState = atom<ErrorStateType>({
 
 export const agreeErrorState = atom<ErrorStateType>({
   key: 'agreeErrorState',
+  default: {
+    state: false,
+    message: '',
+  },
+});
+
+export const phoneNumberErrorState = atom<ErrorStateType>({
+  key: 'phoneNumberErrorState',
   default: {
     state: false,
     message: '',
