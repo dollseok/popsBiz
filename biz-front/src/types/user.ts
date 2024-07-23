@@ -5,13 +5,13 @@ export interface UserLoginInfoType {
 }
 
 export interface SendEmailInfo {
-  targetEmail: string;
+  email: string;
 }
 
-export interface CertEmailInfo {
-  targetEmail: string;
+export interface CertInfo {
+  info: string;
   authCode: string;
-  sendId: string | null;
+  messageId: string | null;
 }
 
 export interface SendTextInfoType {
