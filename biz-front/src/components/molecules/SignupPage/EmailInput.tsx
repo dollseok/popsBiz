@@ -4,18 +4,19 @@ import Button from '@/components/atoms/Button/Button';
 import Input from '@/components/atoms/Input/Input';
 import { Text } from '@/components/atoms/Text/Text';
 import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
-import { emailCertState, emailErrorState, timerState } from '@/states/User';
+import { emailCertState, emailErrorState, emailSentState } from '@/states/User';
 import { Timer } from '@/utils/Timer';
 import { useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 const EmailInput = () => {
-  const [targetEmail, setTargetEmail] = useState<string>('ex)pops@example.com');
+  const [email, setEmail] = useState<string>('ex)pops@example.com');
   const [authCode, setAuthCode] = useState<string>('');
-  const [resetTimer, setResetTimer] = useState<boolean>(false); // 타이머 리셋 신호
+  // const [resetTimer, setResetTimer] = useState<boolean>(false); // 타이머 리셋 신호
 
   // recoil
-  const timer = useRecoilValue(timerState);
+  // const timer = useRecoilValue(timerState);
+  const [emailSent, setEmailSent] = useRecoilState(emailSentState);
   const emailCert = useRecoilValue(emailCertState);
   const emailError = useRecoilValue(emailErrorState);
 
@@ -26,7 +27,7 @@ const EmailInput = () => {
   //function
   const handleUserIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newUserId = e.target.value;
-    setTargetEmail(newUserId);
+    setEmail(newUserId);
   };
 
   const handleCertCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,13 +36,13 @@ const EmailInput = () => {
   };
 
   const handleSendEmailClick = () => {
-    setResetTimer(!resetTimer);
-    sendEmailMutation.mutate({ targetEmail });
+    setEmailSent(!emailSent);
+    sendEmailMutation.mutate({ email });
   };
 
   const handleCertEmailClick = () => {
-    const sendId = sessionStorage.getItem('sendId');
-    certEmailMutation.mutate({ targetEmail, authCode, sendId });
+    const messageId = sessionStorage.getItem('emailMessageId');
+    certEmailMutation.mutate({ info: email, authCode, messageId });
   };
 
   return (
@@ -61,7 +62,7 @@ const EmailInput = () => {
         <Wrapper option="RowSideEnd" $marginBottom="20px">
           <Input
             type="text"
-            placeholder={targetEmail}
+            placeholder={email}
             onChange={e => {
               handleUserIdChange(e);
             }}
@@ -77,7 +78,7 @@ const EmailInput = () => {
           </Button>
         </Wrapper>
 
-        {timer ? (
+        {emailSent ? (
           <>
             <Wrapper option="Row" $marginBottom="20px">
               <Input
@@ -86,7 +87,7 @@ const EmailInput = () => {
                 placeholder="인증코드 입력"
                 onChange={handleCertCodeChange}
               />
-              <Timer resetTimer={resetTimer} />
+              <Timer resetTimer={emailSent} />
               <Button
                 $marginLeft="20px"
                 size="small"

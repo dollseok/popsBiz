@@ -3,19 +3,20 @@ import { sendEmail } from '../userAPI';
 import { SendEmailInfo } from '@/types/user';
 import { apiSuccessType } from '@/types/apiResponse';
 import { useResetRecoilState, useSetRecoilState } from 'recoil';
-import { emailErrorState, timerState } from '@/states/User';
+import { emailErrorState, emailSentState } from '@/states/User';
 import { useState } from 'react';
 
 const useSendEmail = () => {
   const [emailInput, setEmailInput] = useState<string>('');
 
-  const setTimer = useSetRecoilState(timerState);
+  // const setTimer = useSetRecoilState(timerState);
+  const setEmailSent = useSetRecoilState(emailSentState);
   const setEmailError = useSetRecoilState(emailErrorState);
   const resetEmailError = useResetRecoilState(emailErrorState);
 
   return useMutation<apiSuccessType, unknown, SendEmailInfo>({
     mutationFn: (data: SendEmailInfo) => {
-      setEmailInput(data.targetEmail);
+      setEmailInput(data.email);
       return sendEmail(data);
     },
     onSuccess: data => {
@@ -23,8 +24,8 @@ const useSendEmail = () => {
       // 이메일 전송 성공
       if (data.result === 'success') {
         resetEmailError();
-        setTimer(true);
-        sessionStorage.setItem('sendId', data.payload.sendId);
+        setEmailSent(true);
+        sessionStorage.setItem('emailMessageId', data.payload.messageId);
       }
       // 이메일 전송 실패
       else if (data.result === 'error') {
