@@ -1,8 +1,14 @@
+interface apiErrorDataType {
+  data: {
+    result: string;
+    error: string;
+    errorMessage: string;
+    errorCode: string;
+  };
+}
+
 export type apiErrorType = {
-  result: string;
-  error: string;
-  errorMessage: string;
-  errorCode: string;
+  response: apiErrorDataType;
 };
 
 export type apiSuccessType = {
