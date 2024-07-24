@@ -34,9 +34,9 @@ const useCheckNickname = () => {
       resetProfileNameError();
       setProfileNamePass(true);
       if (signupMode === 'basic') {
-        setSignupInfo(prev => ({ ...prev, nickname: tmpProfileName }));
+        setSignupInfo(prev => ({ ...prev, profileName: tmpProfileName }));
       } else if (signupMode === 'social') {
-        setSocialSignupInfo(prev => ({ ...prev, nickname: tmpProfileName }));
+        setSocialSignupInfo(prev => ({ ...prev, profileName: tmpProfileName }));
       }
     },
 
