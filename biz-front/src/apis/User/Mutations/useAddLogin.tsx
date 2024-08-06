@@ -21,20 +21,14 @@ const useAddLogin = (redirectPath: string) => {
       return addLogin(user);
     },
     onSuccess: data => {
-      // 로그인 성공
-      if (data.result === 'success') {
-        const successData = data.payload;
-        localStorage.setItem('accessToken', successData.accessToken);
-        localStorage.setItem('nickname', successData.nickname);
-        localStorage.setItem('profileImage', successData.profileImage);
-        setUser(successData); // 현재 유저의 데이터 accessToken, profileImage, nickname
-        setLogin(true); // 로그인 상태 설정
-        resetLoginError();
-        navigate(redirectPath); //리 랜더링
-      }
-      // 로그인 실패
-      else if (data.result === 'error') {
-      }
+      const successData = data.payload;
+      localStorage.setItem('accessToken', successData.accessToken);
+      localStorage.setItem('nickname', successData.nickname);
+      localStorage.setItem('profileImage', successData.profileImage);
+      setUser(successData); // 현재 유저의 데이터 accessToken, profileImage, nickname
+      setLogin(true); // 로그인 상태 설정
+      resetLoginError();
+      navigate(redirectPath); //리 랜더링
     },
     onError: error => {
       const errorResponse = error.response.data;
