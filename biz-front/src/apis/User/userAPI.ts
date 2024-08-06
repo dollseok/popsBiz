@@ -54,10 +54,7 @@ const CertEmail = async (data: CertInfo) => {
 // 이메일로 회원 가입
 const SignupEmail = async (data: SignupUserType) => {
   try {
-    const response = await instance.post(
-      '/biz-web/v1/auth/sign-up/email',
-      data
-    );
+    const response = await instance.post('/biz-web/v1/sign-up/email', data);
     return response.data;
   } catch (error) {
     console.log('sign up with email Error');
