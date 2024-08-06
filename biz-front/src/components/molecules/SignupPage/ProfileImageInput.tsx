@@ -7,19 +7,25 @@ import { Box } from '../../atoms/Box/Box';
 import { Image } from '../../atoms/Image/Image';
 import defaultImage from '@/assets/images/default_image.png';
 import { useUploadProfileImage } from '@/apis/User/Mutations/useUploadProfileImage';
-import { useRecoilState } from 'recoil';
-import { imageErrorState } from '@/states/User';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import {
+  imageErrorState,
+  profileImageState,
+  signupInfoState,
+} from '@/states/User';
 
 const ProfileImageInput = () => {
   const LIMITED_SIZE = 10 * 1024 ** 2; // 10MB
 
   const imageInputRef = useRef<HTMLInputElement | null>(null);
-  const [profileImageUrl, setProfileImageUrl] = useState<string>(defaultImage);
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [profileImageUrl, setProfileImageUrl] = useState<string>(defaultImage);
 
+  const setSignupInfo = useSetRecoilState(signupInfoState); // 회원가입에 요구되는 데이터
+  const [profileImage, setProfileImage] = useRecoilState(profileImageState);
   const [imageError, setImageError] = useRecoilState(imageErrorState);
 
-  const uploadProfileImage = useUploadProfileImage();
+  // const uploadProfileImage = useUploadProfileImage();
 
   const handleImageInput = () => {
     imageInputRef.current?.click();
@@ -38,8 +44,8 @@ const ProfileImageInput = () => {
       return;
     }
 
+    // 파일이 있을 때 이미지 설정
     const file = e.target.files[0];
-
     if (file) {
       if (file.size <= LIMITED_SIZE) {
         // 용량 설정
@@ -48,8 +54,8 @@ const ProfileImageInput = () => {
           state: false,
           message: '',
         });
-        setProfileImageUrl(imageUrl);
-        setImageFile(file);
+        setProfileImageUrl(imageUrl); // 이미지 미리보기
+        setImageFile(file); // 이미지 파일 자체 변수 설정
       } else {
         setImageError({
           state: true,
@@ -62,7 +68,9 @@ const ProfileImageInput = () => {
   const handleUploadImage = () => {
     if (imageFile) {
       const blob = new Blob([imageFile], { type: 'image/jpeg' });
-      uploadProfileImage.mutate({ url: '', blob: blob }); // 이미지 업로드하는 api호출, 타입 맞추기 위해 url: ''을 보냄
+      setProfileImage(blob);
+      setSignupInfo(prev => ({ ...prev, hasProfileImage: true }));
+      // uploadProfileImage.mutate({ url: '', blob: blob }); // 이미지 업로드하는 api호출, 타입 맞추기 위해 url: ''을 보냄
     }
   };
 
@@ -73,6 +81,7 @@ const ProfileImageInput = () => {
   return (
     <>
       <Wrapper option="Column" $marginBottom="10px">
+        <Text size="body2">프로필 이미지</Text>
         <Wrapper option="RowSideEnd" $marginBottom="10px">
           <Wrapper option="Column">
             <Box $option="InputBox">

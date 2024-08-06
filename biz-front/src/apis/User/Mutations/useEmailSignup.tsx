@@ -1,12 +1,16 @@
 import { apiErrorType, apiSuccessType } from '@/types/apiResponse';
 import { SignupUserType } from '@/types/user';
 import { useMutation } from '@tanstack/react-query';
-import { SignupEmail } from '../userAPI';
+import { SignupEmail, uploadProfileImage } from '../userAPI';
 import { useNavigate } from 'react-router';
 import { PATH } from '@/constants/path';
+import { useRecoilValue } from 'recoil';
+import { profileImageState } from '@/states/User';
 
 const useEmailSignup = () => {
   const navigate = useNavigate();
+
+  const profileImage = useRecoilValue(profileImageState);
 
   const handleRouter = (url: string): void => {
     navigate(url);
@@ -17,20 +21,19 @@ const useEmailSignup = () => {
       return SignupEmail(data);
     },
     onSuccess: data => {
-      console.log(data);
-      // 에러에 따른 리턴
-      if (data.result === 'error') {
-        console.log('회원 가입 실패');
-      }
       // 성공에 따른 리턴
-      else {
-        console.log('회원 가입 성공');
-        // TODO: 자동 로그인? 할거인지
-        handleRouter(PATH.ROOT);
+      console.log(data);
+      // 프로필 이미지 저장
+      if (profileImage) {
+        console.log('이미지 저장 url', data.payload.url);
+        uploadProfileImage({ url: data.payload.url, blob: profileImage });
       }
+      // TODO: 자동 로그인? 할거인지
+      handleRouter(PATH.ROOT);
     },
     onError: error => {
       const errorResponse = error.response.data;
+      console.log(errorResponse);
       if (errorResponse.errorCode === 'COM_001') {
         console.log(errorResponse.errorMessage);
       }

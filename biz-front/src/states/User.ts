@@ -42,17 +42,17 @@ export const signupModeState = atom<string>({
   default: 'basic',
 });
 
+export const profileImageState = atom<Blob | null>({
+  key: 'profileImageState',
+  default: null,
+});
+
 // 상태 관련
 
 export const emailCertState = atom<boolean>({
   key: 'emailCertState',
   default: false,
 });
-
-// export const timerState = atom<boolean>({
-//   key: 'timerState',
-//   default: false,
-// });
 
 export const emailSentState = atom<boolean>({
   key: 'emailSentState',
@@ -74,14 +74,14 @@ export const profileNamePassState = atom<boolean>({
   default: false,
 });
 
-export const loginState = atom<boolean>({
-  key: 'loginState',
-  default: true,
-});
-
 export const phoneNumberState = atom<boolean>({
   key: 'phoneNumberState',
   default: false,
+});
+
+export const loginState = atom<boolean>({
+  key: 'loginState',
+  default: true,
 });
 
 // 에러 상태
