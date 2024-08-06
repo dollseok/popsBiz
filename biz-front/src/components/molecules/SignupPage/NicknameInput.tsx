@@ -41,7 +41,6 @@ const NicknameInput = () => {
       });
     } else {
       // 둘다 통과 되었을 때
-      console.log('둘다 통과');
       setProfileNameError({
         state: true,
         message: '',
