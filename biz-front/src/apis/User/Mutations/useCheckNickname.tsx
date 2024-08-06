@@ -3,8 +3,8 @@ import { useMutation } from '@tanstack/react-query';
 import { CheckNickname } from '../userAPI';
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 import {
-  nicknameErrorState,
-  nicknamePassState,
+  profileNameErrorState,
+  profileNamePassState,
   signupInfoState,
   signupModeState,
   socialSignupInfoState,
@@ -12,40 +12,49 @@ import {
 import { useState } from 'react';
 
 const useCheckNickname = () => {
-  const [tmpNickname, setTmpNickname] = useState<string>('');
+  const [tmpProfileName, setTmpProfileName] = useState<string>('');
 
   // recoil
   const setSignupInfo = useSetRecoilState(signupInfoState);
   const setSocialSignupInfo = useSetRecoilState(socialSignupInfoState);
-  const setNicknameError = useSetRecoilState(nicknameErrorState);
-  const setNicknamePass = useSetRecoilState(nicknamePassState);
-  const resetNicknameError = useResetRecoilState(nicknameErrorState);
+  const setProfileNameError = useSetRecoilState(profileNameErrorState);
+  const setProfileNamePass = useSetRecoilState(profileNamePassState);
+  const resetProfileNameError = useResetRecoilState(profileNameErrorState);
 
   const signupMode = useRecoilValue(signupModeState);
 
   return useMutation<apiSuccessType, apiErrorType, string>({
-    mutationFn: (nickname: string) => {
-      setTmpNickname(nickname);
-      return CheckNickname(nickname);
+    mutationFn: (profileName: string) => {
+      setTmpProfileName(profileName);
+      return CheckNickname(profileName);
     },
+
     onSuccess: data => {
       console.log(data);
-      if (data.result === 'error') {
-        setNicknameError({
-          state: true,
-          message: '중복된 닉네임입니다. 다른 닉네임을 입력해주세요.',
-        });
-      } else {
-        resetNicknameError();
-        setNicknamePass(true);
-        if (signupMode === 'basic') {
-          setSignupInfo(prev => ({ ...prev, nickname: tmpNickname }));
-        } else if (signupMode === 'social') {
-          setSocialSignupInfo(prev => ({ ...prev, nickname: tmpNickname }));
-        }
+      resetProfileNameError();
+      setProfileNamePass(true);
+      if (signupMode === 'basic') {
+        setSignupInfo(prev => ({ ...prev, profileName: tmpProfileName }));
+      } else if (signupMode === 'social') {
+        setSocialSignupInfo(prev => ({ ...prev, profileName: tmpProfileName }));
       }
     },
-    onError: () => {},
+
+    onError: error => {
+      const errorResponse = error.response.data;
+      if (errorResponse.errorCode === 'COM_005') {
+        setProfileNameError({
+          state: true,
+          message: errorResponse.errorMessage,
+        });
+      }
+      if (errorResponse.errorCode === 'COM_001') {
+        setProfileNameError({
+          state: true,
+          message: errorResponse.errorMessage,
+        });
+      }
+    },
   });
 };
 

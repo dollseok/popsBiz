@@ -8,7 +8,7 @@ import {
   agreeErrorState,
   agreementState,
   imageErrorState,
-  nicknameErrorState,
+  profileNameErrorState,
   signupModeState,
   socialSignupInfoState,
 } from '@/states/User';
@@ -26,7 +26,9 @@ const SocialSignupPage = () => {
 
   const setSignupMode = useSetRecoilState(signupModeState);
   const [imageError, setImageError] = useRecoilState(imageErrorState);
-  const [nicknameError, setNicknameError] = useRecoilState(nicknameErrorState);
+  const [profileNameError, setProfileNameError] = useRecoilState(
+    profileNameErrorState
+  );
   const [agreeError, setAgreeError] = useRecoilState(agreeErrorState);
 
   const resetSocialSignupInfo = useResetRecoilState(socialSignupInfoState);
@@ -35,7 +37,7 @@ const SocialSignupPage = () => {
 
   const handleSignupClick = async () => {
     if (agreement) {
-      if (!imageError && !nicknameError && !agreeError) {
+      if (!imageError && !profileNameError && !agreeError) {
         // 소셜 로그인 진행
         socialSignup.mutate(socialSignupInfo);
       }
@@ -49,8 +51,8 @@ const SocialSignupPage = () => {
           }));
         }
         // 닉네임에 문제
-        if (nicknameError.state) {
-          setNicknameError(prev => ({
+        if (profileNameError.state) {
+          setProfileNameError(prev => ({
             ...prev,
             message: '닉네임을 정상적으로 입력해야 회원가입이 가능합니다.',
           }));
@@ -78,7 +80,7 @@ const SocialSignupPage = () => {
     resetSocialSignupInfo();
 
     setImageError(prev => ({ ...prev, state: true }));
-    setNicknameError(prev => ({ ...prev, state: true }));
+    setProfileNameError(prev => ({ ...prev, state: true }));
     setAgreeError(prev => ({ ...prev, state: true }));
   }, []);
 

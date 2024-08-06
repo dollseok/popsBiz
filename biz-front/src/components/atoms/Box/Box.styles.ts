@@ -16,7 +16,8 @@ const getOptionStyling = ($option: Required<BoxProps>['$option']) => {
       flex-direction: row;
       align-items: center;
       background-color: white;
-      border: 1px solid black;
+      border-radius: 5px;
+      border: 1px solid ${({ theme }) => theme.color.grey1};
       margin-bottom: 10px;
       font-size: ${({ theme }) => theme.fontsize.body2};
       color: ${({ theme }) => theme.color.grey1};

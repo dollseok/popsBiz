@@ -9,6 +9,7 @@ export interface InputProps
     | 'medium'
     | 'large'
     | 'fullSize'
+    | 'phoneNumberInput'
     | 'dateInput'
     | 'timeInput'
     | 'siteInput'

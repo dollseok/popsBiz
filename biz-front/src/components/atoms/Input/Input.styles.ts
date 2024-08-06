@@ -47,6 +47,10 @@ const getInputSizeStyling = (
     siteInput: css`
       width: 100%;
     `,
+    phoneNumberInput: css`
+      width: 120px;
+    `,
+
     ticketDataInput: css`
       width: 90px;
     `,

@@ -19,7 +19,11 @@ const useSocialSignup = () => {
       console.log('회원가입 완료');
       handleRouter(PATH.ROOT);
     },
-    onError: () => {},
+    onError: error => {
+      const errorResponse = error.response.data;
+      console.log(error);
+      console.log(errorResponse);
+    },
   });
 };
 

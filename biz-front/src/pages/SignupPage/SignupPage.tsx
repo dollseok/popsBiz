@@ -11,11 +11,12 @@ import {
   emailCertState,
   emailErrorState,
   imageErrorState,
-  nicknameErrorState,
-  nicknamePassState,
+  profileNameErrorState,
+  profileNamePassState,
   passwordErrorState,
   signupInfoState,
-  timerState,
+  phoneNumberState,
+  phoneNumberErrorState,
 } from '@/states/User';
 import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
@@ -27,15 +28,20 @@ const SignupPage = () => {
   const [emailError, setEmailError] = useRecoilState(emailErrorState);
   const [passwordError, setPasswordError] = useRecoilState(passwordErrorState);
   const [imageError, setImageError] = useRecoilState(imageErrorState);
-  const [nicknameError, setNicknameError] = useRecoilState(nicknameErrorState);
+  const [phoneNumberError, setPhoneNumberError] = useRecoilState(
+    phoneNumberErrorState
+  );
+  const [profileNameError, setProfileNameError] = useRecoilState(
+    profileNameErrorState
+  );
   const [agreeError, setAgreeError] = useRecoilState(agreeErrorState);
 
   const resetEmailCertState = useResetRecoilState(emailCertState);
-  const resetTimerState = useResetRecoilState(timerState);
+  // const resetTimerState = useResetRecoilState(timerState);
   const resetAgreementState = useResetRecoilState(agreementState);
-  const resetNicknamePassState = useResetRecoilState(nicknamePassState);
+  const resetProfileNamePassState = useResetRecoilState(profileNamePassState);
   const resetSignupInfo = useResetRecoilState(signupInfoState);
-
+  const resetPhoneNumberState = useResetRecoilState(phoneNumberState);
   const EmailSignup = useEmailSignup();
 
   // 페이지 렌더링 되었을 때 errorstate 전부 true로 -> 그래야 아무것도 아닐 때 회원가입 못하게 막음
@@ -44,26 +50,30 @@ const SignupPage = () => {
     resetSignupInfo();
 
     // recoil 리셋
+    // resetTimerState();
     resetEmailCertState();
-    resetTimerState();
     resetAgreementState();
-    resetNicknamePassState();
+    resetPhoneNumberState();
+    resetProfileNamePassState();
 
     // errorstate 설정
     setEmailError(prev => ({ ...prev, state: true }));
     setPasswordError(prev => ({ ...prev, state: true }));
     setImageError(prev => ({ ...prev, state: true }));
-    setNicknameError(prev => ({ ...prev, state: true }));
+    setProfileNameError(prev => ({ ...prev, state: true }));
     setAgreeError(prev => ({ ...prev, state: true }));
+    setPhoneNumberError(prev => ({ ...prev, state: true }));
   }, []);
 
   const handleSignupClick = async () => {
+    console.log(signupInfo);
     if (agreement) {
       if (
         !emailError.state &&
         !passwordError.state &&
         !imageError.state &&
-        !nicknameError.state &&
+        !profileNameError.state &&
+        !phoneNumberError.state &&
         !agreeError.state
       ) {
         // 이메일 회원가입
@@ -93,10 +103,17 @@ const SignupPage = () => {
           }));
         }
         // 닉네임에 문제
-        if (nicknameError.state) {
-          setNicknameError(prev => ({
+        if (profileNameError.state) {
+          setProfileNameError(prev => ({
             ...prev,
             message: '닉네임을 정상적으로 입력해야 회원가입이 가능합니다.',
+          }));
+        }
+        // 핸드폰 번호 문제
+        if (phoneNumberError.state) {
+          setPhoneNumberError(prev => ({
+            ...prev,
+            message: '핸드폰 번호를 인증해야 회원가입이 가능합니다.',
           }));
         }
         window.scrollTo(0, 0);

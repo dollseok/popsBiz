@@ -3,54 +3,56 @@ import Button from '@/components/atoms/Button/Button';
 import Input from '@/components/atoms/Input/Input';
 import { Text } from '@/components/atoms/Text/Text';
 import { Wrapper } from '@/components/atoms/Wrapper/Wrapper';
-import { nicknameErrorState, nicknamePassState } from '@/states/User';
+import { profileNameErrorState, profileNamePassState } from '@/states/User';
 import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 const NicknameInput = () => {
-  const [nickname, setNickname] = useState('');
+  const [profileName, setProfileName] = useState('');
   //recoil
-  const [nicknameError, setNicknameError] = useRecoilState(nicknameErrorState);
-  const [nicknamePass, setNicknamePass] = useRecoilState(nicknamePassState);
+  const [profileNameError, setProfileNameError] = useRecoilState(
+    profileNameErrorState
+  );
+  const [profileNamePass, setProfileNamePass] =
+    useRecoilState(profileNamePassState);
 
   // api
   const checkNicknameMutation = useCheckNickname();
 
   // function
   const handleNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newNickname = e.target.value;
-    setNicknamePass(false);
+    const newProfileName = e.target.value;
+    setProfileNamePass(false);
     const onlyEngNumResult = /[~`!@#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(
-      newNickname
+      newProfileName
     );
-    const lengthReg = /^.{2,10}$/.test(newNickname);
+    const lengthReg = /^.{2,10}$/.test(newProfileName);
 
-    setNickname(newNickname);
+    setProfileName(newProfileName);
     if (!lengthReg) {
-      setNicknameError({
+      setProfileNameError({
         state: true,
         message: '닉네임은 2-10자 이내로 입력해야 합니다.',
       });
     } else if (onlyEngNumResult) {
-      setNicknameError({
+      setProfileNameError({
         state: true,
         message: '닉네임은 영문,한글,숫자만 입력 가능합니다.',
       });
     } else {
       // 둘다 통과 되었을 때
-      console.log('둘다 통과');
-      setNicknameError({
+      setProfileNameError({
         state: true,
         message: '',
       });
-      setNickname(newNickname);
+      setProfileName(newProfileName);
     }
   };
 
   const handleCheckNicknameClick = () => {
-    console.log(nickname);
-    if (nicknameError.message === '') {
-      checkNicknameMutation.mutate(nickname);
+    console.log(profileName);
+    if (profileNameError.message === '') {
+      checkNicknameMutation.mutate(profileName);
     }
   };
 
@@ -77,7 +79,7 @@ const NicknameInput = () => {
           * 소비자에게 노출되는 내용으로 신중하게 작성해주시기 바랍니다.
         </Text>
 
-        {nicknamePass ? (
+        {profileNamePass ? (
           <Text $color="blue" size="body4" $marginLeft="10px">
             중복 확인 완료
           </Text>
@@ -86,7 +88,7 @@ const NicknameInput = () => {
         )}
 
         <Text $color="danger" size="body4" $marginLeft="10px">
-          {nicknameError.message}
+          {profileNameError.message}
         </Text>
       </Wrapper>
     </>

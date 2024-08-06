@@ -43,7 +43,11 @@ const useGoogleLogin = () => {
         handleRouter(PATH.SOCIALSIGNUP);
       }
     },
-    onError: () => {},
+    onError: error => {
+      const errorResponse = error.response.data;
+      console.log(error);
+      console.log(errorResponse);
+    },
   });
 };
 
